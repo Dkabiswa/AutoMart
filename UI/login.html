@@ -12,19 +12,35 @@
 			</div>
 			<div class="header-right">
 				<ul>
-					<li><a href = '#'>LOG IN</a></li>
+					<li><a href = '#' onclick="openForm()">LOG IN</a></li>
 					<li><a href = '#'>ABOUT US</a></li>
 				</ul>
 			</div>
 		</div>
 	</header>
-	<div class= "main">
+	<div class= "main"> 
+		<div class= "login-form" id = "myForm">
+			<form class="form-container">
+    			<h1>Login</h1>
+				<label for="email"><b>Email</b></label>
+				<input type="text" placeholder="Enter Email" name="email" required>
+				<label for="psw"><b>Password</b></label>
+				<input type="password" placeholder="Enter Password" name="psw" required>
+
+				<button type="submit" class="btn">Login</button>
+				<button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+				<p>If you dont have an account <a href= "#" onclick ="">Sign Up</a></p>
+			</form>
+
+		</div>
 	<div class = "top-part">
 		<div class= "container">
+			<div class = "slide">
 				<img class="mySlides" src="images/hybrid.jpg">
 				<!--<img class="mySlides" src="images/Toyota-VellFire.jpg">
 				<img class="mySlides" src="images/hybrid.jpg">
 				<img class="mySlides" src="images/2004-Nissan-Murano.jpg"> !-->
+			</div>
 		</div>
 	</div>
 	<div class ="vehicle-part">
