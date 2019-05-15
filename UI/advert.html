@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="advert.css">
+	<title>Sell Car</title>
+</head>
+<body>
+	<div class ="container">
+		<div class ="top">
+			<h2>Sell Your Car</h2>
+		</div>
+		<div class = "main">
+			<div class= "car details">
+					<form class = "detail-form">
+						<div class ="column right">
+							<p>Make *</p>
+							<input type="text" placeholder="" name="make" required>
+							<p>Series</p>
+							<input type="text" placeholder="" name="ser">
+							<p>Mileage (km) *</p>
+							<input type="text" placeholder="" name="mil" required>
+							<p>Transimission type *</p>
+							<input type="text" placeholder="" name="trans" required>
+							<p>Duty *</p>
+							<input type="text" placeholder="" name="duty" required>
+						</div>
+						<div class = "column left">
+							<p>Model *</p>
+							<input type="text" placeholder="" name="model" required>
+							<p>Year</p>
+							<input type="text" placeholder="" name="year" required>
+							<p>Body Type *</p>
+							<input type="text" placeholder="" name="body" required>
+							<p>Condition *</p>
+							<input type="text" placeholder="" name="cond" required>
+							<p>Price *</p>
+							<input type="text" placeholder="" name="pric" required>
+						</div>
+						<label for="pricw">Price negotiable</label>
+						<input type="checkbox"  name="price" required>
+					</form>
+			</div>
+			<div class= "car features">
+				<form class = "detail-form">
+					<div class ="column right">
+						<p>Fuel Type *</p>
+						<input type="text" placeholder="" name="fuel">
+						<p>colour</p>
+						<input type="text" placeholder="" name="col">
+					</div>
+					<div class = "column left">
+						<p>Engine Size cc *</p>
+						<input type="text" placeholder="" name="eng" required>
+						<p>Interior</p>
+						<input type="text" placeholder="" name="inter">
+					</div>
+					<p>Description</p>
+					<textarea rows="4" cols=" 100">
+					</textarea>
+				</form>				
+			</div>
+			<div class ="car images">
+				<form class = "detail-form">
+					<div class ="right">
+						<p>Upload Photos *</p>
+						<input type="file" name="pic" accept="image/*">
+					</div>
+				</form>
+			</div>
+		</div>
+		<button type="button" class="btn">SELL CAR</button>
+	</div>
+</body>
+</html>
