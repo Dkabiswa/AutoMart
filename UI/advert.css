@@ -3,7 +3,11 @@
 }
 body {
 	font-family: sans-serif;
+<<<<<<< HEAD
 	background-color: rgba(0,0,0,.45);
+=======
+	background-color: #f1f1f1;
+>>>>>>> 6d284bf4392a2f7ff8a507ec64ceb3df4a60423f
 }
 h2 {
 	color:;
@@ -37,9 +41,15 @@ h2 {
 	padding: 20px; 
 }
 .detail-form:after {
+<<<<<<< HEAD
 	content: "";
  	display: table;
 	clear: both;
+=======
+  content: "";
+  display: table;
+  clear: both;
+>>>>>>> 6d284bf4392a2f7ff8a507ec64ceb3df4a60423f
 }
 input[type=text] {
 	width: 300px;
