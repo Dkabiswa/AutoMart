@@ -6,15 +6,26 @@
 </head>
 <body>
 	<div class= "container">
+		<div class ="top">
+			<h2>Report This Advert</h2>
+		</div>
 		<form class="form-container">
-    		<h1>Login</h1>
-			<label for="email"><b>Email</b></label>
-			<input type="text" placeholder="Enter Email" name="email" required>
-			<label for="psw"><b>Password</b></label>
-			<input type="password" placeholder="Enter Password" name="psw" required>
-			<button type="submit" class="btn">Login</button>
-			<button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
-			<p>If you dont have an account <a href= "#" onclick ="openSignup()">Sign Up</a></p>
+    		<p>Name *</p>
+			<input type="text" name="nam" required>
+			<p>Email</p>
+			<input type="email"  name="email" required>
+			<p>Country</p>
+			<input type="text"  required>
+			<p>Phone number</p>
+			<input type="tel" " name="phone" required>
+			<p>Abuse type *</p>
+			<input type="text" name="abuse" required>
+			<p>comment</p>
+			<textarea name =" comm"></textarea>
+			<div class = "buttons">
+				<button type="submit" class="btn">Submit</button>
+				<button type="button" class="btn cancel"">Cancel</button>
+			</div>
 		</form>
 
 	</div>

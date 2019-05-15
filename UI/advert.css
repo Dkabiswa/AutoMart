@@ -38,15 +38,9 @@ h2 {
 	padding: 20px; 
 }
 .detail-form:after {
-<<<<<<< HEAD
 	content: "";
  	display: table;
 	clear: both;
-=======
-  content: "";
-  display: table;
-  clear: both;
->>>>>>> 6d284bf4392a2f7ff8a507ec64ceb3df4a60423f
 }
 input[type=text] {
 	width: 300px;
