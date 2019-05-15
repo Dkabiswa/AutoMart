@@ -21,34 +21,41 @@ h2 {
 	background-color: #55acee;
 	color : white;
 	padding: 10px;
+	height: 100px
 }
-.main{
-	margin: 0 auto;
-	width: 100%;
-}
-.detail-form {
-	background-color: #F4F6F6;
-	padding: 10px;
-	margin-bottom: 10px;
-}
-.column {
+.part-right{
 	float: left;
 	width: 50%;
-	padding: 20px; 
 }
-.detail-form:after {
+.part-left {
+	text-align: right;
+}
+.top:after {
 	content: "";
- 	display: table;
+	display: table;
 	clear: both;
 }
-input[type=text] {
-	width: 300px;
-	padding: 10px 15px;
-	background-color: #fff;
+.car-image {
+	height: 250px;
+	border: 1px solid #ccc;
+	margin: 10px 0;
+	text-align: center;
+}
+
+.car {
+	height: 150px;
+	background-color: #F4F6F6;
+	margin-bottom: 10px;
+	text-align: center;
+	padding-top: 2px;
+}
+dl {
+	float:left;
+	width:20%;
 }
 .btn {
 	border: none;
-	width: 200px;
+	width: 300px;
 	background-color: #55acee;
 	border-radius: 2px;
 	color: white;
