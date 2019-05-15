@@ -1,0 +1,65 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: sans-serif;
+	background-color: #f1f1f1;
+}
+h2 {
+	color:;
+	font-weight: normal;
+}
+.container {
+	margin: 0 auto;
+	width: 60%;
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 4px;
+	box-shadow: 0 1px 1px 1px black;
+}
+.top {
+	background-color: #55acee;
+	color : white;
+	padding: 10px;
+	height: 100px
+}
+.part-right{
+	float: left;
+	width: 50%;
+}
+.part-left {
+	text-align: right;
+}
+.top:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.car-image {
+	height: 250px;
+	border: 1px solid #ccc;
+	margin: 10px 0;
+	text-align: center;
+}
+
+.car {
+	height: 150px;
+	background-color: #F4F6F6;
+	margin-bottom: 10px;
+	text-align: center;
+	padding-top: 2px;
+}
+dl {
+	float:left;
+	width:20%;
+}
+.btn {
+	border: none;
+	width: 300px;
+	background-color: #55acee;
+	border-radius: 2px;
+	color: white;
+	font-family: sans-serif;
+	height: 32px;
+	margin: 20px 0; 
+}
