@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="advert.css">
 	<title>Sell Car</title>
 </head>
 <body>
 	<div class ="container">
-		<div class ="top-wrapper">
-			<h2>SELL UR CAR</h2>
+		<div class ="top">
+			<h2>Sell Your Car</h2>
 		</div>
 		<div class = "main">
 			<div class= "car details">
 					<form class = "detail-form">
-						<div class ="right">
+						<div class ="column right">
 							<p>Make *</p>
 							<input type="text" placeholder="" name="make" required>
 							<p>Series</p>
@@ -23,7 +24,7 @@
 							<p>Duty *</p>
 							<input type="text" placeholder="" name="mil" required>
 						</div>
-						<div class = "left">
+						<div class = "column left">
 							<p>Model *</p>
 							<input type="text" placeholder="" name="mil" required>
 							<p>Year</p>
@@ -40,16 +41,36 @@
 						<label for="pricw">Price negotiable</label>
 						<input type="checkbox"  name="price" required>
 					</form>
-				</div>
 			</div>
 			<div class= "car features">
 				<form class = "detail-form">
-					<div class ="right"></div>
-					<div class = "left"></div>
+					<div class ="column right">
+						<p>Fuel Type *</p>
+						<input type="text" placeholder="" name="fuel">
+						<p>colour</p>
+						<input type="text" placeholder="" name="col">
+					</div>
+					<div class = "column left">
+						<p>Engine Size cc *</p>
+						<input type="text" placeholder="" name="eng" required>
+						<p>Interior</p>
+						<input type="text" placeholder="" name="inter">
+					</div>
+					<p>Description</p>
+					<textarea rows="4" cols=" 100">
+					</textarea>
 				</form>				
 			</div>
-			<div class ="car images"></div>
+			<div class ="car images">
+				<form class = "detail-form">
+					<div class ="right">
+						<p>Upload Photos *</p>
+						<input type="file" name="pic" accept="image/*">
+					</div>
+				</form>
+			</div>
 		</div>
+		<button type="button" class="btn">SELL CAR</button>
 	</div>
 </body>
 </html>
