@@ -1,27 +1,5 @@
-* {
-	box-sizing: border-box;
-}
-body{
-	background-color: rgba(0,0,0,.45);
-	font-family: "Lucida Grande";
-}
-h2 {
-	font-weight: normal;
-}
-
 .container {
-	margin: 0 auto;
-	width: 60%;
-	background-color: #fff;
-	padding: 10px;
-	border-radius: 4px;
-	box-shadow: 0 1px 1px 1px black;
 	height: 760px;
-}
-.top {
-	background-color: #55acee;
-	color : white;
-	padding: 10px;
 }
 .form-container input, textarea{
 	width: 100%;
@@ -34,17 +12,8 @@ textarea {
 	height: 120px;
 }
 
-.buttons {
-	float: right;
-}
 .btn {
-	border: none;
 	width: 100px;
-	background-color: #55acee;
-	border-radius: 2px;
-	color: white;
-	font-family: sans-serif;
-	height: 32px;
 	margin: 15px 5px; 
 }
 .cancel {

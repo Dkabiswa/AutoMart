@@ -1,22 +1,5 @@
-* {
-	box-sizing: border-box;
-}
-body {
-	font-family: sans-serif;
 
-	background-color: rgba(0,0,0,.45);
-}
-h2 {
-	color:;
-	font-weight: normal;
-}
 .container {
-	margin: 0 auto;
-	width: 60%;
-	background-color: #fff;
-	padding: 10px;
-	border-radius: 4px;
-	box-shadow: 0 1px 1px 1px black;
 	height: 380px;
 }
 .top {
@@ -41,13 +24,6 @@ h2 {
 	height: 200px;
 }
 .btn {
-	border: none;
-	width: 200px;
-	background-color: #55acee;
-	border-radius: 2px;
-	color: white;
-	font-family: sans-serif;
-	height: 32px;
 	font-size: 15px;
 	margin: 10px 0; 
 }
@@ -57,8 +33,4 @@ h2 {
 }
 .sold {
 	background-color: #458B00;
-}
-
-.buttons {
-	float: right;
 }
