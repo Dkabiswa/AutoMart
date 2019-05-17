@@ -4,11 +4,7 @@ body {
 }
 
 header {
-	height: 50px;
-	width: 100%;
-	background-color: rgba(34, 49, 52, 0.9);
 	position: fixed;
-	top: 0;
 	z-index: 10;
 }
 footer {
@@ -24,46 +20,9 @@ footer {
 	margin: 0 auto;
 }
 
-.header-left {
-	float: left;
-}
-.header-right {
-	float: right;
-	
-}
-.header-right ul, .brands ul, footer ul{
-	list-style: none;
-	display: block;
-}
-
-.header-right ul li {
-	float:left;
-}
-
 .brands ul li{
-	float:left;
-	
+	width: 15%;
 	margin: 0 10px;
-
-}
-.header-right ul li a, footer a{
-	text-decoration: none;
-	display: block;
-	padding: 0 25px;
-	color: white;
-}
-.header-right ul li a:hover {
-	color: rgba(255, 255, 255, 0.5);
-}
-.header-left a {
-	color: white;
-	text-decoration: none;
-	line-height: 65px;
-	padding: 0 25px;
-	display: block;
-	font-weight: 300;
-    color: #ccc;
-    font-size: 20px;
 }
 
 .btn {
@@ -221,11 +180,6 @@ h1 {
     border: 1px solid rgba(0,47,52,.2);
 	margin: 0 12px;
 }
-.slide-button{border:none;
-	display:inline-block;
-	padding:8px 16px;
-	background-color:inherit;
-}
  .message-part {
 	height: 200px;
 	padding-top:10px;
@@ -233,9 +187,7 @@ h1 {
 	text-align: center;
 	width: 100%;
  }
-.brands ul li{
-	width: 15%;
-}
+
 .foot-message {
 	text-align: center;
 }
