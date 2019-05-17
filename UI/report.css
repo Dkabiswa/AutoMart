@@ -1,15 +1,14 @@
 * {
 	box-sizing: border-box;
 }
-body {
-	font-family: sans-serif;
+body{
 	background-color: rgba(0,0,0,.45);
-
+	font-family: "Lucida Grande";
 }
 h2 {
-	color:;
 	font-weight: normal;
 }
+
 .container {
 	margin: 0 auto;
 	width: 60%;
@@ -17,50 +16,37 @@ h2 {
 	padding: 10px;
 	border-radius: 4px;
 	box-shadow: 0 1px 1px 1px black;
+	height: 760px;
 }
 .top {
 	background-color: #55acee;
 	color : white;
 	padding: 10px;
-	height: 100px
 }
-.part-right{
-	float: left;
-	width: 50%;
-}
-.part-left {
-	text-align: right;
-}
-.top:after {
-	content: "";
-	display: table;
-	clear: both;
-}
-.car-image {
-	height: 250px;
+.form-container input, textarea{
+	width: 100%;
+	padding: 10px 0;
 	border: 1px solid #ccc;
-	margin: 10px 0;
-	text-align: center;
+	background: #f1f1f1;
+
+}
+textarea {
+	height: 120px;
 }
 
-.car {
-	height: 150px;
-	background-color: #F4F6F6;
-	margin-bottom: 10px;
-	text-align: center;
-	padding-top: 2px;
-}
-dl {
-	float:left;
-	width:20%;
+.buttons {
+	float: right;
 }
 .btn {
 	border: none;
-	width: 300px;
+	width: 100px;
 	background-color: #55acee;
 	border-radius: 2px;
 	color: white;
 	font-family: sans-serif;
 	height: 32px;
-	margin: 20px 0; 
+	margin: 15px 5px; 
+}
+.cancel {
+	background-color: #f44336;
 }
