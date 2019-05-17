@@ -1,32 +1,4 @@
-* {
-	box-sizing: border-box;
-}
-body {
-	font-family: sans-serif;
 
-	background-color: rgba(0,0,0,.45);
-}
-h2 {
-	color:;
-	font-weight: normal;
-}
-.container {
-	margin: 0 auto;
-	width: 60%;
-	background-color: #fff;
-	padding: 10px;
-	border-radius: 4px;
-	box-shadow: 0 1px 1px 1px black;
-}
-.top {
-	background-color: #55acee;
-	color : white;
-	padding: 10px;
-}
-.main{
-	margin: 0 auto;
-	width: 100%;
-}
 .detail-form {
 	background-color: #F4F6F6;
 	padding: 10px;
@@ -46,14 +18,4 @@ input[type=text] {
 	width: 300px;
 	padding: 10px 15px;
 	background-color: #fff;
-}
-.btn {
-	border: none;
-	width: 200px;
-	background-color: #55acee;
-	border-radius: 2px;
-	color: white;
-	font-family: sans-serif;
-	height: 32px;
-	margin: 20px 0; 
 }
