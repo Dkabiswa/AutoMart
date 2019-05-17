@@ -1,0 +1,36 @@
+
+.container {
+	height: 380px;
+}
+.top {
+	background-color: #55acee;
+	color : white;
+	padding: 10px;
+}
+.column {
+	float: left;
+
+	padding: 20px; 
+}
+.right {
+	width: 70%;
+	border-right: 1px solid #ccc;
+	height: 100%;
+}
+.detail-form {
+	background-color: #F4F6F6;
+	padding: 10px;
+	margin-bottom: 10px;
+	height: 200px;
+}
+.btn {
+	font-size: 15px;
+	margin: 10px 0; 
+}
+.edit{
+	background-color: #FA8072;
+	margin-right: 20px;
+}
+.sold {
+	background-color: #458B00;
+}

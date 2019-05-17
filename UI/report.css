@@ -1,0 +1,21 @@
+.container {
+	height: 760px;
+}
+.form-container input, textarea{
+	width: 100%;
+	padding: 10px 0;
+	border: 1px solid #ccc;
+	background: #f1f1f1;
+
+}
+textarea {
+	height: 120px;
+}
+
+.btn {
+	width: 100px;
+	margin: 15px 5px; 
+}
+.cancel {
+	background-color: #f44336;
+}
