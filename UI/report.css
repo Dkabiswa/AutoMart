@@ -1,5 +1,50 @@
+header {
+	height: 50px;
+	width: 100%;
+	background-color: rgba(34, 49, 52, 0.9);
+	position: fixed;
+	top: 0;
+	z-index: 10;
+}
+
+.header-left {
+	float: left;
+}
+.header-right {
+	float: right;
+	
+}
+.header-right ul, .brands ul, footer ul{
+	list-style: none;
+}
+
+.header-right ul li, .brands ul li{
+	float:left;	
+}
+
+.header-right ul li a, footer a{
+	text-decoration: none;
+	display: block;
+	padding: 0 25px;
+	color: white;
+}
+.header-right ul li a:hover, .header-left a:hover {
+	color: rgba(255, 255, 255, 0.5);
+}
+.header-left a {
+	color: white;
+	text-decoration: none;
+	line-height: 65px;
+	padding: 0 25px;
+	display: block;
+	font-weight: 300;
+    color: white;
+    font-size: 20px;
+}
+
 .container {
-	height: 760px;
+	margin-top: 80px;
+	height: 600px;
 }
 .form-container input, textarea{
 	width: 100%;
