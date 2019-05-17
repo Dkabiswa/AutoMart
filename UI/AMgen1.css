@@ -2,12 +2,16 @@
 	box-sizing: border-box;
 }
 body {
-	font-family: sans-serif;
-
-	background-color: rgba(0,0,0,.45);
+	font-family: "sans-serif";
 }
 h2 {
 	font-weight: normal;
+}
+a  {
+	text-decoration: none;
+}
+button a {
+	color: white;
 }
 .container {
 	margin: 0 auto;
@@ -34,7 +38,11 @@ h2 {
 	color: white;
 	font-family: sans-serif;
 	height: 32px;
+	opacity: 0.8;
 	margin: 20px 0; 
+}
+.btn:hover{
+	opacity: 1;
 }
 .buttons {
 	float: right;

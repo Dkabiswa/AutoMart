@@ -1,4 +1,4 @@
-function sold() {
- 	document.getElementById("btn2").innerHTML = "SOLD";
- 	document.getElementById("btn1").style.display = "none";
+function sold(id1, id2) {
+ 	document.getElementById(id2).innerHTML = "SOLD";
+ 	document.getElementById(id1).style.display = "none";
 }
