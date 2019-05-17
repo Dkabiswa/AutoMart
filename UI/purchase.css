@@ -1,20 +1,22 @@
-.detail-form {
+.container {
+	height: 420px
+}
+
+.purchase {
 	background-color: #F4F6F6;
 	padding: 10px;
 	margin-bottom: 10px;
-}
-.column {
-	float: left;
-	width: 50%;
-	padding: 20px; 
-}
-.detail-form:after {
-	content: "";
- 	display: table;
-	clear: both;
 }
 input[type=text] {
 	width: 300px;
 	padding: 10px 15px;
 	background-color: #fff;
+}
+
+.sell {
+	background-color: rgb(224, 77, 54);
+	margin-right: 10px;
+}
+.call {
+	background-color: green;
 }
