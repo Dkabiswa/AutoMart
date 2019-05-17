@@ -1,5 +1,5 @@
 body {
-	font-family: "Lucida Grande";
+	font-family: sans-serif;
 
 }
 
@@ -47,11 +47,54 @@ header {
 }
 
 .search-bottom {
+	margin: 0 auto;
+	width: 100%;
 	height: 200px;
-	padding-left: 20px;
-	padding-top: 20px;
+	padding-left: 250px;
+	padding-top: 10px;
 	background-color: #F2F2F2;
 }
+.make {
+	float: left;
+	margin-right: 80px;
+}
+.search-top input {
+	height: 30px;
+	padding-left: 10px;
+	width: 600px;
+	border-radius: 4px;
+}
+.search-top label {
+	color: white;
+	font-size: 20px;
+	
+}
+.make input {
+	height: 30px;
+	width: 200px;
+}
+.pri input {
+	height: 30px;
+	width: 80px;
+	margin-right: 10px;	
+}
+.button {
+	margin-top: 45px;
+}
+.btn {
+	
+	border: none;
+	width: 120px;
+	background-color: #55acee;
+	border-radius: 2px;
+	color: white;
+	font-size: 15px;
+	height: 32px; 
+}
+.ser {
+	background-color: #3b5998;
+}
+
 .form-container {
 	height: 200px;
 	width: 100%;
@@ -84,6 +127,23 @@ header {
     border: 1px solid rgba(0,47,52,.2);
 	margin: 0 12px;
 	margin-bottom: 40px;
+}
+.veh-image {
+	height: 130px;
+	border-bottom: 1px solid #ccc;
+}
+.veh-bottom {
+	padding: 5px;
+}
+.veh-price {
+	float: left;
+}
+.price{
+	padding:5px;
+}
+.veh-button{
+	float: right;
+	padding: 5px;
 }
 
  ul{
