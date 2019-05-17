@@ -1,3 +1,4 @@
+
 header {
 	height: 50px;
 	width: 100%;
@@ -46,6 +47,7 @@ header {
 	margin-top: 80px;
 	height: 600px;
 }
+
 .form-container input, textarea{
 	width: 100%;
 	padding: 10px 0;
@@ -56,7 +58,6 @@ header {
 textarea {
 	height: 120px;
 }
-
 .btn {
 	width: 100px;
 	margin: 15px 5px; 
