@@ -12,8 +12,11 @@
 			<a href = "login.html">Dkat AutoMart</a>
 		</div>
 		<div class="header-right">
-			<ul>
-				<li ><a href = '#'><span class = "now">SELL CAR</span></a></li>
+			<div  class =" toggle" onclick="openMenu()">
+					<span id ="i1">Menu</span>
+				</div>
+			<ul id ="ul1">
+				<li class = "now"><a href = '#'>SELL CAR</a></li>
 				<li><a href = 'unsold.html'>VEHICLES</a></li>
 				<li><a href = 'marksold.html'>YOUR ADs</a></li>
 				<li><a href = 'admin.html'>ADMIN</a></li>
@@ -71,7 +74,7 @@
 						<input type="text" placeholder="" name="inter">
 					</div>
 					<p>Description</p>
-					<textarea rows="4" cols=" 100">
+					<textarea>
 					</textarea>
 				</form>				
 			</div>
@@ -86,5 +89,6 @@
 		</div>
 		<button type="button" class="btn">SELL CAR</button>
 	</div>
+	<script type="text/javascript" src= "back.js"></script>
 </body>
 </html>

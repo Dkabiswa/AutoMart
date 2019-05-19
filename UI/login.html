@@ -12,7 +12,10 @@
 				<a class = "icon" href = "login.html"><span class="now">Dkat AutoMart</span></a>
 			</div>
 			<div class="header-right">
-				<ul>
+				<div class ="toggle" onclick="openMenu()">
+					<span id ="i1">Menu</span>
+				</div>
+				<ul id ="ul1">
 					<li><a href = 'advert.html'>SELL CAR</a></li>
 					<li><a href = 'unsold.html'>VEHICLES</a></li>
 					<li><a href = '#' onclick="openForm()">LOG IN</a></li>
@@ -30,7 +33,11 @@
 				<input type="password" placeholder="Enter Password" name="psw" required>
 				<button type="submit" class="btn">Login</button>
 				<button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
-				<p>If you dont have an account <a href= "#" onclick ="openSignup()">Sign Up</a></p>
+				<div>
+					<label for="pricw">Remember me</label>
+					<input type="checkbox"  name="price" required>
+				</div>
+				<p>If you dont have an account<a href= "#" onclick ="openSignup()">Sign Up</a></p>
 			</form>
 
 		</div>
@@ -111,7 +118,7 @@
 			<a class = "icon" href = "#">Dkat AutoMart</a>
 			<div class = "foot-message">
 				<div class="about">
-				<ul>
+				<ul class = "active" id = "ul1">
           			<li>About</li>
           			<li><a href = "#">Privacy Policy</a></li>
           			<li><a href = "#">Terms & Conditions</a></li>
@@ -123,5 +130,6 @@
 		</div>
 	</footer>
 	<script src = "login.js"></script>
+	<script type="text/javascript" src ="back.js"></script>
 </body>
 </html>
