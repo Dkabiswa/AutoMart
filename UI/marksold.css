@@ -1,12 +1,22 @@
+.now {
+	color: rgba(255, 255, 255, 0.5);
+}
 
 .container {
-	height: 380px;
-}
-.top {
-	background-color: #55acee;
-	color : white;
 	padding: 10px;
+	border-radius: none;
+	box-shadow:none;
 }
+.car-ad {
+	margin-bottom: 60px;
+	border: 1px solid #ccc;
+	height: 360px;
+	padding: 5px;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 1px 1px black;
+}
+
 .column {
 	float: left;
 
@@ -33,4 +43,19 @@
 }
 .sold {
 	background-color: #458B00;
+}
+button a {
+	color:white;
+}
+@media (max-width: 780px){
+	.car-ad {
+		height: 360px; 
+	}
+	.btn {
+		padding: 0;
+		width: 100px;
+	}
+	.right {
+		width: 50%;
+	}
 }

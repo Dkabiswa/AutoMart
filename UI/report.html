@@ -2,19 +2,33 @@
 <html>
 <head>
 	<link rel="stylesheet" href="AMgen1.css">
+	<link rel="stylesheet" href="AMgen2.css">
 	<link rel="stylesheet" href="report.css">
 	<title>Report Fraud</title>
 </head>
 <body>
+	<header>
+		<div class="header-left">
+			<a href = "login.html">Dkat AutoMart</a>
+		</div>
+		<div class="header-right">
+			<div  class =" toggle" onclick="openMenu()">
+					<span id ="i1">Menu</span>
+				</div>
+			<ul id="ul1">
+				<li ><a href = 'advert.html'>SELL CAR</span></a></li>
+				<li><a href = 'unsold.html'>VEHICLES</a></li>
+				<li><a href = 'marksold.html'>YOUR ADs</a></li>
+				<li><a href = 'admin.html'>ADMIN</a></li>
+				<li><a href = 'purchases.html'>PURCHASED</a></li>
+			</ul>
+		</div>
+	</header>
 	<div class= "container">
 		<div class ="top">
 			<h2>Report This Advert</h2>
 		</div>
 		<form class="form-container">
-    		<p>Name *</p>
-			<input type="text" name="nam" required>
-			<p>Email</p>
-			<input type="email"  name="email" required>
 			<p>Country</p>
 			<input type="text"  required>
 			<p>Phone number</p>
@@ -25,11 +39,11 @@
 			<textarea name =" comm"></textarea>
 			<div class = "buttons">
 				<button type="submit" class="btn">Submit</button>
-				<button type="button" class="btn cancel"">Cancel</button>
+				<button type="button" class="btn cancel" onclick="goBack()">Cancel</button>
 			</div>
 		</form>
 
 	</div>
-
+	<script type="text/javascript" src= "back.js"></script>
 </body>
 </html>

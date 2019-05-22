@@ -2,10 +2,28 @@
 <html>
 <head>
 	<link rel="stylesheet" href="AMgen1.css">
+	<link rel="stylesheet" href="AMgen2.css">
 	<link rel="stylesheet" href="advert.css">
 	<title>Sell Car</title>
 </head>
 <body>
+	<header>
+		<div class="header-left">
+			<a href = "login.html">Dkat AutoMart</a>
+		</div>
+		<div class="header-right">
+			<div  class =" toggle" onclick="openMenu()">
+					<span id ="i1">Menu</span>
+				</div>
+			<ul id ="ul1">
+				<li class = "now"><a href = '#'>SELL CAR</a></li>
+				<li><a href = 'unsold.html'>VEHICLES</a></li>
+				<li><a href = 'marksold.html'>YOUR ADs</a></li>
+				<li><a href = 'admin.html'>ADMIN</a></li>
+				<li><a href = 'purchases.html'>PURCHASED</a></li>
+			</ul>
+		</div>
+	</header>
 	<div class ="container">
 		<div class ="top">
 			<h2>Sell Your Car</h2>
@@ -56,7 +74,7 @@
 						<input type="text" placeholder="" name="inter">
 					</div>
 					<p>Description</p>
-					<textarea rows="4" cols=" 100">
+					<textarea>
 					</textarea>
 				</form>				
 			</div>
@@ -71,5 +89,6 @@
 		</div>
 		<button type="button" class="btn">SELL CAR</button>
 	</div>
+	<script type="text/javascript" src= "back.js"></script>
 </body>
 </html>

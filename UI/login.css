@@ -1,3 +1,33 @@
+body {
+	font-family: "sans-serif";
+	margin: 0;
+}
+
+header {
+	position: fixed;
+	z-index: 10;
+}
+footer {
+	width: 100%;
+	background-color: rgba(34, 49, 52, 0.9);	
+	color: white;
+}
+footer a {
+	padding: 0 20px;
+}
+.main {
+	margin: 0 auto;
+	width: 80%;
+}
+.container {	
+	margin: 0 auto;
+}
+
+.brands ul li{
+	width: 15%;
+	margin: 0 10px;
+}
+
 .btn {
 	
 	border: none;
@@ -14,7 +44,7 @@
 }
 
 .login-form {
-	display: block;
+	display: none;
 	position: fixed;
 	left: 0px;
 	top: 0;
@@ -71,7 +101,7 @@ h1 {
 	margin: 5% auto;
 	box-sizing: border-box;
 	padding: 20px 0 0 20px;
-	height: 450px;
+	height: 460px;
 	background-color: white;
 	width: 300px; 
 
@@ -84,7 +114,7 @@ h1 {
 	box-sizing: border-box;
 	padding: 40px;
 	width: 300px;
-	height: 450px;
+	height: 460px;
 	background-color: #F2F2F2;
 }
 .right-buttons{
@@ -118,3 +148,59 @@ h1 {
 	text-decoration: none;
 }
 
+.top-part {
+	padding: 80px 0 10px 0;
+	color: white;
+
+	text-align: center;
+	margin: 0 auto ;
+	width: 100%;
+}
+.slide{
+	box-sizing: border-box;
+}
+
+.mySlides {
+	width: 70%;
+	height: 400px;
+}
+.vehicle-part {
+	height: 200px;
+	background-color: #F2F2F2;
+	padding-top:10px;
+	padding-bottom: 20px;
+	text-align: center;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.vehicle-icon {
+	float: left;
+	width: 30%;
+	position: relative;
+    box-sizing: border-box;
+    background: #fff;
+    border: 1px solid rgba(0,47,52,.2);
+	margin: 0 12px;
+}
+ .message-part {
+	height: 200px;
+	padding-top:10px;
+	padding-bottom: 10px;
+	text-align: center;
+	width: 100%;
+ }
+
+.foot-message {
+	text-align: center;
+}
+@media (max-width: 916px){
+	.vehicle-icon {
+		width: 21%;
+	}
+}
+@media (max-width: 916px){
+	.brands ul li {
+		width: 14%;
+	}
+}

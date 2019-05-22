@@ -1,3 +1,10 @@
+.container {
+	height: 760px;
+}
+.top {
+	padding: 10px;
+	height: 100px
+}
 
 .part-right{
 	float: left;
@@ -28,7 +35,4 @@
 dl {
 	float:left;
 	width:20%;
-}
-.btn {
-	width: 300px;
 }

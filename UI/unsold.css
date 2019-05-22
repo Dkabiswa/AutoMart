@@ -1,6 +1,6 @@
 body {
-	font-family: sans-serif;
-
+	font-family: "sans-serif";
+	margin: 0;
 }
 
 * {
@@ -9,13 +9,13 @@ body {
 h2 {
 	font-weight: normal;
 }
-header {
-	height: 65px;
-	width: 100%;
-	background-color: rgba(34, 49, 52, 0.9);
+a{
+	text-decoration: none;
+	display: block;
 }
+
 .search-top {
-	padding: 20px 0 20px 0;
+	padding: 65px 0 10px 0;
 	background-color: rgba(34, 49, 52, 0.6);
 	border-bottom: 1px solid #ccc;
 	text-align: center;
@@ -27,16 +27,6 @@ header {
 	background-color: white;	
 	border-radius: 4px;
 
-}
-.header-left a {
-	color: white;
-	text-decoration: none;
-	line-height: 65px;
-	padding: 0 25px;
-	display: block;
-	font-weight: 300;
-    color: #ccc;
-    font-size: 20px;
 }
 .top-part {
 	border: 1px solid #ccc;
@@ -88,11 +78,18 @@ header {
 	background-color: #55acee;
 	border-radius: 2px;
 	color: white;
+	opacity: 0.8;
 	font-size: 15px;
 	height: 32px; 
 }
+.btn:hover {
+	opacity: 1;
+}
 .ser {
 	background-color: #3b5998;
+}
+.del {
+	background-color: #dd4b39;
 }
 
 .form-container {
@@ -108,7 +105,7 @@ header {
 }
 
 .vehicle-part {
-	height: 800px;
+	height: 900px;
 	background-color: #F2F2F2;
 	border-radius: 4px;
 	padding-bottom: 20px;
@@ -116,7 +113,9 @@ header {
 	margin: 0 auto;
 	width: 100%;
 }
-
+.vehicle-icon:hover {
+	box-shadow: 0 1px 2px 1px #ccc;
+}
 .vehicle-icon {
 	float: left;
 	width: 30%;
@@ -128,6 +127,7 @@ header {
 	margin: 0 12px;
 	margin-bottom: 40px;
 }
+
 .veh-image {
 	height: 130px;
 	border-bottom: 1px solid #ccc;
@@ -137,6 +137,7 @@ header {
 }
 .veh-price {
 	float: left;
+	width:30%;
 }
 .price{
 	padding:5px;
@@ -145,7 +146,82 @@ header {
 	float: right;
 	padding: 5px;
 }
+.report {
+	display: inline-block;
+	text-decoration: none;
+	font-size: 15px;
+	color: rgba(255, 0, 0, 0.8);
+}
+.report:hover {
+	color: rgba(255, 0, 0, 1);
+}
+.pur{
+	color:white;
+}
 
  ul{
 	list-style: none;
 }
+
+@media screen and (max-width: 1300px) {
+	.vehicle-icon {
+		height:250px;
+		margin-bottom: 20px
+	}
+	.btn{
+		height: 20px;
+	}
+	.price{
+	padding:0;
+}
+   .veh-button{
+ 	 	float: left;
+ 	 	padding: 0;
+  }
+
+}
+@media screen and (max-width:1000px) {
+	  .vehicle-part {
+		height: 160rem;
+	}
+}
+@media screen and (max-width: 900px) {
+	.vehicle-icon {
+		width: 200px;
+		margin-bottom: 20px
+	}
+	.btn{
+		height: 20px;
+	}
+	.search-top{
+		padding-left: 0;
+		padding-top: 0;
+		text-align: none;
+	}
+	.search-top input {
+		height: 20px;
+		padding-left: 0;
+		width: 300px;
+	}
+	.search-top label {
+		font-size: 15px;
+	
+	}
+	.form-container {
+		height: 250px;
+	}
+	.search-bottom {
+		margin: 0 auto;
+		width: 100%;
+		height: 250px;
+		padding-left: 5px;
+		padding-top: 5px;
+
+	}
+	.make {
+		float: left;
+		margin-right: 50px;
+	}
+}
+
+

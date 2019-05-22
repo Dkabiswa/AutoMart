@@ -1,3 +1,7 @@
+.container {
+	height: 600px;
+}
+
 .form-container input, textarea{
 	width: 100%;
 	padding: 10px 0;
@@ -11,7 +15,4 @@ textarea {
 .btn {
 	width: 100px;
 	margin: 15px 5px; 
-}
-.cancel {
-	background-color: #f44336;
 }
