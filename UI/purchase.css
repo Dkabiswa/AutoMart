@@ -8,7 +8,7 @@
 	margin-bottom: 10px;
 }
 input[type=text] {
-	width: 300px;
+	width: 100%;
 	padding: 10px 15px;
 	background-color: #fff;
 }
@@ -19,4 +19,15 @@ input[type=text] {
 }
 .call {
 	background-color: green;
+}
+@media (max-width: 758px){
+		.btn {
+		padding: 0;
+		width: 100px;
+	}
+}
+@media (max-width: 424px){
+		.container {
+			height: 560px;
+	}
 }
