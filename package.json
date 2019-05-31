@@ -4,7 +4,7 @@
   "description": "[![Build Status](https://travis-ci.org/Dkabiswa/AutoMart.svg?branch=develop)](https://travis-ci.org/Dkabiswa/AutoMart)",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha --require @babel/register  --exit",
+    "test": "mocha --require @babel/register './test/*.js'",
     "start": "nodemon ./index.js --exec babel-node -e js",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha",
     "lint": "eslint"
