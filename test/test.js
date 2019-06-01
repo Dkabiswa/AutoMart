@@ -1,9 +1,18 @@
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import app from '../index';
 
-const expect = require('chai').expect
-const server = require('../index');
+chai.use(chaiHttp);
+chai.should();
 
 describe('test', () => {
-  it('should return a string', () => {
-    expect('Hello').to.equal('Hello');
+  it('should return a string', (done) => {
+    chai.request(app)
+      .get('/')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
   });
 });

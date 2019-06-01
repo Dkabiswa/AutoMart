@@ -15,4 +15,4 @@ app.get('/', (req, res) => {
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`magic happens on port ${port}`));
 
-module.exports = port;
+export default app;
