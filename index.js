@@ -1,6 +1,5 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import car from './src/routes/carRoutes';
 
 
 const app = express();
@@ -9,11 +8,11 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/api/v1', car);
+app.get('/', (req, res) => {
+  res.send('ci with travis');
+});
 
-const port = process.env.PORT || 3000;
-
-const server = app.listen(port, () => {
+const server = app.listen(3000, () => {
   console.log('App running on port 3000');
 });
 
