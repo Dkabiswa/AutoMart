@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 chai.should();
 
 describe('Cars', () => {
-  it('should list ALL unsold cars on /cars GET', () => {
+  it('should list ALL unsold cars on /cars GET', (done) => {
     chai.request(server)
       .get('/api/v1/cars')
       .end((err, res) => {

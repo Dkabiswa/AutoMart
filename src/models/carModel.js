@@ -21,7 +21,7 @@ class Car {
         owner: 4,
         createdOn: 'wed 5',
         state: 'new',
-        status: 'available',
+        status: 'sold',
         price: 400,
         manufacturer: 'Benz',
         model : 'B-class',
@@ -29,7 +29,9 @@ class Car {
       },
     ];
   }
-
+  getAll() {
+    return this.cars.filter(car => car.status === "available");
+  }
 
 }
 export default new Car();
