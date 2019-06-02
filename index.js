@@ -9,10 +9,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send('Hello');
+  res.send('ci with travis');
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`magic happens on port ${port}`));
+const server = app.listen(3000, () => {
+  console.log('App running on port 3000');
+});
 
-export default app;
+export default server;
+
