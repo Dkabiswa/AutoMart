@@ -1,0 +1,6 @@
+#dependencies
+node_modules/
+
+.coveralls.yml
+
+.nyc_output/

@@ -1,0 +1,44 @@
+{
+  "name": "automart",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.org/Dkabiswa/AutoMart.svg?branch=develop)](https://travis-ci.org/Dkabiswa/AutoMart)",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "nyc mocha --require @babel/register './test/*.js' --timeout=3000",
+    "start": "nodemon ./index.js --exec babel-node -e js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dkabiswa/AutoMart.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dkabiswa/AutoMart/issues"
+  },
+  "homepage": "https://github.com/Dkabiswa/AutoMart#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "braces": "^3.0.2",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.0.3",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.1",
+    "nyc": "^14.1.1"
+  }
+}
