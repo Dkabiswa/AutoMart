@@ -16,3 +16,27 @@ describe('Cars', () => {
       });
   });
 });
+
+describe('/POST car', () => {
+  it('it should POST a car', (done) => {
+    const car = {
+      owner: 2,
+      state: 'new',
+      status: 'available',
+      price: 300,
+      manufacturer: 'Benz',
+      model: 'C-class',
+      bodyType: 'Truck',
+    };
+    chai.request(server)
+      .post('/api/v1/cars')
+      .send(car)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.should.be.a('object');
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('id');
+        done();
+      });
+  });
+});
