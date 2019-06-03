@@ -5,5 +5,7 @@ node_modules/
 
 .nyc_output/
 
+.env
+
 #codecoverage
 coverage/
