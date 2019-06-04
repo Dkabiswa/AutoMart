@@ -63,3 +63,21 @@ describe('/POST Register', () => {
       });
   });
 });
+
+describe('/POST Login ', ()=> {
+  it('Should LOGIN if credential is valid', (done) => {
+    const details = {
+      email: 'dkat@gmail.com',
+      password: 12345, 
+    }
+    chai.request(server)
+    .post('/api/v1/auth/login')
+    .send(details)
+    .end((err, res) => {
+    res.should.have.status(200);
+    res.body.Should.exist;
+    res.body.should.have.property('data'); 
+    res.body.should.data.have.property('Token');
+    done();
+  }); 
+});
