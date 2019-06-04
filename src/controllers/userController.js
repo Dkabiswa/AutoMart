@@ -1,4 +1,5 @@
 import user from '../models/userModel';
+import auth from '../auth/local'
 
 const User = {
   create(req, res) {
@@ -13,7 +14,8 @@ const User = {
     const oldUser = user.findEmail(req.body.email);
     if (!oldUser) {
       const newUser = user.create(req.body);
-      return res.status(201).send({ status: 201, message: 'new user created ', data: newUser });
+      const token = auth.createToken(newUser.id);
+      return res.status(201).send({ status: 201, message: 'new user created ', Token: token });
     }
     return res.status(400).send({ status: 400, message: 'email already exists' });
   },

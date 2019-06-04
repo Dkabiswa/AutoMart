@@ -3,10 +3,7 @@ import bodyParser from 'body-parser';
 import car from './src/routes/carRoutes';
 import user from './src/routes/userRoutes';
 
-require('dotenv').config();
-
 const app = express();
-
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -21,4 +18,3 @@ const server = app.listen(port, () => {
 });
 
 export default server;
-
