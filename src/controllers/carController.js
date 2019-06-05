@@ -4,7 +4,7 @@ import car from '../models/carModel';
 const Car = {
 
   getAll(req, res) {
-    const cars = car.getAll();
+    const cars = car.getAll(req.query.status);
     return res.status(200).json({ status: 200, data: cars });
   },
 

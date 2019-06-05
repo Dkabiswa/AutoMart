@@ -29,8 +29,8 @@ class Car {
     ];
   }
 
-  getAll() {
-    return this.cars.filter(car => car.status === 'available');
+  getAll(status) {
+    return this.cars.filter(car => car.status === status);
   }
 
   create(data) {

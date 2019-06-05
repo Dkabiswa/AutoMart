@@ -29,7 +29,7 @@ describe('Cars', () => {
         bodyType: 'Truck',
       };
       chai.request(server)
-      .post('/api/v1/cars')
+      .post('/api/v1/car')
       .send(car)
       .end((err, res) => {
         res.should.have.status(201);
@@ -49,7 +49,7 @@ describe('Cars', () => {
         bodyType: 'Truck',
       };
       chai.request(server)
-      .post('/api/v1/cars')
+      .post('/api/v1/car')
       .send(car)
       .end((err, res) => {
         res.should.have.status(400);
@@ -59,4 +59,20 @@ describe('Cars', () => {
       });
     });
   });
-})
+  describe('/PATCH car', () => {
+    it('it should mark a car sold', (done) => {
+      const details ={status: 'sold'}
+      chai.request(server)
+      .patch('/api/v1/car/1/staus')
+      .send(details)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('id');
+        res.body.data.status.should.equal('details.status');
+        done();
+      });
+    });
+  })
+});
