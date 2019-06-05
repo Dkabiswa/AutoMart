@@ -9,7 +9,7 @@ class User {
         email: 'dkat@gmail.com',
         firstName: 'dkat',
         lastName: 'gkat',
-        password: 12345,
+        password: '$2b$10$M7ATOD1wug/BGS2GsKioyu5vHkZw1uApJvZWwchWruUpMI7L4TUGu', //12345
         address: 'kampala',
         isAdmin: false,
       },
@@ -18,7 +18,7 @@ class User {
         email: 'mgat@gmail.com',
         firstName: 'mgat',
         lastName: 'dgat',
-        password: 'gdat1234',
+        password: '$2b$10$ke4uXf7ZYU0AhoH0wIQoP.4Usa6vgajITC3iih8G2S9.GXPTmQmJm',//gdat1234
         address: 'mukono',
         isAdmin: false,
       },
@@ -27,13 +27,13 @@ class User {
 
   findEmail(email) {
     return this.users.find(user => user.email === email);
-  }
-
+  } 
   create(data) {
     const hash = bcrypt.hashSync(data.password, 10);
+    const email = data.email.trim().toLowerCase();
     const newUser = {
       id: data.id || uuid.v4(),
-      email: data.email,
+      email: email,
       firstName: data.firstName,
       lastName: data.lastName,
       password: hash,

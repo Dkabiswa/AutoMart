@@ -63,3 +63,63 @@ describe('/POST Register', () => {
       });
   });
 });
+
+describe('/POST Login ', ()=> {
+  it('Should LOGIN if credential is valid', (done) => {
+    const details = {
+      email: 'mgat@gmail.com',
+      password: 'gdat1234', 
+    }
+    chai.request(server)
+    .post('/api/v1/auth/login')
+    .send(details)
+    .end((err, res) => {
+      res.should.have.status(200);
+      res.body.should.have.property('data'); 
+      res.body.data.should.have.property('Token');
+      done();
+    }); 
+  });
+  it('Should not LOGIN if one field is missing', (done) => {
+    const details = {
+      email: '',
+      password: 'gdat1234', 
+    }
+    chai.request(server)
+    .post('/api/v1/auth/login')
+    .send(details)
+    .end((err, res) => {
+      res.should.have.status(400);
+      res.body.should.have.property('message'); 
+      done();
+    }); 
+  });
+  it('Should not LOGIN if wrong email is given', (done) => {
+    const details = {
+      email: 't@gmail.com',
+      password: 'gdat1234', 
+    }
+    chai.request(server)
+    .post('/api/v1/auth/login')
+    .send(details)
+    .end((err, res) => {
+      res.should.have.status(404);
+      res.body.should.have.property('message'); 
+      done();
+    });     
+  });
+  it('Should not LOGIN if wrong password is given', (done) => {
+    const details = {
+      email: 'mgat@gmail.com',
+      password: 'gda', 
+    }
+    chai.request(server)
+    .post('/api/v1/auth/login')
+    .send(details)
+    .end((err, res) => {
+      res.should.have.status(400);
+      res.body.should.have.property('message'); 
+      done();
+    }); 
+  });
+});
