@@ -23,7 +23,6 @@ describe('Cars', () => {
       const car = {
         owner: 2,
         state: 'new',
-        status: 'available',
         price: 300,
         manufacturer: 'Benz',
         model: 'C-class',
