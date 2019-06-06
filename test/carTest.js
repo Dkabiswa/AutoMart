@@ -5,7 +5,7 @@ import server from '../index';
 chai.use(chaiHttp);
 chai.should();
 
-describe('Cars', () => {
+describe('CARS', () => {
   describe('GET/', () => {
     it('should list ALL unsold cars on /cars GET', (done) => {
       chai.request(server)
@@ -79,6 +79,47 @@ describe('Cars', () => {
       chai.request(server)
         .patch('/api/v1/car/10/status')
         .send(details)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message');
+          done();
+        });
+    });
+
+    it('should update price of a car', (done) => {
+      const car = {
+        price: 1000,
+      };
+      chai.request(server)
+        .patch('/api/v1/car/1/price/')
+        .send(car)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.data.should.have.property('id');
+          res.body.data.should.have.property('price');
+          res.body.data.price.should.equal(car.price);
+          done();
+        });
+    });
+    it('it should not update car price if new price  doesnt exisit', (done) => {
+      const car = { price: '' };
+      chai.request(server)
+        .patch('/api/v1/car/1/price')
+        .send(car)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message');
+          done();
+        });
+    });
+    it('it should not update car price if id doesnt exisit', (done) => {
+      const car = { price: 40000 };
+      chai.request(server)
+        .patch('/api/v1/car/5/price')
+        .send(car)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');

@@ -12,4 +12,7 @@ router.post('/car', car.create);
 // mark car ad sold
 router.patch('/car/:id/status', car.mark);
 
+// update new car price
+router.patch('/car/:id/price', car.updatePrice);
+
 export default router;
