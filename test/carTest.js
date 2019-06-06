@@ -40,6 +40,34 @@ describe('CARS', () => {
           done();
         });
     });
+    it('should list ALL unsold cars within a price range', (done) => {
+      chai.request(server)
+        .get('/api/v1/car?status="available"&minPrice ="100" &maxPrice = "500"')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+    it('should not list ALL unsold cars within a price range if query is missing a value', (done) => {
+      chai.request(server)
+        .get('/api/v1/car?status=""&minPrice ="" &maxPrice = "500"')
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+
+    it('should not list ALL unsold cars within a wrong price range', (done) => {
+      chai.request(server)
+        .get('/api/v1/car?status="available"&minPrice = "500" &maxPrice = "100"')
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
   });
 
   describe('/POST car', () => {
