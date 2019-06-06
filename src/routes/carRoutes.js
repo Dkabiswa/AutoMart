@@ -6,6 +6,9 @@ const router = express.Router();
 // get all unsold cars
 router.get('/car', car.getUnsold);
 
+// get specific car
+router.get('/car/:id', car.getCar);
+
 // create new car advert car
 router.post('/car', car.create);
 
