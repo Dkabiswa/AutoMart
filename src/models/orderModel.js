@@ -31,6 +31,7 @@ class Order {
     this.orders.push(newOrder);
     return newOrder;
   }
+
   findId(id) {
     return this.orders.find(order => order.id === id);
   }
