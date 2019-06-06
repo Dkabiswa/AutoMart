@@ -26,5 +26,25 @@ const Order = {
       },
     });
   },
+  updatePrice(req, res) {
+    if( !req.body.newAmount ) { 
+      return res.status(400).json({ status: 400, message: 'Enter new amount to be offered'});
+    }
+    const purchase = order.findId(parseInt(req.params.id));
+    if(!purchase) { 
+      return res.status(404).json({ status: 404, message: 'Order not found'}); 
+   } else {
+    return res.status(200).json({ 
+      status: 200,
+      data: { 
+        id: purchase.id,
+        carId: purchase.carId,
+        status: purchase.status,
+        oldPriceOffered: purchase.amount,
+        newPriceOffered: req.body.newAmount
+      }
+   })
+   }
+  },
 };
 export default Order;

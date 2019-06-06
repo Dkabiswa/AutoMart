@@ -63,7 +63,7 @@ describe('ORDER', () => {
         newAmount: 1000,
       };
       chai.request(server)
-      .patch('/api/order/1/price/')
+      .patch('/api/v1/order/1/price/')
       .send(order)
       .end((err, res) => {
         res.should.have.status(200);
@@ -77,7 +77,7 @@ describe('ORDER', () => {
     it('it should not update order price if newAmount  doesnt exisit', (done) => {
       const order = { newAmount: '', };
       chai.request(server)
-        .patch('/api/v1/car/10/status')
+        .patch('/api/v1/order/1/price')
         .send(order)
         .end((err, res) => {
           res.should.have.status(400);
