@@ -43,7 +43,7 @@ const Order = {
         oldPriceOffered: purchase.amount,
         newPriceOffered: req.body.newAmount
       }
-   })
+    });
    }
   },
 };

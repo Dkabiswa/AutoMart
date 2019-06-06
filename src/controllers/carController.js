@@ -33,5 +33,19 @@ const Car = {
       data: oldCar,
     });
   },
+  updatePrice(req, res) {
+    if (!req.body.price) {
+      return res.status(400).json({ status: 400, message: 'Enter new price to be updated' });
+    }
+    const oldCar = car.findId(parseInt(req.params.id));
+    if (!oldCar) {
+      return res.status(404).json({ status: 404, message: 'car not found' });
+    }
+    oldCar.price = req.body.price;
+    return res.status(200).json({
+      status: 200,
+      data: oldCar,
+    });
+  },
 };
 export default Car;

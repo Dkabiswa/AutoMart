@@ -13,6 +13,6 @@ router.post('/car', car.create);
 router.patch('/car/:id/status', car.mark);
 
 // update new car price
-router.patch('/car/:id/price', order.updatePrice);
+router.patch('/car/:id/price', car.updatePrice);
 
 export default router;
