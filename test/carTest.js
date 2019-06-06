@@ -9,12 +9,36 @@ describe('CARS', () => {
   describe('GET/', () => {
     it('should list ALL unsold cars on /cars GET', (done) => {
       chai.request(server)
-        .get('/api/v1/car?status="available"')
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          done();
-        });
+      .get('/api/v1/car?status="available"')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
+    });
+
+    it('should return a specidfic cars ', (done) => {
+      const carId = 1;
+      chai.request(server)
+      .get('/api/v1/car/'+carId)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.data.should.have.property('price');
+        res.body.data.id.should.equal(carId);
+        done();
+      });
+    });
+    it('should not return a specidfic cars with invalid id ', (done) => {       
+      const carId = 200;
+      chai.request(server)
+      .get('/api/v1/car/'+carId)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        done();
+      });
     });
   });
 
