@@ -28,6 +28,7 @@ class Car {
       },
     ];
   }
+
   findId(id) {
     return this.cars.find(car => car.id === id);
   }

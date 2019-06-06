@@ -1,6 +1,5 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../index';
 import auth from '../src/auth/local';
 
 chai.use(chaiHttp);
@@ -13,5 +12,5 @@ describe('AUTH ', () => {
     results.should.exist;
     results.should.be.a('string');
     done();
-    });
+  });
 });

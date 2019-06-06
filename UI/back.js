@@ -1,14 +1,13 @@
 function goBack() {
-	window.history.back();
+  window.history.back();
 }
-let y =document.getElementById('ul1');
-let x =document.getElementById('i1');
+const y = document.getElementById('ul1');
+const x = document.getElementById('i1');
 
 function openMenu() {
-	if(y.style.display === "block"){
-		y.style.display = "none";
-	}
-	else {
-		y.style.display = "block";
-	}
+  if (y.style.display === 'block') {
+    y.style.display = 'none';
+  } else {
+    y.style.display = 'block';
+  }
 }

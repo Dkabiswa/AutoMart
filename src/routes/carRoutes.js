@@ -9,7 +9,7 @@ router.get('/car', car.getUnsold);
 // create new car advert car
 router.post('/car', car.create);
 
-//mark car ad sold
+// mark car ad sold
 router.patch('/car/:id/status', car.mark);
 
 export default router;
