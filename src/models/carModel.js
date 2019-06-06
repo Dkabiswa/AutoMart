@@ -20,7 +20,7 @@ class Car {
         owner: 4,
         createdOn: 'wed 5',
         state: 'new',
-        status: 'sold',
+        status: 'available',
         price: 400,
         manufacturer: 'Benz',
         model: 'B-class',
