@@ -4,8 +4,19 @@ import car from '../models/carModel';
 const Car = {
 
   getUnsold(req, res) {
-    const cars = car.getUnsold(req.query.status);
-    return res.status(200).json({ status: 200, data: cars });
+    const options = req.query;
+    const min = parseInt(options.minPrice, 10);
+    const max = parseInt(options.maxPrice, 10);
+    const cars = car.getUnsold(options.status);
+    if (options.status !== undefined && options.minPrice === undefined) {
+      return res.status(200).json({ status: 200, data: cars });
+    }
+    if (max > min) {
+      const pCar = cars.filter(p => p.price >= min && p.price <= max);
+
+      return res.status(200).json({ status: 200, data: pCar });
+    }
+    return res.status(400).json({ status: 400, message: 'give a right price range' });
   },
 
   getCar(req, res) {
