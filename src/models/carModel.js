@@ -28,9 +28,12 @@ class Car {
       },
     ];
   }
+  findId(id) {
+    return this.cars.find(car => car.id === id);
+  }
 
-  getAll() {
-    return this.cars.filter(car => car.status === 'available');
+  getUnsold(status) {
+    return this.cars.filter(car => car.status === status);
   }
 
   create(data) {
