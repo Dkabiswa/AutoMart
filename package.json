@@ -7,7 +7,7 @@
     "test": "nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
     "start": "nodemon ./index.js --exec babel-node -e js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "lint": "eslint"
+    "lint": "eslint **/*.js --fix"
   },
   "repository": {
     "type": "git",

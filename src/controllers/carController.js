@@ -24,15 +24,14 @@ const Car = {
 
   mark(req, res) {
     const oldCar = car.findId(parseInt(req.params.id));
-    if(!oldCar) {
-      return res.status(404).send({status: 404 , message: 'car not found' });
-    } else {
-      oldCar.status = req.body.status;
-      return res.status(200).send({ 
-        status: 200, 
-        data: oldCar
-      })
+    if (!oldCar) {
+      return res.status(404).send({ status: 404, message: 'car not found' });
     }
+    oldCar.status = req.body.status;
+    return res.status(200).send({
+      status: 200,
+      data: oldCar,
+    });
   },
 };
 export default Car;
