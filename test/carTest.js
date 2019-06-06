@@ -9,7 +9,7 @@ describe('Cars', () => {
   describe('GET/' , () =>{
     it('should list ALL unsold cars on /cars GET', (done) => {
       chai.request(server)
-      .get('/api/v1/cars')
+      .get('/api/v1/car?status="available"')
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -63,14 +63,26 @@ describe('Cars', () => {
     it('it should mark a car sold', (done) => {
       const details ={status: 'sold'}
       chai.request(server)
-      .patch('/api/v1/car/1/staus')
+      .patch('/api/v1/car/1/status')
       .send(details)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('data');
         res.body.data.should.have.property('id');
-        res.body.data.status.should.equal('details.status');
+        res.body.data.status.should.equal(details.status);
+        done();
+      });
+    });
+    it('it should not mark a car sold if id doesnt exisit', (done) => {
+      const details ={status: 'sold'}
+      chai.request(server)
+      .patch('/api/v1/car/10/status')
+      .send(details)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
         done();
       });
     });
