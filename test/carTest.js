@@ -33,6 +33,29 @@ describe('CARS', () => {
         done();
       });
   });
+  it('should not list ALL Cars if not admin', (done) => {
+    const user ={ 
+      email: 'dkat@gmail.com',
+      password:'12345'
+    }
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('data');
+        token = res.body.data.Token;         
+      
+      chai.request(server)
+        .get('/api/v1/car/')
+        .set('Authorization', token)
+        .end((err, res) => {
+          res.should.have.status(403);
+          res.body.should.be.a('object');
+          done();
+        });
+      });
+  });
   it('should list ALL unsold cars on /car GET', (done) => {
     chai.request(server)
       .get('/api/v1/car?status="available"')
