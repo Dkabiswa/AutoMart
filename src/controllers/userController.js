@@ -15,7 +15,7 @@ const User = {
     const oldUser = user.findEmail(req.body.email);
     if (!oldUser) {
       const newUser = user.create(req.body);
-      const token = auth.createToken(newUser.id);
+      const token = auth.createToken({ id: newUser.id });
       return res.status(201).send({
         status: 201,
         data: {
@@ -44,7 +44,7 @@ const User = {
       return res.status(404).send({ status: 404, message: 'User not found please SignUp' });
     }
     if (bcrypt.compareSync(password, oldUser.password)) {
-      const token = auth.createToken(oldUser.id);
+      const token = auth.createToken({ id: oldUser.id });
       return res.status(200).send({
         status: 200,
         data: {
