@@ -59,6 +59,25 @@ const Car = {
     const newCar = car.create(req.body);
     return res.status(201).send({ status: 201, data: newCar });
   },
+  deleteCar(req, res) {
+    const user = users.findId(req.user.id);
+    // check if user is admin
+    if (user.isAdmin === true) {
+      const oldCar = car.findId(parseInt(req.params.id, 10));
+      if (!oldCar) {
+        return res.status(404).send({ status: 404, message: 'car not found' });
+      }
+      car.deleteId(parseInt(req.params.id, 10))
+      return res.status(200).send({
+        status: 200,
+        message: 'CarAd sucessfully deleted',
+      });
+    }
+    return res.status(403).send({
+        status: 403,
+        message: 'you must be an admin',
+    });
+  },
 
   mark(req, res) {
     const oldCar = car.findId(parseInt(req.params.id, 10));

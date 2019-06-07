@@ -223,7 +223,6 @@ describe('/PATCH CAR', () => {
   });
 });
 describe('/DELETE CARS', () => {
- let id = 1;
   const details ={
         email: 'mgat@gmail.com',
         password:'gdat1234'
@@ -242,7 +241,7 @@ describe('/DELETE CARS', () => {
     });
   it('should delete a car advert', (done) => {
     chai.request(server)
-      .delete(`/api/v1/car/${id}`)
+      .delete(`/api/v1/car/1`)
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);
@@ -253,15 +252,14 @@ describe('/DELETE CARS', () => {
       });
   });
   it('should not delete a car advert which doesnot exisit', (done) => {
-    let id = 200;
     chai.request(server)
-      .delete(`/api/v1/car/${id}`)
+      .delete(`/api/v1/car/200`)
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(404);
         res.body.should.be.a('object');
         res.body.should.have.property('message');
-        res.body.message.should.equal('Car not found');
+        res.body.message.should.equal('car not found');
         done();
       });
   });
@@ -279,7 +277,7 @@ describe('/DELETE CARS', () => {
         token = res.body.data.Token;         
       
       chai.request(server)
-        .delete(`/api/v1/car/${id}`)
+        .delete(`/api/v1/car/1`)
         .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(403);
