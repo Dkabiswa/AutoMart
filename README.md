@@ -8,7 +8,7 @@ Auto Mart is an online marketplace for automobiles of diverse makes, model or bo
 ## PHASE 1
 ### User Interfaces
 
-   1. [Users can login/Sign Up](https://dkabiswa.github.io/AutoMart/UI/login.htmll)
+   1. [Users can login/Sign Up](https://dkabiswa.github.io/AutoMart/UI/login.html)
    2. [Seller can post car advert](https://dkabiswa.github.io/AutoMart/UI/advert.html)
    3. [User can view specific car](https://dkabiswa.github.io/AutoMart/UI/vehicle.html)
    4. [Buyer should be able to make purchase](https://dkabiswa.github.io/AutoMart/UI/purchase.html)  
