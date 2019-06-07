@@ -21,15 +21,14 @@ const Auth = {
 
     req.user = jwt.verify(header, process.env.SECRET_KEY);
     next();
-    } catch {
+  } catch {
     return res.status(401).json({ 
     	status: 401, 
     	error: 'Invalid token!' 
     });
   }
   return false;
-},
-
+  },
 }
 
 
