@@ -10,6 +10,7 @@ router.get('/car/:id', car.getCar);
 // get all unsold cars within price range
 router.get('/car?', auth.verifyUser, car.getUnsold);
 
+
 // create new car advert car
 router.post('/car', car.create);
 

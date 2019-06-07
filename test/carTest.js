@@ -4,17 +4,24 @@ import server from '../index';
 
 chai.use(chaiHttp);
 chai.should();
-
+let token;
 describe('CARS', () => {
-  before( ()=>{ 
-    details ={
-        email: "dkat@gmail.com",
-        password:12345
-      }
+
+  const details ={
+        email: 'mgat@gmail.com',
+        password:'gdat1234'
+      } 
+  before( (done)=>{ 
       chai.request(server)
       .post('/api/v1/auth/login')
       .send(details)
-      let token = res.body.data.Token;
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('data');
+        token = res.body.data.Token; 
+        done();        
+      });
+      
     });
   it('should list ALL Cars on /car GET', (done) => {
     chai.request(server)

@@ -11,7 +11,7 @@ class User {
         lastName: 'gkat',
         password: '$2b$10$M7ATOD1wug/BGS2GsKioyu5vHkZw1uApJvZWwchWruUpMI7L4TUGu', // 12345
         address: 'kampala',
-        isAdmin: true,
+        isAdmin: false,
       },
       {
         id: 4,
@@ -20,7 +20,7 @@ class User {
         lastName: 'dgat',
         password: '$2b$10$ke4uXf7ZYU0AhoH0wIQoP.4Usa6vgajITC3iih8G2S9.GXPTmQmJm', // gdat1234
         address: 'mukono',
-        isAdmin: false,
+        isAdmin: true,
       },
     ];
   }

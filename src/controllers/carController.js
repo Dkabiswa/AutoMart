@@ -5,6 +5,13 @@ const Car = {
 
   getUnsold(req, res) {
     const options = req.query;
+    if (options ===undefined || Object.keys(options).length === 0){
+      const aCars = car.getAll();
+      return res.status(200).send({
+        status: 200,
+        data: aCars,
+      });
+    }
     const min = parseInt(options.minPrice, 10);
     const max = parseInt(options.maxPrice, 10);
     const cars = car.getUnsold(options.status);
