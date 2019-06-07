@@ -9,7 +9,7 @@ class User {
         email: 'dkat@gmail.com',
         firstName: 'dkat',
         lastName: 'gkat',
-        password: '$2b$10$M7ATOD1wug/BGS2GsKioyu5vHkZw1uApJvZWwchWruUpMI7L4TUGu', // 12345
+        password: '$2b$10$j3mtduWt5vQzL5LI2v8Wz.SM9Z4.YcunLTpNSdVRUkDCTD7e8WFpS', // "12345"
         address: 'kampala',
         isAdmin: false,
       },
@@ -18,11 +18,14 @@ class User {
         email: 'mgat@gmail.com',
         firstName: 'mgat',
         lastName: 'dgat',
-        password: '$2b$10$ke4uXf7ZYU0AhoH0wIQoP.4Usa6vgajITC3iih8G2S9.GXPTmQmJm', // gdat1234
+        password: '$2b$10$ke4uXf7ZYU0AhoH0wIQoP.4Usa6vgajITC3iih8G2S9.GXPTmQmJm', // "gdat1234"
         address: 'mukono',
-        isAdmin: false,
+        isAdmin: true,
       },
     ];
+  }
+  findId(id) {
+    return this.users.find(user => user.id === id);
   }
 
   findEmail(email) {

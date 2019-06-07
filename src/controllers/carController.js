@@ -1,10 +1,24 @@
-
+import users from '../models/userModel';
 import car from '../models/carModel';
 
 const Car = {
 
   getUnsold(req, res) {
     const options = req.query;
+    if (options === undefined || Object.keys(options).length === 0) {
+      const user = users.findId(req.user.id);
+      if (user.isAdmin === true) {
+        const aCars = car.getAll();
+        return res.status(200).send({
+          status: 200,
+          data: aCars,
+        });
+      }
+      return res.status(403).send({
+        status: 403,
+        message: 'you must be an admin',
+      });
+    }
     const min = parseInt(options.minPrice, 10);
     const max = parseInt(options.maxPrice, 10);
     const cars = car.getUnsold(options.status);
