@@ -5,7 +5,7 @@ import server from '../index';
 chai.use(chaiHttp);
 chai.should();
 let token;
-describe('CARS', () => {
+describe('/GET CARS', () => {
 
   const details ={
         email: 'mgat@gmail.com',
@@ -112,7 +112,7 @@ describe('CARS', () => {
   });
 });
 
-describe('/POST car', () => {
+describe('/POST CAR', () => {
   it('it should POST a car', (done) => {
     const car = {
       owner: 2,
@@ -153,7 +153,7 @@ describe('/POST car', () => {
       });
   });
 });
-describe('/PATCH car', () => {
+describe('/PATCH CAR', () => {
   it('it should mark a car sold', (done) => {
     const details = { status: 'sold' };
     chai.request(server)
@@ -219,6 +219,71 @@ describe('/PATCH car', () => {
         res.body.should.be.a('object');
         res.body.should.have.property('message');
         done();
+      });
+  });
+});
+describe('/DELETE CARS', () => {
+  const details ={
+        email: 'mgat@gmail.com',
+        password:'gdat1234'
+      } 
+  before( (done)=>{ 
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(details)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('data');
+        token = res.body.data.Token; 
+        done();        
+      });
+      
+    });
+  it('should delete a car advert', (done) => {
+    chai.request(server)
+      .delete(`/api/v1/car/1`)
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.message.should.equal('CarAd sucessfully deleted');
+        done();
+      });
+  });
+  it('should not delete a car advert which doesnot exisit', (done) => {
+    chai.request(server)
+      .delete(`/api/v1/car/200`)
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.message.should.equal('car not found');
+        done();
+      });
+  });
+  it('should not delete car if not admin', (done) => {
+    const user ={ 
+      email: 'dkat@gmail.com',
+      password:'12345'
+    }
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('data');
+        token = res.body.data.Token;         
+      
+      chai.request(server)
+        .delete(`/api/v1/car/1`)
+        .set('Authorization', token)
+        .end((err, res) => {
+          res.should.have.status(403);
+          res.body.should.be.a('object');
+          done();
+        });
       });
   });
 });
