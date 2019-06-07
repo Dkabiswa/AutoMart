@@ -5,8 +5,11 @@ const Car = {
 
   getUnsold(req, res) {
     const options = req.query;
+    // if no query is passed return all cars
     if (options === undefined || Object.keys(options).length === 0) {
       const user = users.findId(req.user.id);
+
+      //check if user is admin
       if (user.isAdmin === true) {
         const aCars = car.getAll();
         return res.status(200).send({
@@ -22,9 +25,11 @@ const Car = {
     const min = parseInt(options.minPrice, 10);
     const max = parseInt(options.maxPrice, 10);
     const cars = car.getUnsold(options.status);
+    // return unsold cars
     if (options.status !== undefined && options.minPrice === undefined) {
       return res.status(200).json({ status: 200, data: cars });
     }
+    // return cars in a price range
     if (max > min) {
       const pCar = cars.filter(p => p.price >= min && p.price <= max);
 
