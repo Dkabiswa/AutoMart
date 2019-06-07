@@ -6,9 +6,30 @@ chai.use(chaiHttp);
 chai.should();
 
 describe('CARS', () => {
+  before( ()=>{ 
+    details ={
+        email: "dkat@gmail.com",
+        password:12345
+      }
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(details)
+      let token = res.body.data.Token;
+    });
+  it('should list ALL Cars on /car GET', (done) => {
+    chai.request(server)
+      .get('/api/v1/car/')
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
   it('should list ALL unsold cars on /car GET', (done) => {
     chai.request(server)
       .get('/api/v1/car?status="available"')
+      .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -31,6 +52,7 @@ describe('CARS', () => {
   it('should not list ALL unsold cars in a price range', (done) => {
     chai.request(server)
       .get('/api/v1/car?status="available"&minPrice=800&maxPrice=100')
+      .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
@@ -40,6 +62,7 @@ describe('CARS', () => {
   it('should list ALL unsold cars in a price range', (done) => {
     chai.request(server)
       .get('/api/v1/car?status="available"&minPrice=100&maxPrice=500')
+      .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');

@@ -11,7 +11,7 @@ class User {
         lastName: 'gkat',
         password: '$2b$10$M7ATOD1wug/BGS2GsKioyu5vHkZw1uApJvZWwchWruUpMI7L4TUGu', // 12345
         address: 'kampala',
-        isAdmin: false,
+        isAdmin: true,
       },
       {
         id: 4,
