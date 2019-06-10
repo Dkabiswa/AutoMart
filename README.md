@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/Dkabiswa/AutoMart.svg?branch=develop)](https://travis-ci.org/Dkabiswa/AutoMart)
 [![Coverage Status](https://coveralls.io/repos/github/Dkabiswa/AutoMart/badge.svg)](https://coveralls.io/github/Dkabiswa/AutoMart)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9836f8ac998f764731e2/maintainability)](https://codeclimate.com/github/Dkabiswa/AutoMart/maintainability)
 
 # AUTOMART
 Auto Mart is an online marketplace for automobiles of diverse makes, model or body type.
