@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import user from '../models/userModel';
-import auth from '../auth/local';
+import auth from '../middleware/auth';
 
 const User = {
   create(req, res) {

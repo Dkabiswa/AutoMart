@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import sinon from 'sinon';
-import auth from '../src/auth/local';
+import auth from '../src/middleware/auth';
 
 chai.use(chaiHttp);
 chai.should();

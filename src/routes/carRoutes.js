@@ -1,6 +1,6 @@
 import express from 'express';
 import car from '../controllers/carController';
-import auth from '../auth/local';
+import auth from '../middleware/auth';
 
 const router = express.Router();
 

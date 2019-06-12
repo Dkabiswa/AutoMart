@@ -12,6 +12,12 @@ app.use(bodyParser.json());
 app.use('/api/v1', car);
 app.use('/api/v1/auth', user);
 app.use('/api/v1', order);
+app.use((req, res, next) => {
+	res.status(404).send({
+		status: 404,
+		message: "Invalid Url"
+	})
+})
 
 const port = process.env.PORT || 3000;
 
