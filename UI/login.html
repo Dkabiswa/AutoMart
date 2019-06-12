@@ -3,6 +3,7 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" href="AMgen2.css">
+	<link rel="stylesheet" href="unsold.css">
 	<link rel="stylesheet" href="login.css">
 </head>
 <body>
@@ -34,10 +35,10 @@
 				<button type="submit" class="btn">Login</button>
 				<button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
 				<div>
-					<label for="pricw">Remember me</label>
+					<label for="price">Remember me</label>
 					<input type="checkbox"  name="price" required>
 				</div>
-				<p>If you dont have an account<a href= "#" onclick ="openSignup()">Sign Up</a></p>
+				<p>I dont have an account<a href= "#" onclick ="openSignup()">Sign Up</a></p>
 			</form>
 
 		</div>
@@ -51,10 +52,10 @@
 					<input type="password" placeholder="Retype Password" name="psw" required>	
 					<input type="submit" class="btn" name="signup-button" value = "Sign Up">
 					<button type="button" class="btn cancel" onclick="closeSignup()">Cancel</button>
-					<p>If you alredy have an account <a href= "#" onclick ="openForm()">Login</a></p>
+					<p>I have an account <a href= "#" onclick ="openForm()">Login</a></p>
 				</div>
 				<div class= "right-box">
-					<div class = "signin"><h2>Sing In With <br/>Social Media</h2></div>
+					<div class = "signin"><h2>Sign In With <br/>Social Media</h2></div>
 					<div class= "right-buttons">
 						<a href="#" class="bttn facebook">Sign up with Facebook</a>
 						<a href="#" class="bttn twitter">Sign up with Twitter</a>
@@ -65,35 +66,86 @@
 			</div>
 		</div>
 	<div class = "top-part">
+		<div class ="next">
+			<h2>FIND YOUR NEXT CAR</h2>
+			<h2>SELL TO YOUR NEXT CUSTOMER</h2>
+			<p>Your looking for your dream car or interested in selling your car <span class = "auto">AutoMart</span> is the place</p>
+			<a href= "#" class ="btn google" onclick ="openSignup()">SIGN UP</a> <a href = '#'class ="btn" onclick="openForm()">LOG IN</a>
+
+		</div>
 		<div class= "container">
-			<div class = "slide">
-				<img src="image.jpg" alt = "brand new vehicles">
+
+			<div class = "mySlides fade">
+				<img src="./cars/199737-2.jpg">
+			</div>
+			<div class = "mySlides fade">
+				<img src="./cars/hybrid.jpg">
+			</div>
+			<div class = "mySlides fade">
+				<img src="./cars/patr.jpg">
+			</div>
+			<div class = "mySlides fade">
+				<img src="./cars/Toyota-VellFire.jpg">
 			</div>
 		</div>
 	</div>
 	<div class ="vehicle-part">
 		<div class="container">
 			<div class = "heading"><h2>Featured vehicles</h2></div>
-			<button class="slide-button btn-left">&#10094;</button>
-			<button class="slide-button btn-right">&#10095;</button>	
-			<div class = "vehicle">
-
-				<div class = "vehicle-icon">
-
-					<p>Mitsbishu Canter</p>
-					<p class = "price"> Ush 1</p>
-				</div>
-				<div class = "vehicle-icon">
-
-					<p>Toyota Hilux</p>
-					<p class = "price"> Ush 1</p>
-				</div>
-				<div class = "vehicle-icon">
-					<p>Subaru Forester</p>
-					<p class = "price"> Ush 1</p>
-				</div>
-			</div>
-		</div>
+			
+						<div class = "vehicle">
+							<a href = "vehicle.html">
+								<div class = "vehicle-icon">
+									<div class= "veh-image a">
+									
+									</div>
+									<div class = "vbottom">
+										<div class ="vdetail">
+									  		<p>Toyota Premio</p>
+									  		<p><span>Ush 1,800,000</span></p>
+								    	</div>
+										
+										<div class ="veh-button">
+											
+										</div>
+									</div>
+								</div>
+							</a>
+							<a href = "vehicle.html">
+								<div class = "vehicle-icon">
+									<div class= "veh-image b">
+									
+									</div>
+									<div class = "vbottom">
+										<div class ="vdetail">
+									  		<p>Subaru Forester</p>
+									  		<p><span>Ush 2,800,000</span></p>
+								    	</div>
+									
+										
+										
+									</div>
+								</div>
+							</a>
+							<a href = "vehicle.html">
+								<div class = "vehicle-icon">
+									<div class= "veh-image c">
+									
+									</div>
+									<div class = "vbottom">
+										<div class ="vdetail">
+									  		<p>LandCrusier v8</p>
+									  		<p><span>Ush 4,800,000</span></p>
+								    	</div>
+										
+										<div class ="veh-button">
+										
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+	</div>
 	</div>
 	<div class= "message-part">
 		<div class="container">
@@ -105,8 +157,15 @@
           			<li>BMW</li>
           			<li>BENZ</li>
           			<li>TOYOTA</li>
-          			<li>AUDI</li>
-          			<li>MITSIBISHU</li>
+          			<li>FERRARI</li>
+          			<li>FORD</li>
+          		</ul>
+          		<ul>
+          			<li><img src ="./scar/bmwlogo.png"></li>
+          			<li><img src="./scar/mercedes.png"></li>          			         			
+          			<li><img src="./scar/toyota-logo.jpg"></li>
+          			<li><img src="./scar/ferrari-logo.png"></li> 
+          			<li><img src="./scar/ford-logo.png"></li>
           		</ul>
           	</div>
 
@@ -115,20 +174,9 @@
 </div>
 	<footer>
 		<div class="container">
-			<a class = "icon" href = "#">Dkat AutoMart</a>
-			<div class = "foot-message">
-				<div class="about">
-				<ul class = "active" id = "ul1">
-          			<li>About</li>
-          			<li><a href = "#">Privacy Policy</a></li>
-          			<li><a href = "#">Terms & Conditions</a></li>
-          			<li><a href = "#">Advertising</a></li>
-          			<li><a href = "#">Help</a></li>
-          		</ul>
-				</div>
-			</div>
+			<a class = "icon" href = "#">Dkat AutoMart</a>			
 		</div>
-	</footer>
+	</footer>	
 	<script src = "login.js"></script>
 	<script type="text/javascript" src ="back.js"></script>
 </body>

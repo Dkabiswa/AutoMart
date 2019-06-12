@@ -35,7 +35,7 @@ const Car = {
 
       return res.status(200).json({ status: 200, data: pCar });
     }
-    return res.status(400).json({ status: 400, message: 'give a right price range' });
+    return res.status(400).json({ status: 400, message: 'price range doesnot exisit' });
   },
 
   getCar(req, res) {

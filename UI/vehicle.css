@@ -19,10 +19,16 @@
 	clear: both;
 }
 .car-image {
-	height: 250px;
+	height: 200px;
 	border: 1px solid #ccc;
 	margin: 10px 0;
 	text-align: center;
+}
+.car-image img {
+	float:left;
+	width: 33.33%;
+	padding: 5px;
+
 }
 
 .car {
@@ -35,4 +41,8 @@
 dl {
 	float:left;
 	width:20%;
+
+}
+dl dd {
+	text-align: center;
 }
