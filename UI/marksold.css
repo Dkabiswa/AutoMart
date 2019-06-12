@@ -20,12 +20,20 @@
 .column {
 	float: left;
 
-	padding: 20px; 
+	padding: 5px; 
 }
+.left {
+	padding-top: 0px;
+}
+
 .right {
 	width: 70%;
-	border-right: 1px solid #ccc;
 	height: 100%;
+}
+.right img {
+	float: left;
+	width: 33.333%;
+	padding: 3px;
 }
 .detail-form {
 	background-color: #F4F6F6;

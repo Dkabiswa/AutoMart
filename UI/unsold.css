@@ -34,19 +34,27 @@ a{
 	border-radius: 4px;
 	margin-bottom: 20px;
 	width: 100%;
-}
-
-.search-bottom {
-	margin: 0 auto;
-	width: 100%;
-	height: 200px;
-	padding-left: 250px;
-	padding-top: 10px;
+	padding-bottom: 10px;
 	background-color: #F2F2F2;
 }
-.make {
-	float: left;
-	margin-right: 80px;
+.f-container ul {
+	height: 100%
+}
+
+.f-container li {
+	float :left;
+	padding-bottom: 10px;
+	padding-right: 8px;
+
+}
+.f-container {
+	height: 50px;
+	width: 100%;
+	background-color: #F2F2F2;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 20px;
+
 }
 .search-top input {
 	height: 30px;
@@ -59,17 +67,14 @@ a{
 	font-size: 20px;
 	
 }
-.make input {
+.f-container input, select {
+	font-size: 15px;
 	height: 30px;
 	width: 200px;
 }
-.pri input {
-	height: 30px;
-	width: 80px;
-	margin-right: 10px;	
-}
+
 .button {
-	margin-top: 45px;
+	margin-top: 30px;
 }
 .btn {
 	
@@ -92,20 +97,12 @@ a{
 	background-color: #dd4b39;
 }
 
-.form-container {
-	height: 200px;
-	width: 100%;
-	margin-bottom: 5px
-	border: 3px solid #f1f1f1;
-	background-color: white;
-}
-
 .heading {
 	padding: 10px;
 }
 
 .vehicle-part {
-	height: 900px;
+	height: 1150px;
 	background-color: #F2F2F2;
 	border-radius: 4px;
 	padding-bottom: 20px;
@@ -120,7 +117,7 @@ a{
 	float: left;
 	width: 30%;
 	position: relative;
-	height: 200px;
+	height: 320px;
     box-sizing: border-box;
     background: #fff;
     border: 1px solid rgba(0,47,52,.2);
@@ -129,15 +126,28 @@ a{
 }
 
 .veh-image {
-	height: 130px;
-	border-bottom: 1px solid #ccc;
+	height: 220px;
+	background-color: #cccccc;  
+  	background-position: center; 
+  	background-repeat: no-repeat; 
+  	background-size: cover;
 }
-.veh-bottom {
-	padding: 5px;
+
+.vdetail{
+	padding-left: 5px;
+	text-align: left;
+}
+p {
+	margin: 5px;
+}
+.vbottom p span{
+  font-size: 20px;
+  font-weight: 600;
 }
 .veh-price {
 	float: left;
 	width:30%;
+	padding-top: 14px;
 }
 .price{
 	padding:5px;
@@ -145,6 +155,42 @@ a{
 .veh-button{
 	float: right;
 	padding: 5px;
+}
+.a {
+  background-image: url("./scar/premio.jpg"); 
+ 
+}
+.b {
+  background-image: url("./scar/subaru.jpg"); 
+ 
+}
+.c {
+  background-image: url("./scar/landcruiser.jpg"); 
+ 
+}
+.d {
+  background-image: url("./scar/benz m-class.jpg"); 
+ 
+}
+.e {
+  background-image: url("./scar/murano.jpg"); 
+ 
+}
+.f {
+  background-image: url("./scar/hilux.jpg"); 
+ 
+}
+.g {
+  background-image: url("./scar/harier.jpg"); 
+ 
+}
+.h {
+  background-image: url("./scar/vellfire.jpg"); 
+ 
+}
+.i {
+  background-image: url("./scar/mitsbishu.jpg"); 
+ 
 }
 .report {
 	display: inline-block;

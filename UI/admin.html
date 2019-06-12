@@ -18,9 +18,9 @@
 				<ul id ="ul1">
 				<li ><a href = 'advert.html'>SELL CAR</a></li>
 				<li><a href = 'unsold.html'>VEHICLES</a></li>
-				<li><a href = 'marksold.html'>YOUR ADs</a></li>
+				<li><a href = 'marksold.html'>MY ADs</a></li>
 				<li class = "now"><a href = 'admin.html'>ADMIN</a></li>
-				<li><a href = 'purchases.html'>PURCHASED</a></li>
+				<li><a href = 'purchases.html'>ORDERS</a></li>
 				</ul>
 			</div>
 			<div class="search-top">
@@ -31,159 +31,186 @@
 	</header>
 	<div class= "main"> 
 		<div class = "top-part">
-			<div class= "login-form">
-				<form class="form-container">
-
-    				<div class ="search-bottom">
-    					<div class = "make">
-							<p>Make</p>
-							<input type="text" name="make">
-							<p>Car state</p>
-							<input type="text" name="state">
-						</div>
-						<div class = "pri">
-							<p>Price range</p>
-							<input type="text" placeholder="Min">
-							<input type="text" placeholder="Max">
-							<div class = "button">
-								<button type="submit" class=" ser btn">SEARCH</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
+    		<ul class = "f-container">
+    			<li >
+					<p>Manufacturer</p>
+					<input type="text" placeholder= "BMW" name="make">
+				</li>
+				<li> 
+					<p>Car state</p>
+						<select>
+							<option value ="old">Old</option>
+							<option value = "new">New</option>
+						</select>
+				</li>
+				<li>
+					<p>Price range</p>
+					<input type="text" placeholder="Min">
+					<input type="text" placeholder="Max">
+				</li>
+				<li class = "button">
+					<button type="submit" class=" ser btn">SEARCH</button>
+					</li>
+			</ul>
+		</div> 
 		<div class ="vehicle-part">
 			<div class="container">
 				<div class = "heading"><h2>All vehicles</h2></div>				
 				<ul>
 					<li>
 						<div class = "vehicle">
-							<div class = "vehicle-icon">
-								<div class= "veh-image">
-									<p>Image</p>
-								</div>
-								<div class = "vbottom">
-									<div class ="veh-price">
-										<p class = "price"> Price</p>
+							<a href = "vehicle.html">
+								<div class = "vehicle-icon">
+									<div class= "veh-image a">
+									
 									</div>
+									<div class = "vbottom">
+										<div class ="vdetail">
+									  		<p>Toyota Premio</p>
+									  		<p><span>Ush 1,800,000</span></p>
+								    	</div>
 									<div class ="veh-button">
 										<button type="submit" class="del btn">DELETE</button>
 									</div>
-								</div>
-							</div>
-							<div class = "vehicle-icon">
-								<div class= "veh-image">
-									<p>Image</p>
-								</div>
-								<div class = "vbottom">
-									<div class ="veh-price">
-										<p class = "price"> Price</p>
 									</div>
-									<div class ="veh-button">
+								</div>
+							</a>
+							<a href = "vehicle.html">
+								<div class = "vehicle-icon">
+									<div class= "veh-image b">
+									
+									</div>
+									<div class = "vbottom">
+										<div class ="vdetail">
+									  		<p>Subaru Forester</p>
+									  		<p><span>Ush 2,800,000</span></p>
+								    	</div>
+										<div class ="veh-button">
 										<button type="submit" class="del btn">DELETE</button>
 									</div>
-								</div>
-							</div>
-							<div class = "vehicle-icon">
-								<div class= "veh-image">
-									<p>Image</p>
-								</div>
-								<div class = "vbottom">
-									<div class ="veh-price">
-										<p class = "price"> Price</p>
 									</div>
-									<div class ="veh-button">
+								</div>
+							</a>
+							<a href = "vehicle.html">
+								<div class = "vehicle-icon">
+									<div class= "veh-image c">
+									
+									</div>
+									<div class = "vbottom">
+										<div class ="vdetail">
+									  		<p>LandCrusier v8</p>
+									  		<p><span>Ush 4,800,000</span></p>
+								    	</div>
+										<div class ="veh-button">
 										<button type="submit" class="del btn">DELETE</button>
 									</div>
+									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 					</li>
 					<li>
 						<div class = "vehicle">
-							<div class = "vehicle-icon">
-								<div class= "veh-image">
-									<p>Image</p>
-								</div>
-								<div class = "vbottom">
-									<div class ="veh-price">
-										<p class = "price"> Price</p>
+							<a href = "vehicle.html">
+								<div class = "vehicle-icon">
+									<div class= "veh-image d">
+									
 									</div>
-									<div class ="veh-button">
+									<div class = "vbottom">
+										<div class ="vdetail">
+									  		<p>Benz M-class</p>
+									  		<p><span>Ush 6,000,000</span></p>
+								    	</div>
+										<div class ="veh-button">
 										<button type="submit" class="del btn">DELETE</button>
 									</div>
-								</div>
-							</div>
-							<div class = "vehicle-icon">
-								<div class= "veh-image">
-									<p>Image</p>
-								</div>
-								<div class = "vbottom">
-									<div class ="veh-price">
-										<p class = "price"> Price</p>
 									</div>
-									<div class ="veh-button">
+								</div>
+							</a>
+								<a href = "vehicle.html">
+								<div class = "vehicle-icon">
+									<div class= "veh-image e">
+									
+									</div>
+									<div class = "vbottom">
+										<div class ="vdetail">
+									  		<p>Nissan Murano</p>
+									  		<p><span>Ush 2,500,000</span></p>
+								    	</div>
+										<div class ="veh-button">
 										<button type="submit" class="del btn">DELETE</button>
 									</div>
-								</div>
-							</div>
-							<div class = "vehicle-icon">
-								<div class= "veh-image">
-									<p>Image</p>
-								</div>
-								<div class = "vbottom">
-									<div class ="veh-price">
-										<p class = "price"> Price</p>
 									</div>
-									<div class ="veh-button">
+								</div>
+							</a>
+							<a href = "vehicle.html">
+								<div class = "vehicle-icon">
+									<div class= "veh-image f">
+									
+									</div>
+									<div class = "vbottom">
+										<div class ="vdetail">
+									  		<p>Toyota Hilux</p>
+									  		<p><span>Ush 4,700,000</span></p>
+								    	</div>
+										<div class ="veh-button">
 										<button type="submit" class="del btn">DELETE</button>
 									</div>
+									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 					</li>
 					<li>
 						<div class = "vehicle">
-							<div class = "vehicle-icon">
-								<div class= "veh-image">
-									<p>Image</p>
-								</div>
-								<div class = "vbottom">
-									<div class ="veh-price">
-										<p class = "price"> Price</p>
+							<a href = "vehicle.html">
+								<div class = "vehicle-icon">
+									<div class= "veh-image g">
+									
 									</div>
-									<div class ="veh-button">
+									<div class = "vbottom">
+										<div class ="vdetail">
+									  		<p>Toyota Harier</p>
+									  		<p><span>Ush 2,800,000</span></p>
+								    	</div>
+										<div class ="veh-button">
 										<button type="submit" class="del btn">DELETE</button>
 									</div>
-								</div>
-							</div>
-							<div class = "vehicle-icon">
-								<div class= "veh-image">
-									<p>Image</p>
-								</div>
-								<div class = "vbottom">
-									<div class ="veh-price">
-										<p class = "price"> Price</p>
 									</div>
-									<div class ="veh-button">
+								</div>
+							</a>
+							<a href = "vehicle.html">
+								<div class = "vehicle-icon">
+									<div class= "veh-image h">
+									
+									</div>
+									<div class = "vbottom">
+										<div class ="vdetail">
+									  		<p>Toyota VellFire</p>
+									  		<p><span>Ush 3,000,000</span></p>
+								    	</div>
+										<div class ="veh-button">
 										<button type="submit" class="del btn">DELETE</button>
 									</div>
-								</div>
-							</div>
-							<div class = "vehicle-icon">
-								<div class= "veh-image">
-									<p>Image</p>
-								</div>
-								<div class = "vbottom">
-									<div class ="veh-price">
-										<p class = "price"> Price</p>
 									</div>
-									<div class ="veh-button">
+								</div>
+							</a>
+							<a href = "vehicle.html">
+								<div class = "vehicle-icon">
+									<div class= "veh-image i">
+									
+									</div>
+									<div class = "vbottom">
+										<div class ="vdetail">
+									  		<p>Mitsbishu Truck</p>
+									  		<p><span>Ush 5,200,000</span></p>
+								    	</div>
+										<div class ="veh-button">
 										<button type="submit" class="del btn">DELETE</button>
 									</div>
+									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 					</li>
 				</ul>

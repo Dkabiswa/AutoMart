@@ -39,7 +39,7 @@ a{
 	float:left;	
 	list-style: none;
 }
-header:after{
+header::after{
 	clear: both;
 }
 
