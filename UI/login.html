@@ -26,6 +26,7 @@
 	</header>
 	<div class= "main"> 
 		<div class= "login-form" id = "myForm">
+			<span class="close" onclick="closeForm()">&times;</span>
 			<form class="form-container">
     			<h1>Login</h1>
 				<label for="email"><b>Email</b></label>
@@ -33,7 +34,6 @@
 				<label for="psw"><b>Password</b></label>
 				<input type="password" placeholder="Enter Password" name="psw" required>
 				<button type="submit" class="btn">Login</button>
-				<button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
 				<div>
 					<label for="price">Remember me</label>
 					<input type="checkbox"  name="price" required>
@@ -43,6 +43,7 @@
 
 		</div>
 		<div class ="login-form" id = "id001">
+			<span class="close" onclick="closeSignup()">&times;</span>
 			<div class ="form-sign">				
 				<div class = "left-box">
 					<h1>Sign Up</h1>
@@ -51,7 +52,6 @@
 					<input type="password" placeholder="Password" name="psw" required>
 					<input type="password" placeholder="Retype Password" name="psw" required>	
 					<input type="submit" class="btn" name="signup-button" value = "Sign Up">
-					<button type="button" class="btn cancel" onclick="closeSignup()">Cancel</button>
 					<p>I have an account <a href= "#" onclick ="openForm()">Login</a></p>
 				</div>
 				<div class= "right-box">
