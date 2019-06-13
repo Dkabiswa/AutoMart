@@ -3,6 +3,7 @@ import Joi from '@hapi/joi';
 const CarSchema = {
 
   createSchema: Joi.object().keys({
+    id: Joi.number().integer().optional(),
     owner: Joi.number().integer().required(),
     state: Joi.string().valid(['new', 'old']).required(),
     status: Joi.string().default('available'),

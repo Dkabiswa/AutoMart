@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/car/:id', car.getCar);
 
 // return cars in specificed format
-router.get('/car?', auth.verifyUser, car.getUnsold);
+router.get('/car', auth.verifyUser, car.getUnsold);
 
 // create new car advert car
 router.post('/car', auth.verifyUser, car.create);

@@ -33,7 +33,7 @@ const Car = {
     const max = parseInt(options.maxPrice, 10);
     const cars = car.getUnsold(options.status);
     // return unsold cars
-    if (options.status !== undefined && options.minPrice === undefined) {
+    if (options.status && options.minPrice === undefined) {
       return res.status(200).json({ status: 200, data: cars });
     }
     // return cars in a price range
@@ -45,18 +45,18 @@ const Car = {
     return res.status(400).json({ status: 400, message: 'price range doesnot exisit' });
   },
 
-  getCar(req, res) {
+  getCar(req, res, next) {
     const notValid = Validation.validator(req.params, CarSchema.carIdSchema);
     if (notValid) {
       return res.status(400).send(notValid);
     }
     const oldCar = car.findId(parseInt(req.params.id, 10));
     if (!oldCar) {
-      const err = new Error('email already exists');
-      err.status = 400;
+      let err = new Error('car not found');
+      err.status = 404;
       next(err);
-      return res.status(404).json({ status: 404, message: 'car not found' });
     }
+
     return res.status(200).json({ status: 200, data: oldCar });
   },
 

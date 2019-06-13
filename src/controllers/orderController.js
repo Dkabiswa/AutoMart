@@ -12,9 +12,7 @@ const Order = {
 
     const oldCar = car.findId(req.body.carId);
     if (!oldCar) {
-      const err = new Error('car not found');
-      err.status = 404;
-      next(err);
+      return res.status(404).send('car not found');
     }
     const newOrder = order.create(req.body);
     return res.status(201).send({
@@ -36,9 +34,7 @@ const Order = {
     }
     const purchase = order.findId(parseInt(req.params.id, 10));
     if (!purchase) {
-      const err = new Error('Order not found');
-      err.status = 404;
-      next(err);
+      return res.status(404).send('order not found');
     }
     return res.status(200).json({
       status: 200,

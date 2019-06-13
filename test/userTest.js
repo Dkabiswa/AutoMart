@@ -8,10 +8,10 @@ chai.should();
 describe('/POST Register', () => {
   it('it should Sign up', (done) => {
     const details = {
-      email: 'mgat@gmail.com',
+      email: 'mgrrrt@gmail.com',
       firstName: 'mgat',
       lastName: 'dgat',
-      password: 'gdat1234',
+      password: 'gDFdat1234',
       address: 'mukono',
       isAdmin: true,
     };
@@ -43,15 +43,14 @@ describe('/POST Register', () => {
         done();
       });
   });
-  it('it should not Sign up with exisiting email', (done) => {
+  it('it should not Sign up if email already exists', (done) => {
     const details = {
-      id: 1,
+      email: 'mgrrrt@gmail.com',
       firstName: 'mgat',
-      email: 'mgat@gmail.com',
       lastName: 'dgat',
-      password: 'gdat1234',
+      password: 'gDFdat1234',
       address: 'mukono',
-      isAdmin: false,
+      isAdmin: true,
     };
     chai.request(server)
       .post('/api/v1/auth/signup')
@@ -64,8 +63,8 @@ describe('/POST Register', () => {
   });
   it('Should LOGIN if credential is valid', (done) => {
     const details = {
-      email: 'mgat@gmail.com',
-      password: 'gdat1234',
+      email: 'mgrrrt@gmail.com',
+      password: 'gDFdat1234',
     };
     chai.request(server)
       .post('/api/v1/auth/login')
@@ -80,7 +79,7 @@ describe('/POST Register', () => {
   it('Should not LOGIN if one field is missing', (done) => {
     const details = {
       email: '',
-      password: 'gdat1234',
+      password: 'gDFdat1234',
     };
     chai.request(server)
       .post('/api/v1/auth/login')
@@ -107,7 +106,7 @@ describe('/POST Register', () => {
   });
   it('Should not LOGIN if wrong password is given', (done) => {
     const details = {
-      email: 'mgat@gmail.com',
+      email: 'mgrrrt@gmail.com',
       password: 'gda',
     };
     chai.request(server)
@@ -121,6 +120,3 @@ describe('/POST Register', () => {
   });
 });
 
-/* describe('/POST Login ', () => {
-
-}); */
