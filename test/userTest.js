@@ -8,12 +8,12 @@ chai.should();
 describe('/POST Register', () => {
   it('it should Sign up', (done) => {
     const details = {
-      email: 'test@gmail.com',
+      email: 'mgrrrt@gmail.com',
       firstName: 'mgat',
       lastName: 'dgat',
-      password: 'gdat1234',
+      password: 'gDFdat1234',
       address: 'mukono',
-      isAdmin: false,
+      isAdmin: true,
     };
     chai.request(server)
       .post('/api/v1/auth/signup')
@@ -43,15 +43,14 @@ describe('/POST Register', () => {
         done();
       });
   });
-  it('it should not Sign up with exisiting email', (done) => {
+  it('it should not Sign up if email already exists', (done) => {
     const details = {
-      id: 1,
+      email: 'mgrrrt@gmail.com',
       firstName: 'mgat',
-      email: 'mgat@gmail.com',
       lastName: 'dgat',
-      password: 'gdat1234',
+      password: 'gDFdat1234',
       address: 'mukono',
-      isAdmin: false,
+      isAdmin: true,
     };
     chai.request(server)
       .post('/api/v1/auth/signup')
@@ -62,13 +61,10 @@ describe('/POST Register', () => {
         done();
       });
   });
-});
-
-describe('/POST Login ', () => {
   it('Should LOGIN if credential is valid', (done) => {
     const details = {
-      email: 'mgat@gmail.com',
-      password: 'gdat1234',
+      email: 'mgrrrt@gmail.com',
+      password: 'gDFdat1234',
     };
     chai.request(server)
       .post('/api/v1/auth/login')
@@ -83,14 +79,14 @@ describe('/POST Login ', () => {
   it('Should not LOGIN if one field is missing', (done) => {
     const details = {
       email: '',
-      password: 'gdat1234',
+      password: 'gDFdat1234',
     };
     chai.request(server)
       .post('/api/v1/auth/login')
       .send(details)
       .end((err, res) => {
         res.should.have.status(400);
-        res.body.should.have.property('message');
+        res.body.should.have.property('error');
         done();
       });
   });
@@ -110,16 +106,17 @@ describe('/POST Login ', () => {
   });
   it('Should not LOGIN if wrong password is given', (done) => {
     const details = {
-      email: 'mgat@gmail.com',
+      email: 'mgrrrt@gmail.com',
       password: 'gda',
     };
     chai.request(server)
       .post('/api/v1/auth/login')
       .send(details)
       .end((err, res) => {
-        res.should.have.status(400);
+        res.should.have.status(404);
         res.body.should.have.property('message');
         done();
       });
   });
 });
+

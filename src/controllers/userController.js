@@ -1,17 +1,17 @@
 import bcrypt from 'bcrypt';
 import user from '../models/userModel';
-import auth from '../auth/local';
+import auth from '../middleware/auth';
+import UserSchema from '../validations/userValidation';
+import Validation from '../middleware/validationhandler';
+
 
 const User = {
-  create(req, res) {
-    if (
-      !req.body.email
-      || !req.body.firstName
-      || !req.body.lastName
-      || !req.body.password
-      || !req.body.address) {
-      return res.status(400).send({ status: 400, message: 'email, firstName, lastName, password, address are required' });
+  create(req, res, next) {
+    const notValid = Validation.validator(req.body, UserSchema.signupSchema);
+    if (notValid) {
+      return res.status(400).send(notValid);
     }
+
     const oldUser = user.findEmail(req.body.email);
     if (!oldUser) {
       const newUser = user.create(req.body);
@@ -24,26 +24,31 @@ const User = {
           firstName: newUser.firstName,
           lastName: newUser.lastName,
           email: newUser.email,
-          password: newUser.password,
         },
       });
     }
-    return res.status(400).send({ status: 400, message: 'email already exists' });
+    const err = new Error('email already exists');
+    err.status = 400;
+    next(err);
   },
-  login(req, res) {
+  login(req, res, next) {
+    const notValid = Validation.validator(req.body, UserSchema.loginSchema);
+    if (notValid) {
+      return res.status(400).send(notValid);
+    }
+
     const { password } = req.body;
     const email = req.body.email.trim().toLowerCase();
-    if (
-      !password
-      || !email) {
-      return res.status(400).send({ status: 400, message: 'Both password and email fields are required' });
-    }
+
 
     const oldUser = user.findEmail(email);
     if (!oldUser) {
-      return res.status(404).send({ status: 404, message: 'User not found please SignUp' });
+      return res.status(404).send({
+        status: 404,
+        message: 'email not found pleas signup',
+      });
     }
-    if (bcrypt.compareSync(password, oldUser.password)) {
+    if (bcrypt.compareSync(req.body.password, oldUser.password)) {
       const token = auth.createToken({ id: oldUser.id });
       return res.status(200).send({
         status: 200,
@@ -56,7 +61,9 @@ const User = {
         },
       });
     }
-    return res.status(400).send({ status: 400, message: 'wrong password or email' });
+    const err = new Error('wrong password ');
+    err.status = 404;
+    next(err);
   },
 };
 export default User;
