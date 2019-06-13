@@ -8,12 +8,12 @@ chai.should();
 describe('/POST Register', () => {
   it('it should Sign up', (done) => {
     const details = {
-      email: 'test@gmail.com',
+      email: 'mgat@gmail.com',
       firstName: 'mgat',
       lastName: 'dgat',
       password: 'gdat1234',
       address: 'mukono',
-      isAdmin: false,
+      isAdmin: true,
     };
     chai.request(server)
       .post('/api/v1/auth/signup')
@@ -62,9 +62,6 @@ describe('/POST Register', () => {
         done();
       });
   });
-});
-
-describe('/POST Login ', () => {
   it('Should LOGIN if credential is valid', (done) => {
     const details = {
       email: 'mgat@gmail.com',
@@ -90,7 +87,7 @@ describe('/POST Login ', () => {
       .send(details)
       .end((err, res) => {
         res.should.have.status(400);
-        res.body.should.have.property('message');
+        res.body.should.have.property('error');
         done();
       });
   });
@@ -117,9 +114,13 @@ describe('/POST Login ', () => {
       .post('/api/v1/auth/login')
       .send(details)
       .end((err, res) => {
-        res.should.have.status(400);
+        res.should.have.status(404);
         res.body.should.have.property('message');
         done();
       });
   });
 });
+
+/* describe('/POST Login ', () => {
+
+}); */

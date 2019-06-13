@@ -11,13 +11,13 @@ router.get('/car/:id', car.getCar);
 router.get('/car?', auth.verifyUser, car.getUnsold);
 
 // create new car advert car
-router.post('/car', car.create);
+router.post('/car', auth.verifyUser, car.create);
 
 // mark car ad sold
-router.patch('/car/:id/status', car.mark);
+router.patch('/car/:id/status', auth.verifyUser, car.mark);
 
 // update new car price
-router.patch('/car/:id/price', car.updatePrice);
+router.patch('/car/:id/price', auth.verifyUser, car.updatePrice);
 
 // admin can delete car advert
 router.delete('/car/:id', auth.verifyUser, car.deleteCar);

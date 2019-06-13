@@ -5,24 +5,42 @@ import server from '../index';
 chai.use(chaiHttp);
 chai.should();
 let token;
+let tok;
 describe('/GET CARS', () => {
-
-  const details ={
-        email: 'mgat@gmail.com',
-        password:'gdat1234'
-      } 
-  before( (done)=>{ 
-      chai.request(server)
-      .post('/api/v1/auth/login')
+    const details = {
+      email: 'mgat@gmail.com',
+      firstName: 'mgat',
+      lastName: 'dgat',
+      password: 'gdat1234',
+      address: 'mukono',
+      isAdmin: true,
+    };
+    const det = {
+      email: 'test@gmail.com',
+      firstName: 'mgat',
+      lastName: 'dgat',
+      password: 'gdat1234',
+      address: 'mukono',
+      isAdmin: false,
+    };
+  before((done) => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
       .send(details)
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(201);
         res.body.should.have.property('data');
-        token = res.body.data.Token; 
-        done();        
+        token = res.body.data.Token;
+        .post('/api/v1/auth/signup')
+        .send(det)
+        .end((err, res)){
+          res.should.have.status(201);
+          res.body.should.have.property('data');
+          tok = res.body.data.Token;
+          done();
+        }
       });
-      
-    });
+  });
   it('should list ALL Cars on /car GET', (done) => {
     chai.request(server)
       .get('/api/v1/car/')
@@ -34,28 +52,15 @@ describe('/GET CARS', () => {
       });
   });
   it('should not list ALL Cars if not admin', (done) => {
-    const user ={ 
-      email: 'dkat@gmail.com',
-      password:'12345'
-    }
-    chai.request(server)
-      .post('/api/v1/auth/login')
-      .send(user)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.have.property('data');
-        token = res.body.data.Token;         
-      
-      chai.request(server)
-        .get('/api/v1/car/')
-        .set('Authorization', token)
-        .end((err, res) => {
-          res.should.have.status(403);
-          res.body.should.be.a('object');
-          done();
-        });
+        chai.request(server)
+          .get('/api/v1/car/')
+          .set('Authorization', tok)
+          .end((err, res) => {
+            res.should.have.status(403);
+            res.body.should.be.a('object');
+            done();
+          });
       });
-  });
   it('should list ALL unsold cars on /car GET', (done) => {
     chai.request(server)
       .get('/api/v1/car?status="available"')
@@ -71,6 +76,7 @@ describe('/GET CARS', () => {
     const carId = 1;
     chai.request(server)
       .get(`/api/v1/car/${carId}`)
+      .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -99,7 +105,7 @@ describe('/GET CARS', () => {
         done();
       });
   });
-  it('should not return a specidfic cars with invalid id ', (done) => {
+  it('should not return a car which doesnot exist ', (done) => {
     const carId = 200;
     chai.request(server)
       .get(`/api/v1/car/${carId}`)
@@ -223,25 +229,24 @@ describe('/PATCH CAR', () => {
   });
 });
 describe('/DELETE CARS', () => {
-  const details ={
-        email: 'mgat@gmail.com',
-        password:'gdat1234'
-      } 
-  before( (done)=>{ 
-      chai.request(server)
+  const details = {
+    email: 'mgat@gmail.com',
+    password: 'gdat1234',
+  };
+  before((done) => {
+    chai.request(server)
       .post('/api/v1/auth/login')
       .send(details)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('data');
-        token = res.body.data.Token; 
-        done();        
+        token = res.body.data.Token;
+        done();
       });
-      
-    });
+  });
   it('should delete a car advert', (done) => {
     chai.request(server)
-      .delete(`/api/v1/car/1`)
+      .delete('/api/v1/car/1')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);
@@ -253,7 +258,7 @@ describe('/DELETE CARS', () => {
   });
   it('should not delete a car advert which doesnot exisit', (done) => {
     chai.request(server)
-      .delete(`/api/v1/car/200`)
+      .delete('/api/v1/car/200')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(404);
@@ -264,26 +269,26 @@ describe('/DELETE CARS', () => {
       });
   });
   it('should not delete car if not admin', (done) => {
-    const user ={ 
+    const user = {
       email: 'dkat@gmail.com',
-      password:'12345'
-    }
+      password: '12345',
+    };
     chai.request(server)
       .post('/api/v1/auth/login')
       .send(user)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('data');
-        token = res.body.data.Token;         
-      
-      chai.request(server)
-        .delete(`/api/v1/car/1`)
-        .set('Authorization', token)
-        .end((err, res) => {
-          res.should.have.status(403);
-          res.body.should.be.a('object');
-          done();
-        });
+        token = res.body.data.Token;
+
+        chai.request(server)
+          .delete('/api/v1/car/1')
+          .set('Authorization', token)
+          .end((err, res) => {
+            res.should.have.status(403);
+            res.body.should.be.a('object');
+            done();
+          });
       });
   });
 });

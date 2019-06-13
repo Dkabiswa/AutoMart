@@ -28,6 +28,7 @@ class Car {
       },
     ];
   }
+
   getAll() {
     return this.cars;
   }
@@ -55,10 +56,10 @@ class Car {
     this.cars.push(newCar);
     return newCar;
   }
+
   deleteId(id) {
-    const c = this.findId(id)
+    const c = this.findId(id);
     this.cars = this.cars.filter(car => car !== c);
   }
-
 }
 export default new Car();

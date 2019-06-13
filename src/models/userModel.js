@@ -3,27 +3,9 @@ import bcrypt from 'bcrypt';
 
 class User {
   constructor() {
-    this.users = [
-      {
-        id: 1,
-        email: 'dkat@gmail.com',
-        firstName: 'dkat',
-        lastName: 'gkat',
-        password: '$2b$10$j3mtduWt5vQzL5LI2v8Wz.SM9Z4.YcunLTpNSdVRUkDCTD7e8WFpS', // "12345"
-        address: 'kampala',
-        isAdmin: false,
-      },
-      {
-        id: 4,
-        email: 'mgat@gmail.com',
-        firstName: 'mgat',
-        lastName: 'dgat',
-        password: '$2b$10$ke4uXf7ZYU0AhoH0wIQoP.4Usa6vgajITC3iih8G2S9.GXPTmQmJm', // "gdat1234"
-        address: 'mukono',
-        isAdmin: true,
-      },
-    ];
+    this.users = [];
   }
+
   findId(id) {
     return this.users.find(user => user.id === id);
   }

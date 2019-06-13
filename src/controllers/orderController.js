@@ -1,17 +1,20 @@
 import car from '../models/carModel';
 import order from '../models/orderModel';
+import OrderSchema from '../validations/orderValidation';
+import Validation from '../middleware/validationhandler';
 
 const Order = {
-  create(req, res) {
-    if (
-      !req.body.buyer
-      || !req.body.carId
-      || !req.body.amount) {
-      return res.status(400).json({ status: 400, message: 'buyer, carId, amount,fields are required' });
+  create(req, res, next) {
+    const notValid = Validation.validator(req.body, OrderSchema.createSchema);
+    if (notValid) {
+      return res.status(400).send(notValid);
     }
+
     const oldCar = car.findId(req.body.carId);
     if (!oldCar) {
-      return res.status(404).json({ status: 404, message: 'car not found' });
+      const err = new Error('car not found');
+      err.status = 404;
+      next(err);
     }
     const newOrder = order.create(req.body);
     return res.status(201).send({
@@ -26,13 +29,16 @@ const Order = {
       },
     });
   },
-  updatePrice(req, res) {
-    if (!req.body.newAmount) {
-      return res.status(400).json({ status: 400, message: 'Enter new amount to be offered' });
+  updatePrice(req, res, next) {
+    const notValid = Validation.validator(req.body, OrderSchema.updateSchema);
+    if (notValid) {
+      return res.status(400).send(notValid);
     }
     const purchase = order.findId(parseInt(req.params.id, 10));
     if (!purchase) {
-      return res.status(404).json({ status: 404, message: 'Order not found' });
+      const err = new Error('Order not found');
+      err.status = 404;
+      next(err);
     }
     return res.status(200).json({
       status: 200,
