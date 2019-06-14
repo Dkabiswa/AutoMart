@@ -4,7 +4,6 @@ import CarSchema from '../validations/carValidation';
 import Validation from '../middleware/validationhandler';
 
 const Car = {
-
   getUnsold(req, res) {
     const options = req.query;
     // if no query is passed return all cars

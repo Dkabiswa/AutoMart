@@ -6,11 +6,11 @@ const CarSchema = {
     id: Joi.number().integer().optional(),
     owner: Joi.number().integer().required(),
     state: Joi.string().valid(['new', 'old']).required(),
-    status: Joi.string().default('available'),
+    status: Joi.string().default('available').regex(/^[A-Za-z]+$/),
     price: Joi.number().required(),
-    manufacturer: Joi.string().required(),
-    model: Joi.string().required(),
-    bodyType: Joi.string().required(),
+    manufacturer: Joi.string().required().regex(/^[A-Za-z]+$/),
+    model: Joi.string().required().regex(/^[A-Za-z]+$/),
+    bodyType: Joi.string().required().regex(/^[A-Za-z]+$/),
   }),
 
   carIdSchema: Joi.object().keys({
