@@ -51,23 +51,20 @@ Auto Mart is an online marketplace for automobiles of diverse makes, model or bo
 ### Routes
 * visit http://localhost:3000
 
-|  Car   |   
-|---|---|
-| /api/v1/car/:id  | Get specific car   | GET|
-| /api/v1/car/  |  Get all cars | GET  | 
-| /api/v1/car/:id/status| Mark car sold  | POST  |
-| /api/v1/car?status=available  | Get unsold cars | GET  | 
-| /api/v1/car?status=available&minPrice=XXXValue&maxPrice=XXXValue | Get unsold cars in a price range | GET |
-| /api/v1/car/:id |  Delete a car|  DELETE|
-| /api/v1/car/:id/prrice| Update Price of a car  | PATCH|
+### Car   
+ /api/v1/car/:id   Get specific car    GET
+ /api/v1/car/      Get all cars        GET   
+ /api/v1/car/:id/status Mark car sold  POST  
+ /api/v1/car?status=available   Get unsold cars GET  
+ /api/v1/car?status=available&minPrice=XXXValue&maxPrice=XXXValue  Get unsold cars in a price range  GET 
+ /api/v1/car/:id  Delete a car  DELETE
+ /api/v1/car/:id/prrice| Update Price of a car  | PATCH|
 
+###  Order     
+ /api/v1/order/   Create New order   POST  
+ /api/v1/order/:id/price    Update price of order  PATCH    
 
-|  Order   |   
-|---|---|
-| /api/v1/order/  | Create New order  | POST  | 
-| /api/v1/order/:id/price  |  Update price of order | PATCH |   
+### User      
 
-|  User   |   
-|---|---|
-| /api/v1/auth/login/  | login User  | POST |  
-| /api/v1/auth/signup  | Signup user | POST |
+ /api/v1/auth/login/  login User   POST  
+ /api/v1/auth/signup  Signup user  POST 
