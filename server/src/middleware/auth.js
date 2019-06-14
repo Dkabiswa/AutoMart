@@ -12,24 +12,26 @@ const Auth = {
   },
 
   verifyUser(req, res, next) {
-  try {
-    const header = req.headers.authorization;
-    if (header === undefined) return res.status(401).json({ 
-    	status: 401, 
-    	error: 'Unauthorized' 
-    });
+    try {
+      const header = req.headers.authorization;
+      if (header === undefined) {
+        return res.status(401).json({
+    	status: 401,
+    	error: 'Unauthorized',
+        });
+      }
 
-    req.user = jwt.verify(header, process.env.SECRET_KEY);
-    next();
-  } catch {
-    return res.status(401).json({ 
-    	status: 401, 
-    	error: 'Invalid token!' 
-    });
-  }
-  return false;
+      req.user = jwt.verify(header, process.env.SECRET_KEY);
+      next();
+    } catch (err) {
+      return res.status(401).json({
+    	status: 401,
+    	error: 'Invalid token!',
+      });
+    }
+    return false;
   },
-}
+};
 
 
 export default Auth;

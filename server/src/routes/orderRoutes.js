@@ -1,15 +1,20 @@
 import express from 'express';
 import order from '../controllers/orderController';
-import auth from '../middleware/auth';
+import Auth from '../middleware/auth';
+import method from '../middleware/methods';
 
 const router = express.Router();
 
 
 // create new purchase order
-router.post('/order', auth.verifyUser, order.create);
+router.route('/order')
+  .post(Auth.verifyUser, order.create)
+  .all(method);
 
 // update new purchase price
-router.patch('/order/:id/price', auth.verifyUser, order.updatePrice);
+router.route('/order/:id/price')  
+  .post(Auth.verifyUser, order.updatePrice)
+  .all(method);
 
 
 export default router;

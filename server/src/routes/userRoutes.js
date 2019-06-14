@@ -1,14 +1,19 @@
 import express from 'express';
 import user from '../controllers/userController';
+import method from '../middleware/methods';
 
 const router = express.Router();
 
 // sign up new user
-router.post('/signup', user.create);
+router.route('/signup')
+  .post(user.create)
+  .all(method);
 
 
 // login exisiting user
-router.post('/login', user.login);
+router.route('/login')
+  .post(user.login)
+  .all(method);
 
 
 export default router;

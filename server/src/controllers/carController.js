@@ -51,7 +51,7 @@ const Car = {
     }
     const oldCar = car.findId(parseInt(req.params.id, 10));
     if (!oldCar) {
-      let err = new Error('car not found');
+      const err = new Error('car not found');
       err.status = 404;
       next(err);
     }

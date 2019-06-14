@@ -1,25 +1,32 @@
 import express from 'express';
 import car from '../controllers/carController';
 import auth from '../middleware/auth';
+import method from '../middleware/methods';
 
 const router = express.Router();
 
 // get specific car
-router.get('/car/:id', car.getCar);
+router.route('/car/:id')
+  .get(car.getCar)
+  .delete(auth.verifyUser, car.deleteCar)
+  .all(method);
 
 // return cars in specificed format
-router.get('/car', auth.verifyUser, car.getUnsold);
+router.route('/car')
+  .get(auth.verifyUser, car.getUnsold)
+  .post(auth.verifyUser, car.create)
+  .all(method);
 
-// create new car advert car
-router.post('/car', auth.verifyUser, car.create);
 
 // mark car ad sold
-router.patch('/car/:id/status', auth.verifyUser, car.mark);
+router.route('/car/:id/status')
+  .patch(auth.verifyUser, car.mark)
+  .all(method);
 
 // update new car price
-router.patch('/car/:id/price', auth.verifyUser, car.updatePrice);
+router.route('/car/:id/price')
+  .patch(auth.verifyUser, car.updatePrice)
+  .all(method);
 
-// admin can delete car advert
-router.delete('/car/:id', auth.verifyUser, car.deleteCar);
 
 export default router;
