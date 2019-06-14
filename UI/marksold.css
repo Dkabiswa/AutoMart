@@ -55,7 +55,7 @@
 button a {
 	color:white;
 }
-@media (max-width: 780px){
+@media (max-width: 1127px){
 	.car-ad {
 		height: 360px; 
 	}
@@ -64,6 +64,17 @@ button a {
 		width: 100px;
 	}
 	.right {
-		width: 50%;
+		width: 62%;
+		padding: 0;
+	}
+	.left p {
+		font-size: 10px;
+	}
+	.left h3 {
+		font-size: 10px;
+		padding: 0;
+	}
+	.container {
+		width: 80%;
 	}
 }

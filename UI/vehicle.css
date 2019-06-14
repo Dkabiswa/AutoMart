@@ -50,9 +50,31 @@ ul{
 
 }
 .head li {
+	font-weight:  bold;
 	margin-bottom: 8px;
 }
 .car li {
 	float:left;
 	width: 20%
+}
+@media (max-width: 1032px){
+	h3 {
+		font-size: 17px; 
+	}
+	li {
+		font-size: 15px;
+
+	}
+}
+@media (max-width: 781px){
+	h3 {
+		font-size: 14px; 
+	}
+	li {
+		font-size: 10px;
+
+	}
+	.btn {
+		width: 120px;
+	}
 }
