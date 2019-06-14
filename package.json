@@ -4,9 +4,11 @@
   "description": "[![Build Status](https://travis-ci.org/Dkabiswa/AutoMart.svg?branch=develop)](https://travis-ci.org/Dkabiswa/AutoMart)",
   "main": "src/index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
-    "prod": "NODE_ENV=production node ./dist/index.js",
-    "start":"nodemon ./index.js --exec babel-node -e js",
+    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register './server/test/*.js' --exit",
+    "prod": "NODE_ENV = production node ./server/dist/index.js",
+    "build": "npm run clean && babel ./server -d ./server/dist",
+    "clean":" rm -rf ./server/dist",
+    "start": "nodemon ./server/index.js --exec babel-node -e js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint **/*.js --fix"
   },
@@ -35,8 +37,8 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
+    "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
