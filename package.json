@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
-    "prod": "NODE_ENV = production node ./server/dist/index.js",
+    "prod": "npm run build && node ./server/dist/index.js",
     "build": "npm run clean && babel ./server -d ./server/dist",
     "clean":" rm -rf ./server/dist",
     "start": "nodemon ./server/index.js --exec babel-node -e js",
@@ -34,6 +34,9 @@
     "moment": "^2.24.0",
     "sinon": "^7.3.2",
     "uuid": "^3.3.2"
+  },
+  "engines": {
+    "node": "10.14.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

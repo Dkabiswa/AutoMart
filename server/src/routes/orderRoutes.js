@@ -13,7 +13,7 @@ router.route('/order')
 
 // update new purchase price
 router.route('/order/:id/price')  
-  .post(Auth.verifyUser, order.updatePrice)
+  .patch(Auth.verifyUser, order.updatePrice)
   .all(method);
 
 

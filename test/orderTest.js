@@ -23,7 +23,7 @@ describe('ORDER', () => {
     state: 'old',
     price: 300,
     manufacturer: 'Benz',
-    model: 'C-class',
+    model: 'class',
     bodyType: 'Truck',
   };
   before((done) => {

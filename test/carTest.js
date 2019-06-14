@@ -3,6 +3,7 @@ import chaiHttp from 'chai-http';
 import server from '../server/index';
 
 
+
 chai.use(chaiHttp);
 chai.should();
 let token;
@@ -13,6 +14,24 @@ describe('/ all undefined routes', () => {
       .get('/api/fggghuiiggytft')
       .end((err, res) => {
         res.should.have.status(404);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should return method not allowed', (done) => {
+    const details = {
+      email: 'mgrrrt@gmail.com',
+      firstName: 'mgat',
+      lastName: 'dgat',
+      password: 'gDFdat1234',
+      address: 'mukono',
+      isAdmin: true,
+    };
+    chai.request(server)
+      .patch('/api/v1/auth/signup')
+      .send(details)
+      .end((err, res) => {
+        res.should.have.status(405);
         res.body.should.be.a('object');
         done();
       });
@@ -63,7 +82,7 @@ describe('/ CARS', () => {
       state: 'new',
       price: 300,
       manufacturer: 'Benz',
-      model: 'C-class',
+      model: 'class',
       bodyType: 'Truck',
     };
     chai.request(server)
@@ -177,7 +196,7 @@ describe('/ CARS', () => {
       owner: 2,
       price: 300,
       manufacturer: 'Benz',
-      model: 'C-class',
+      model: 'class',
       bodyType: 'Truck',
     };
     chai.request(server)
