@@ -1,6 +1,5 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import expressValidator from 'express-validator';
 import car from './src/routes/carRoutes';
 import user from './src/routes/userRoutes';
 import order from './src/routes/orderRoutes';
@@ -9,7 +8,15 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(expressValidator());
+
+
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 200,
+    message: 'WELCOME, THIS IS AUTOMART',
+  });
+});
+
 app.use('/api/v1', car);
 app.use('/api/v1/auth', user);
 app.use('/api/v1', order);
