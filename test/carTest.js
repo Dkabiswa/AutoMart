@@ -1,6 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server/index';
+import {upload, dataUri} from '../server/src/middleware/multer';
 
 
 
@@ -275,6 +276,40 @@ describe('/ CARS', () => {
         res.should.have.status(404);
         res.body.should.be.a('object');
         res.body.should.have.property('message');
+        done();
+      });
+  });
+  it('should upload images ', (done) => {
+    chai.request(server)
+      .post('/api/v1/car/1')
+      .set('Authorization', token)
+      .attach('image','./test/files/hybrid.jpg')
+      .attach('image','./test/files/patr.jpg')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should not upload images ', (done) => {
+    chai.request(server)
+      .post('/api/v1/car/1')
+      .set('Authorization', token)
+      .attach()
+      .end((err, res) => { 
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should not upload images ', (done) => {
+    chai.request(server)
+      .post('/api/v1/car/r')
+      .set('Authorization', token)
+      .attach()
+      .end((err, res) => { 
+        res.should.have.status(400);
+        res.body.should.be.a('object');
         done();
       });
   });

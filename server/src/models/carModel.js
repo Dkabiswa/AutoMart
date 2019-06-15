@@ -17,6 +17,10 @@ class Car {
   getUnsold(status) {
     return this.cars.filter(car => car.status === status);
   }
+  addImages(id, images) {
+    const c = this.findId(id);
+    c.images= images;
+  }
 
   create(data) {
     const newCar = {

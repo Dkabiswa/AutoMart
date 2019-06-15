@@ -4,6 +4,20 @@ import CarSchema from '../validations/carValidation';
 import Validation from '../middleware/validationhandler';
 
 const Car = {
+  upload (req, res, next) {
+    const notValid = Validation.validator(req.params, CarSchema.carIdSchema);
+    if (notValid) {
+      return res.status(400).send(notValid);
+    }
+    if (req.files) {
+      car.addImages(parseInt(req.params.id, 10), req.files);
+      return res.status(200).send({
+        status:200,
+        message: 'images uploaded Succesfully',
+      })
+    }
+    return res.status(400).send({message: 'uploaded an empty file'});
+  },
   getUnsold(req, res) {
     const options = req.query;
     // if no query is passed return all cars
