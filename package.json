@@ -5,7 +5,6 @@
   "main": "src/index.js",
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
-    "prod": "npm run build && node ./server/dist/index.js",
     "build": "npm run clean && babel ./server -d ./server/dist",
     "clean":" rm -rf ./server/dist",
     "start": "nodemon ./server/index.js --exec babel-node -e js",
