@@ -4,8 +4,18 @@ import car from './src/routes/carRoutes';
 import user from './src/routes/userRoutes';
 import order from './src/routes/orderRoutes';
 import method from './src/middleware/methods';
+import upload from './src/middleware/multer';
+
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+
+app.post('/upload', upload.single('image'), (req, res) => {
+  console.log('Should be undefined:', req.file);
+  res.send('OK')
+})
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -18,6 +28,8 @@ app.get(route, (req, res) => {
   });
 });
 app.all(route, method);
+
+
 
 app.use('/api/v1', car);
 app.use('/api/v1/auth', user);
