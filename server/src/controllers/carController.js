@@ -2,8 +2,37 @@ import users from '../models/userModel';
 import car from '../models/carModel';
 import CarSchema from '../validations/carValidation';
 import Validation from '../middleware/validationhandler';
+import {upload, dataUri} from '../middleware/multer';
 
 const Car = {
+  imageUpload (req, res, next) {
+    const notValid = Validation.validator(req.params, CarSchema.carIdSchema);
+    if (notValid) {
+      return res.status(400).send(notValid);
+    }
+    let id = parseInt(req.params.id, 10);
+    upload(req, res, (err) =>{
+      if(err) {
+        return res.status(400).send({
+          status: 400,
+          message: 'Error uploading Images, make sure they are less than 6'
+        })
+      }
+      if (req.files) {
+        if(!car.findId(id)){
+          return res.status(404).send({
+            status: 404,
+            message:'car not found'});
+        }
+        car.addImages(id, req.files);
+        return res.status(200).send({
+          status:200,
+          message: 'images uploaded Succesfully',
+      })
+    }
+    return res.status(400).send({message: 'uploaded an empty file'});
+    });    
+  },
   getUnsold(req, res) {
     const options = req.query;
     // if no query is passed return all cars

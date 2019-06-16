@@ -6,7 +6,7 @@
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
     "build": "npm run clean && babel ./server -d ./server/dist",
-    "clean":" rm -rf ./server/dist",
+    "clean": " rm -rf ./server/dist",
     "start": "nodemon ./server/index.js --exec babel-node -e js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint **/*.js --fix"
@@ -26,11 +26,14 @@
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "braces": "^3.0.2",
+    "cloudinary": "^1.14.0",
+    "datauri": "^2.0.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-validator": "^5.3.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
+    "multer": "^1.4.1",
     "sinon": "^7.3.2",
     "uuid": "^3.3.2"
   },

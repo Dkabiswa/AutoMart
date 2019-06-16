@@ -6,7 +6,6 @@ import order from './src/routes/orderRoutes';
 import method from './src/middleware/methods';
 
 const app = express();
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -17,7 +16,7 @@ app.get(route, (req, res) => {
     message: 'WELCOME, THIS IS AUTOMART',
   });
 });
-app.all(route, method);
+app.all(route, method); 
 
 app.use('/api/v1', car);
 app.use('/api/v1/auth', user);

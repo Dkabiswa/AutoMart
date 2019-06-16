@@ -63,6 +63,25 @@ describe('ORDER', () => {
         done();
       });
   });
+  it('should create a 2nd purchase order with Id incremented', (done) => {
+    const order = {
+      buyer: 1,
+      carId: 2,
+      amount: 1000.0,
+    };
+    chai.request(server)
+      .post('/api/v1/order/')
+      .set('Authorization', token)
+      .send(order)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.should.be.a('object');
+        res.body.data.should.have.property('id');
+        res.body.data.id.should.equal(4);
+        res.body.data.should.have.property('createdOn');
+        done();
+      });
+  });
   it('should not create a new purchase order with missing fields', (done) => {
     const order = {
       buyer: 1,
