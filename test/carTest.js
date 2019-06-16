@@ -1,7 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server/index';
-import {upload, dataUri} from '../server/src/middleware/multer';
 
 
 
