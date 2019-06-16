@@ -365,6 +365,56 @@ describe('/ CARS', () => {
         done();
       });
   });
+  it('should list all new unsold cars for all users', (done) => {
+    chai.request(server)
+      .get('/api/v1/state/car?status=available&state=new')
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should list all used unsold cars for all users', (done) => {
+    chai.request(server)
+      .get('/api/v1/state/car?status=available&state=used')
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should not list all unsold cars if status is not valid', (done) => {
+    chai.request(server)
+      .get('/api/v1/car/state?status=avaigfdlable&state=new')
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should not list all unsold cars if status is not valid', (done) => {
+    chai.request(server)
+      .get('/api/v1/car/state?status=&state=')
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should not list all unsold cars if state is not valid', (done) => {
+    chai.request(server)
+      .get('/api/v1/car/state?status=available&state=gdhdhjjd')
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
 });
 describe('/DELETE CARS', () => {
   const info = {
