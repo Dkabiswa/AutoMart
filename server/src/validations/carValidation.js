@@ -28,6 +28,10 @@ const CarSchema = {
   markSchema: Joi.object().keys({
   	status: Joi.string().valid('sold').required(),
   }),
+
+  bodySchema: Joi.object().keys({
+    bodyType: Joi.string().required().regex(/^[A-Za-z]+$/),
+  }),
 };
 
 export default CarSchema;

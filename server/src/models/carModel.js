@@ -33,6 +33,10 @@ class Car {
     c.images= images;
   }
 
+  getBody(body) {
+    return this.cars.filter(car => car.bodyType === body);
+  }
+
   create(data) {
     let newId, x =this.cars.length;
     if( x === 0){

@@ -46,6 +46,18 @@ const Car = {
       data: sCars
     });
   },
+  getBody(req, res) {
+    const body = req.query;
+    const notValid = Validation.validator(body, CarSchema.bodySchema);
+    if (notValid) {
+      return res.status(400).send(notValid);
+    }
+    const bCars = car.getBody(body.bodyType)
+    return res.status(200).send({
+      status: 200,
+      data: bCars
+    });
+  },
 
   getMake(req, res) {
     const option = req.query;
