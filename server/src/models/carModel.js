@@ -1,5 +1,5 @@
 import moment from 'moment';
-import uuid from 'uuid';
+
 
 class Car {
   constructor() {
@@ -23,8 +23,15 @@ class Car {
   }
 
   create(data) {
+    let newId, x =this.cars.length;
+    if( x === 0){
+      newId = 1; 
+    } else {
+      newId = this.cars[x -1].id + 1;
+    }
+    
     const newCar = {
-      id: data.id || uuid.v4(),
+      id: data.id || newId,
       owner: data.owner,
       createdOn: moment.now(),
       state: data.state,

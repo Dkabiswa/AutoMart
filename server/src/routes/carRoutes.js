@@ -2,7 +2,7 @@ import express from 'express';
 import car from '../controllers/carController';
 import auth from '../middleware/auth';
 import method from '../middleware/methods';
-import {upload, dataUri} from '../middleware/multer';
+
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ const router = express.Router();
 router.route('/car/:id')
   .get(car.getCar)
   .delete(auth.verifyUser, car.deleteCar)
-  .post(auth.verifyUser, upload.array('image', 6), car.upload)
+  .post(auth.verifyUser,  car.imageUpload)
   .all(method);
 
 // return cars in specificed format

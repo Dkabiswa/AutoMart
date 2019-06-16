@@ -1,4 +1,3 @@
-import uuid from 'uuid';
 
 class Order {
   constructor() {
@@ -6,8 +5,14 @@ class Order {
   }
 
   create(data) {
+    let newId, x =this.orders.length;
+    if( x === 0){
+      newId = 1; 
+    } else {
+      newId = this.orders[x -1].id + 1;
+    }
     const newOrder = {
-      id: data.id || uuid.v4(),
+      id: data.id || newId,
       buyer: data.buyer,
       carId: data.carId,
       amount: data.amount,

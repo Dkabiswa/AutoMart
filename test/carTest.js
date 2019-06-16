@@ -51,6 +51,7 @@ describe('/ CARS', () => {
       id: 1,
       owner: 2,
       state: 'new',
+      status: 'available',
       price: 300,
       manufacturer: 'Benz',
       model: 'class',
@@ -65,6 +66,28 @@ describe('/ CARS', () => {
         res.body.should.be.a('object');
         res.body.should.have.property('data');
         res.body.data.should.have.property('id');
+        done();
+      });
+  });
+  it('it should POST a 2nd car and increment the id', (done) => {
+    const car = {
+      owner: 2,
+      state: 'new',
+      price: 300,
+      manufacturer: 'toyota',
+      model: 'Gclass',
+      bodyType: 'van',
+    };
+    chai.request(server)
+      .post('/api/v1/car')
+      .set('Authorization', token)
+      .send(car)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.should.be.a('object');
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('id');
+        res.body.data.id.should.be.equal(2);
         done();
       });
   });
@@ -132,7 +155,7 @@ describe('/ CARS', () => {
         done();
       });
   });
-  it('should return a car which does not exisit ', (done) => {
+  it('should return a car which does not exist ', (done) => {
     const carId = 10;
     chai.request(server)
       .get(`/api/v1/car/${carId}`)
@@ -209,7 +232,7 @@ describe('/ CARS', () => {
         done();
       });
   });
-  it('it should not mark a car sold if id doesnt exisit', (done) => {
+  it('it should not mark a car sold if id doesnt exist', (done) => {
     const Statu = { status: 'sold' };
     chai.request(server)
       .patch('/api/v1/car/10/status')
@@ -252,7 +275,7 @@ describe('/ CARS', () => {
         done();
       });
   });
-  it('it should not update car price if new price doesnt exisit', (done) => {
+  it('it should not update car price if new price doesnt exist', (done) => {
     const cars = { price: '' };
     chai.request(server)
       .patch('/api/v1/car/1/price')
@@ -265,7 +288,7 @@ describe('/ CARS', () => {
         done();
       });
   });
-  it('it should not update car price if id doesnt exisit', (done) => {
+  it('it should not update car price if id doesnt exist', (done) => {
     const card = { price: 40000 };
     chai.request(server)
       .patch('/api/v1/car/5/price')
@@ -282,15 +305,15 @@ describe('/ CARS', () => {
     chai.request(server)
       .post('/api/v1/car/1')
       .set('Authorization', token)
-      .attach('image','./test/files/hybrid.jpg')
-      .attach('image','./test/files/patr.jpg')
+      .attach('image','./UI/scar/cruiser2.jpg')
+      .attach('image','./UI/scar/cruiser3.jpg')
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         done();
       });
   });
-  it('should not upload images ', (done) => {
+  it('should not upload if no images are provided ', (done) => {
     chai.request(server)
       .post('/api/v1/car/1')
       .set('Authorization', token)
@@ -301,12 +324,42 @@ describe('/ CARS', () => {
         done();
       });
   });
-  it('should not upload images ', (done) => {
+  it('should not upload images if car id is false', (done) => {
     chai.request(server)
       .post('/api/v1/car/r')
       .set('Authorization', token)
-      .attach()
+      .attach('image','./UI/scar/cruiser2.jpg')
+      .attach('image','./UI/scar/cruiser3.jpg')
       .end((err, res) => { 
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should not upload images if car doesnot exist ', (done) => {
+    chai.request(server)
+      .post('/api/v1/car/10')
+      .set('Authorization', token)
+      .attach('image','./UI/scar/cruiser2.jpg')
+      .attach('image','./UI/scar/cruiser3.jpg')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should  not upload images if they above 6 ', (done) => {
+    chai.request(server)
+      .post('/api/v1/car/1')
+      .set('Authorization', token)
+      .attach('image','./UI/scar/cruiser2.jpg')
+      .attach('image','./UI/scar/cruiser3.jpg')
+      .attach('image','./UI/scar/hilux.jpg')
+      .attach('image','./UI/scar/hilux2.jpg')
+      .attach('image','./UI/scar/hilux3.jpg')
+      .attach('image','./UI/scar/premio.jpg')
+      .attach('image','./UI/scar/vellfire.jpg')
+      .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
         done();
@@ -351,7 +404,7 @@ describe('/DELETE CARS', () => {
         done();
       });
   });
-  it('should not delete a car advert which doesnot exisit', (done) => {
+  it('should not delete a car advert which doesnot exist', (done) => {
     chai.request(server)
       .delete('/api/v1/car/200')
       .set('Authorization', token)
