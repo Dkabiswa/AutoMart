@@ -21,7 +21,8 @@ const CarSchema = {
     status: Joi.string().valid(['available']).required(),
     minPrice: Joi.number(),
     maxPrice: Joi.number(),
-    state: Joi.string().valid(['used', 'new'])
+    state: Joi.string().valid(['used', 'new']),
+    manufacturer: Joi.string().regex(/^[A-Za-z]+$/),
   }),
 
   markSchema: Joi.object().keys({

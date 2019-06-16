@@ -395,7 +395,7 @@ describe('/ CARS', () => {
         done();
       });
   });
-  it('should not list all unsold cars if status is not valid', (done) => {
+  it('should not list all unsold cars if status and state are empty', (done) => {
     chai.request(server)
       .get('/api/v1/car/state?status=&state=')
       .set('Authorization', token)
@@ -408,6 +408,36 @@ describe('/ CARS', () => {
   it('should not list all unsold cars if state is not valid', (done) => {
     chai.request(server)
       .get('/api/v1/car/state?status=available&state=gdhdhjjd')
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should list all unsold cars of specific make for all users', (done) => {
+    chai.request(server)
+      .get('/api/v1/make/car?status=available&manufacturer=toyota')
+      .set('Authorization', token)
+      .end((err, res) => { 
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should not list unsold cars of specific make if status is invalid', (done) => {
+    chai.request(server)
+      .get('/api/v1/make/car?status=avaigglable&manufacturer=Benz')
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should not list unsold cars of specific make if manufacturer is invalid', (done) => {
+    chai.request(server)
+      .get('/api/v1/make/car?status=avaigglable&manufacturer=12233d')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(400);
