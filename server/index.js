@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import car from './src/routes/carRoutes';
 import user from './src/routes/userRoutes';
 import order from './src/routes/orderRoutes';
+import flag from './src/routes/flagRoute';
 import method from './src/middleware/methods';
 
 const app = express();
@@ -21,7 +22,7 @@ app.all(route, method);
 app.use('/api/v1', car);
 app.use('/api/v1/auth', user);
 app.use('/api/v1', order);
-
+app.use('/api/v1', flag);
 app.use((req, res, next) => {
   const err = new Error('Invalid URL');
   err.status = 404;
