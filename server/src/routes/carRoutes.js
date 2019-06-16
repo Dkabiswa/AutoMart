@@ -24,6 +24,11 @@ router.route('/state/car/')
   .get(auth.verifyUser, car.getState)
   .all(method);
 
+// return unsold cars of specific make
+router.route('/make/car/')
+  .get(auth.verifyUser, car.getMake)
+  .all(method);
+
 // mark car ad sold
 router.route('/car/:id/status')
   .patch(auth.verifyUser, car.mark)

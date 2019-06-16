@@ -47,6 +47,19 @@ const Car = {
     });
   },
 
+  getMake(req, res) {
+    const option = req.query;
+    const notValid = Validation.validator(option, CarSchema.querySchema);
+    if (notValid) {
+      return res.status(400).send(notValid);
+    }
+    const mCars = car.getMake(option.status, option.manufacturer)
+    return res.status(200).send({
+      status: 200,
+      data: mCars
+    });
+  },
+
   getUnsold(req, res) {
     const options = req.query;
     // if no query is passed return all cars
