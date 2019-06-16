@@ -23,9 +23,6 @@ class Flag {
     return newFlag;
   }
 
-  findId(id) {
-    return this.flags.find(flag => flag.id === id);
-  }
 }
 
 export default new Flag();
