@@ -20,7 +20,7 @@ describe('FLAG', () => {
   const car = {
     id: 5,
     owner: 3,
-    state: 'old',
+    state: 'used',
     price: 300,
     manufacturer: 'Benz',
     model: 'class',

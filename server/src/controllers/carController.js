@@ -33,6 +33,20 @@ const Car = {
     return res.status(400).send({message: 'uploaded an empty file'});
     });    
   },
+
+  getState(req, res) {
+    const option = req.query;
+    const notValid = Validation.validator(option, CarSchema.querySchema);
+    if (notValid) {
+      return res.status(400).send(notValid);
+    }
+    const sCars = car.getState(option.status, option.state)
+    return res.status(200).send({
+      status: 200,
+      data: sCars
+    });
+  },
+
   getUnsold(req, res) {
     const options = req.query;
     // if no query is passed return all cars

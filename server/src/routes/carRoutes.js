@@ -19,6 +19,10 @@ router.route('/car')
   .post(auth.verifyUser, car.create)
   .all(method);
 
+// return used or new unsold cars
+router.route('/state/car/')
+  .get(auth.verifyUser, car.getState)
+  .all(method);
 
 // mark car ad sold
 router.route('/car/:id/status')

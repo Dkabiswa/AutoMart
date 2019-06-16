@@ -20,7 +20,7 @@ describe('ORDER', () => {
   const car = {
     id: 2,
     owner: 3,
-    state: 'old',
+    state: 'used',
     price: 300,
     manufacturer: 'Benz',
     model: 'class',
