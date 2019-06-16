@@ -29,6 +29,10 @@ router.route('/make/car/')
   .get(auth.verifyUser, car.getMake)
   .all(method);
 
+router.route('/body/car/')
+  .get(auth.verifyUser, car.getBody)
+  .all(method);
+
 // mark car ad sold
 router.route('/car/:id/status')
   .patch(auth.verifyUser, car.mark)

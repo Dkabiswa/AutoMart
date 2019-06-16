@@ -445,6 +445,36 @@ describe('/ CARS', () => {
         done();
       });
   });
+  it('should list all cars of a particular bodyType', (done) => {
+    chai.request(server)
+      .get('/api/v1/body/car?bodyType=Truck')
+      .set('Authorization', token)
+      .end((err, res) => { 
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should not list all cars of a particular bodyType if bodyType is invalid', (done) => {
+    chai.request(server)
+      .get('/api/v1/body/car?bodyType=Tr223uck')
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should not list all cars of a particular bodyType if bodyType is empty', (done) => {
+    chai.request(server)
+      .get('/api/v1/body/car?bodyType=')
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
 });
 describe('/DELETE CARS', () => {
   const info = {
