@@ -25,6 +25,10 @@ class Order {
   findId(id) {
     return this.orders.find(order => order.id === id);
   }
+  updatePrice(id, amount){
+    const uOrder = this.findId(id);
+    uOrder.amount = amount;
+  }
 }
 
 export default new Order();

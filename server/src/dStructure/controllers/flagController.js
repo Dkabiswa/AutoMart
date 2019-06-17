@@ -1,7 +1,7 @@
 import car from '../models/carModel';
 import flag from '../models/flagModel';
-import FlagSchema from '../validations/flagValidation';
-import Validation from '../middleware/validationhandler';
+import FlagSchema from '../../validations/flagValidation';
+import Validation from '../../middleware/validationhandler';
 
 const Flag = {
   create(req, res, next) {

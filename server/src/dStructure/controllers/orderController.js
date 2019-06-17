@@ -1,7 +1,7 @@
 import car from '../models/carModel';
 import order from '../models/orderModel';
-import OrderSchema from '../validations/orderValidation';
-import Validation from '../middleware/validationhandler';
+import OrderSchema from '../../validations/orderValidation';
+import Validation from '../../middleware/validationhandler';
 
 const Order = {
   create(req, res, next) {
@@ -32,10 +32,12 @@ const Order = {
     if (notValid) {
       return res.status(400).send(notValid);
     }
-    const purchase = order.findId(parseInt(req.params.id, 10));
+    let y =parseInt(req.params.id, 10);
+    const purchase = order.findId(y);
     if (!purchase) {
       return res.status(404).send('order not found');
-    }
+    } 
+    order.updatePrice(y, req.body.newAmount);
     return res.status(200).json({
       status: 200,
       data: {

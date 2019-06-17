@@ -9,7 +9,8 @@
     "clean": " rm -rf ./server/dist",
     "start": "nodemon ./server/index.js --exec babel-node -e js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "lint": "eslint **/*.js --fix"
+    "lint": "eslint **/*.js --fix",
+    "create": "node ./server/src/dBase/database createTables"
   },
   "repository": {
     "type": "git",
@@ -34,7 +35,9 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "multer": "^1.4.1",
+    "pg": "^7.11.0",
     "sinon": "^7.3.2",
+    "swagger-ui-express": "^4.0.6",
     "uuid": "^3.3.2"
   },
   "engines": {
@@ -42,8 +45,8 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
-    "@babel/node": "^7.4.5",
     "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
@@ -51,6 +54,7 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",
+    "make-runnable": "^1.3.6",
     "mocha": "^6.1.4",
     "nodemon": "^1.19.1",
     "nyc": "^14.1.1"

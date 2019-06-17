@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import user from '../models/userModel';
-import auth from '../middleware/auth';
-import UserSchema from '../validations/userValidation';
-import Validation from '../middleware/validationhandler';
+import auth from '../../middleware/auth';
+import UserSchema from '../../validations/userValidation';
+import Validation from '../../middleware/validationhandler';
 
 
 const User = {
