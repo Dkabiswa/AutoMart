@@ -50,21 +50,41 @@ Auto Mart is an online marketplace for automobiles of diverse makes, model or bo
 
 ### Routes
 * visit http://localhost:3000
+* API is also hoste on heroku https://myautomart.herokuapp.com
 
-### Car   
- /api/v1/car/:id   Get specific car    GET
- /api/v1/car/      Get all cars        GET   
- /api/v1/car/:id/status Mark car sold  POST  
- /api/v1/car?status=available   Get unsold cars GET  
- /api/v1/car?status=available&minPrice=XXXValue&maxPrice=XXXValue  Get unsold cars in a price range  GET 
- /api/v1/car/:id  Delete a car  DELETE
- /api/v1/car/:id/prrice| Update Price of a car  | PATCH|
+### Car 
 
-###  Order     
- /api/v1/order/   Create New order   POST  
- /api/v1/order/:id/price    Update price of order  PATCH    
+METHOD | ROUTE | DWFINITION
+-------|-------|-------
+Get | /api/v1/car/:id | Get specific car 
+Get |  /api/v1/car/ | Admin can Get all cars  
+Post | /api/v1/car/:id/status | Mark car sold 
+Get | /api/v1/car?status=available | Get all unsold cars 
+Get | /api/v1/car?status=available&minPrice=XXXValue&maxPrice=XXXValue | Get unsold cars in a price range 
+Delete | /api/v1/car/:id | Admin can Delete a car
+Patch | api/v1/car/:id/prrice | Update Price of a car
+Get | api/v1/state/car?status=available&state=new | Get new unsold cars 
+Get | api/v1/state/car?status=available&state=used | Get used unsold cars 
+Get | api/v1/state/car?status=available&manufacturer=VALUE | Get unsold cars of specific make 
+Get | /api/v1/car?bodyType=VALUE | Get all cars of a particular bodytype
 
-### User      
+###  Order  
 
- /api/v1/auth/login/  login User   POST  
- /api/v1/auth/signup  Signup user  POST 
+METHOD | ROUTE | DWFINITION
+-------|-------|-------
+Post |  /api/v1/order/ | Create New order 
+Patch |  /api/v1/order/:id/price | Update price of order    
+
+### User 
+
+METHOD | ROUTE | DWFINITION
+-------|-------|-------
+Post |  /api/v1/auth/login/ | login User 
+Patch |  /api/v1/auth/signup | Signup user 
+
+### Flag
+
+METHOD | ROUTE | DWFINITION
+-------|-------|-------
+Post |  /api/v1/flag | flag car fraudulent
+
