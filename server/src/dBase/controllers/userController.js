@@ -3,7 +3,6 @@ import auth from '../../middleware/auth';
 import UserSchema from '../../validations/userValidation';
 import Validation from '../../middleware/validationhandler';
 import db from '../db/dbControl';
-import bcrypt from 'bcrypt';
 import '@babel/polyfill';
 
 
@@ -16,7 +15,7 @@ const User = {
     const { email } = req.body;
     const last_name = req.body.lastName;
     const first_name = req.body.firstName;
-    const  password  = const hash = bcrypt.hashSync(req.body.password, 10);
+    const  password  =  bcrypt.hashSync(req.body.password, 10);
     const { address } = req.body;
     const is_admin = req.body.isAdmin;
     const query = `INSERT INTO
