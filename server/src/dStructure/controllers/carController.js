@@ -1,8 +1,8 @@
 import users from '../models/userModel';
 import car from '../models/carModel';
-import CarSchema from '../validations/carValidation';
-import Validation from '../middleware/validationhandler';
-import {upload, dataUri} from '../middleware/multer';
+import CarSchema from '../../validations/carValidation';
+import Validation from '../../middleware/validationhandler';
+import {upload, dataUri} from '../../middleware/multer';
 
 const Car = {
   imageUpload (req, res, next) {
@@ -183,11 +183,12 @@ const Car = {
     if (!req.body.price) {
       return res.status(400).json({ status: 400, message: 'Enter new price to be updated' });
     }
-    const oldCar = car.findId(parseInt(req.params.id, 10));
+    let z = parseInt(req.params.id, 10);
+    const oldCar = car.findId(z);
     if (!oldCar) {
       return res.status(404).json({ status: 404, message: 'car not found' });
     }
-    oldCar.price = req.body.price;
+    car.updatePrice(z, req.body.price)
     return res.status(200).json({
       status: 200,
       data: oldCar,

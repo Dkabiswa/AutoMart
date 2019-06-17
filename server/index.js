@@ -5,6 +5,8 @@ import user from './src/routes/userRoutes';
 import order from './src/routes/orderRoutes';
 import flag from './src/routes/flagRoute';
 import method from './src/middleware/methods';
+import swaggerUI from 'swagger-ui-express';
+import swaggerDocu from '../swagger.json';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,6 +25,9 @@ app.use('/api/v1', car);
 app.use('/api/v1/auth', user);
 app.use('/api/v1', order);
 app.use('/api/v1', flag);
+
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocu));
+
 app.use((req, res, next) => {
   const err = new Error('Invalid URL');
   err.status = 404;

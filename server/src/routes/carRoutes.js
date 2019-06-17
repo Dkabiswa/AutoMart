@@ -1,5 +1,5 @@
 import express from 'express';
-import car from '../controllers/carController';
+import car from '../dStructure/controllers/carController';
 import auth from '../middleware/auth';
 import method from '../middleware/methods';
 
@@ -20,12 +20,12 @@ router.route('/car')
   .all(method);
 
 // return used or new unsold cars
-router.route('/state/car/')
+router.route('/state/car')
   .get(auth.verifyUser, car.getState)
   .all(method);
 
 // return unsold cars of specific make
-router.route('/make/car/')
+router.route('/make/car')
   .get(auth.verifyUser, car.getMake)
   .all(method);
 

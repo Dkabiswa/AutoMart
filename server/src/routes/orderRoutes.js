@@ -1,5 +1,5 @@
 import express from 'express';
-import order from '../controllers/orderController';
+import order from '../dStructure/controllers/orderController';
 import Auth from '../middleware/auth';
 import method from '../middleware/methods';
 

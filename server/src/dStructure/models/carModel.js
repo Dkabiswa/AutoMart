@@ -22,6 +22,10 @@ class Car {
     const aCars = this.getUnsold(status);
     return aCars.filter(car => car.state === state);
   }
+  updatePrice(id, price) {
+    const pCar =this.findId(id);
+    pCar.price = price;
+  }
 
   getMake(status, manufacturer){
     const aCars = this.getUnsold(status);
