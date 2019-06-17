@@ -1,14 +1,16 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server/index';
+import faker from 'faker'
 
 chai.use(chaiHttp);
 chai.should();
 
 describe('/POST Register', () => {
+  let email = faker.internet.email();
   it('it should Sign up', (done) => {
     const details = {
-      email: 'mgrrrt@gmail.com',
+      email: email,
       firstName: 'mgat',
       lastName: 'dgat',
       password: 'gDFdat1234',
@@ -26,8 +28,7 @@ describe('/POST Register', () => {
   });
 
   it('it should not Sign up with missing fields', (done) => {
-    const details = {
-      id: 1,
+    const info = {
       firstName: 'mgat',
       lastName: 'dgat',
       password: 'gdat1234',
@@ -36,7 +37,7 @@ describe('/POST Register', () => {
     };
     chai.request(server)
       .post('/api/v1/auth/signup')
-      .send(details)
+      .send(info)
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
@@ -44,8 +45,8 @@ describe('/POST Register', () => {
       });
   });
   it('it should not Sign up if email already exists', (done) => {
-    const details = {
-      email: 'mgrrrt@gmail.com',
+    const detail = {
+      email: email,
       firstName: 'mgat',
       lastName: 'dgat',
       password: 'gDFdat1234',
@@ -54,13 +55,14 @@ describe('/POST Register', () => {
     };
     chai.request(server)
       .post('/api/v1/auth/signup')
-      .send(details)
+      .send(detail)
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
         done();
       });
   });
+  /*
   it('Should LOGIN if credential is valid', (done) => {
     const details = {
       email: 'mgrrrt@gmail.com',
@@ -117,5 +119,5 @@ describe('/POST Register', () => {
         res.body.should.have.property('message');
         done();
       });
-  });
+  });*/
 });

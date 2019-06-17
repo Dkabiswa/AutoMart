@@ -1,37 +1,37 @@
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
-var _bcrypt = _interopRequireDefault(require("bcrypt"));
+const _bcrypt = _interopRequireDefault(require('bcrypt'));
 
-var _userModel = _interopRequireDefault(require("../models/userModel"));
+const _userModel = _interopRequireDefault(require('../models/userModel'));
 
-var _auth = _interopRequireDefault(require("../middleware/auth"));
+const _auth = _interopRequireDefault(require('../middleware/auth'));
 
-var _userValidation = _interopRequireDefault(require("../validations/userValidation"));
+const _userValidation = _interopRequireDefault(require('../validations/userValidation'));
 
-var _validationhandler = _interopRequireDefault(require("../middleware/validationhandler"));
+const _validationhandler = _interopRequireDefault(require('../middleware/validationhandler'));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var User = {
+const User = {
   create: function create(req, res, next) {
-    var notValid = _validationhandler["default"].validator(req.body, _userValidation["default"].signupSchema);
+    const notValid = _validationhandler.default.validator(req.body, _userValidation.default.signupSchema);
 
     if (notValid) {
       return res.status(400).send(notValid);
     }
 
-    var oldUser = _userModel["default"].findEmail(req.body.email);
+    const oldUser = _userModel.default.findEmail(req.body.email);
 
     if (!oldUser) {
-      var newUser = _userModel["default"].create(req.body);
+      const newUser = _userModel.default.create(req.body);
 
-      var token = _auth["default"].createToken({
-        id: newUser.id
+      const token = _auth.default.createToken({
+        id: newUser.id,
       });
 
       return res.status(201).send({
@@ -41,37 +41,37 @@ var User = {
           id: newUser.id,
           firstName: newUser.firstName,
           lastName: newUser.lastName,
-          email: newUser.email
-        }
+          email: newUser.email,
+        },
       });
     }
 
-    var err = new Error('email already exists');
+    const err = new Error('email already exists');
     err.status = 400;
     next(err);
   },
   login: function login(req, res, next) {
-    var notValid = _validationhandler["default"].validator(req.body, _userValidation["default"].loginSchema);
+    const notValid = _validationhandler.default.validator(req.body, _userValidation.default.loginSchema);
 
     if (notValid) {
       return res.status(400).send(notValid);
     }
 
-    var password = req.body.password;
-    var email = req.body.email.trim().toLowerCase();
+    const { password } = req.body;
+    const email = req.body.email.trim().toLowerCase();
 
-    var oldUser = _userModel["default"].findEmail(email);
+    const oldUser = _userModel.default.findEmail(email);
 
     if (!oldUser) {
       return res.status(404).send({
         status: 404,
-        message: 'email not found pleas signup'
+        message: 'email not found pleas signup',
       });
     }
 
-    if (_bcrypt["default"].compareSync(req.body.password, oldUser.password)) {
-      var token = _auth["default"].createToken({
-        id: oldUser.id
+    if (_bcrypt.default.compareSync(req.body.password, oldUser.password)) {
+      const token = _auth.default.createToken({
+        id: oldUser.id,
       });
 
       return res.status(200).send({
@@ -81,15 +81,15 @@ var User = {
           id: oldUser.id,
           firstName: oldUser.firstName,
           lastName: oldUser.lastName,
-          email: oldUser.email
-        }
+          email: oldUser.email,
+        },
       });
     }
 
-    var err = new Error('wrong password ');
+    const err = new Error('wrong password ');
     err.status = 404;
     next(err);
-  }
+  },
 };
-var _default = User;
-exports["default"] = _default;
+const _default = User;
+exports.default = _default;

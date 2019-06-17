@@ -1,41 +1,53 @@
 import bcrypt from 'bcrypt';
-import user from '../models/userModel';
 import auth from '../../middleware/auth';
 import UserSchema from '../../validations/userValidation';
 import Validation from '../../middleware/validationhandler';
-import db from '../db/dbControl'
+import db from '../db/dbControl';
+import '@babel/polyfill';
 
 
 const User = {
-  create(req, res, next) {
+  async create(req, res, next) {
     const inValid = Validation.validator(req.body, UserSchema.signupSchema);
     if (inValid) {
-      return res.status(400).send(notValid);
+      return res.status(400).send(inValid);
     }
+    const { email } = req.body;
+    const last_name = req.body.lastName;
+    const first_name = req.body.firstName;
+    const { password } = req.body;
+    const { address } = req.body;
+    const is_admin = req.body.isAdmin;
     const query = `INSERT INTO
-      reflections(id, email, first_name, last_name, password, address, is_admin)
-      VALUES($1, $2, $3, $4, $5, $6)
+      users (email, first_name, last_name, password, address, is_admin)
+      VALUES ($1, $2, $3, $4, $5, $6)
       returning *`;
     const values = [
-      req.body.id
-      req.body.success,
-      req.body.first_name,
-      req.body.last_name,
-      req.body.password,
-      req.body.address,
-      req.body.is_admin
+      email,
+      last_name,
+      first_name,
+      password,
+      address,
+      is_admin,
     ];
 
     try {
       const { rows } = await db.query(query, values);
+      const token = auth.createToken({ id: rows[0].id });
       return res.status(201).send({
-        status:201,
-        data: rows[0]
-    });
-    } catch(error) {
-      return res.status(400).send({message: error});
+        status: 201,
+        data: {
+          Token: token,
+          id: rows[0].id,
+          firstName: rows[0].first_name,
+          lastName: rows[0].last_name,
+          email: rows[0].email,
+        },
+      });
+    } catch (error) {
+      return res.status(400).send({ message: error.detail });
     }
   },
-  
+
 };
 export default User;

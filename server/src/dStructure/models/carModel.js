@@ -18,23 +18,24 @@ class Car {
     return this.cars.filter(car => car.status === status);
   }
 
-  getState(status, state){
+  getState(status, state) {
     const aCars = this.getUnsold(status);
     return aCars.filter(car => car.state === state);
   }
+
   updatePrice(id, price) {
-    const pCar =this.findId(id);
+    const pCar = this.findId(id);
     pCar.price = price;
   }
 
-  getMake(status, manufacturer){
+  getMake(status, manufacturer) {
     const aCars = this.getUnsold(status);
     return aCars.filter(car => car.manufacturer === manufacturer);
   }
 
   addImages(id, images) {
     const c = this.findId(id);
-    c.images= images;
+    c.images = images;
   }
 
   getBody(body) {
@@ -42,13 +43,14 @@ class Car {
   }
 
   create(data) {
-    let newId, x =this.cars.length;
-    if( x === 0){
-      newId = 1; 
+    let newId; const
+      x = this.cars.length;
+    if (x === 0) {
+      newId = 1;
     } else {
-      newId = this.cars[x -1].id + 1;
+      newId = this.cars[x - 1].id + 1;
     }
-    
+
     const newCar = {
       id: data.id || newId,
       owner: data.owner,

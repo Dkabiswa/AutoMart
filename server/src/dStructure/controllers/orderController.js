@@ -32,11 +32,11 @@ const Order = {
     if (notValid) {
       return res.status(400).send(notValid);
     }
-    let y =parseInt(req.params.id, 10);
+    const y = parseInt(req.params.id, 10);
     const purchase = order.findId(y);
     if (!purchase) {
       return res.status(404).send('order not found');
-    } 
+    }
     order.updatePrice(y, req.body.newAmount);
     return res.status(200).json({
       status: 200,

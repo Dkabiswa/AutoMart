@@ -8,7 +8,6 @@ const UserSchema = {
   }),
 
   signupSchema: Joi.object().keys({
-    id: Joi.number().integer().optional(),
     email: Joi.string().email().required(),
     firstName: Joi.string().min(3).max(20).required()
       .regex(/^[A-Za-z]+$/),
