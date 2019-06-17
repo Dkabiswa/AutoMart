@@ -8,10 +8,15 @@ import flag from './src/routes/flagRoute';
 import method from './src/middleware/methods';
 import swaggerDocu from '../swagger.json';
 import '@babel/polyfill';
+import Database from './src/dBase/database'
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+const database = new Database();
+database.createTables();
+
 
 const route = '/';
 app.get(route, (req, res) => {

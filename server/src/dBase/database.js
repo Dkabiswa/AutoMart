@@ -1,35 +1,40 @@
-const { pool } = require('./db/dbControl');
+import pool from './db/dbControl';
 
-pool.on('connect', () => {
-  console.log('connected to the db');
-});
-
-const userTable = () => {
-  const queryText = `CREATE TABLE IF NOT EXISTS
+class Database {
+  
+  createTables() {
+    const tables = `CREATE TABLE IF NOT EXISTS
       users(
-        id bigserial PRIMARY KEY NOT NULL,
+        id bigserial NOT NULL,
         email VARCHAR(128) UNIQUE NOT NULL,
         first_name VARCHAR(128) NOT NULL,
         last_name VARCHAR(128) NOT NULL,
         password VARCHAR (200) NOT NULL,
         address VARCHAR(128) NOT NULL,
-        is_admin BOOLEAN NOT NULL DEFAULT FALSE
-      )`;
-
-  pool.query(queryText)
-    .then((res) => {
-      console.log(res);
-      pool.end();
-    })
-    .catch((err) => {
-      console.log(err);
-      pool.end();
-    });
-};
-
-
+        is_admin BOOLEAN NOT NULL DEFAULT FALSE,
+        PRIMARY KEY (id));
+        
+      CREATE TABLE IF NOT EXISTS
+        cars(
+        id bigserial NOT NULL,
+        owner INT NOT NULL,
+        created_on TIMESTAMP,
+        state VARCHAR(128) NOT NULL,
+        status VARCHAR (128) NOT NULL,
+        price VARCHAR(128) NOT NULL,
+        manufacturer VARCHAR(128) NOT NULL,
+        model VARCHAR(128) NOT NULL,
+        body_type VARCHAR(128) NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY (owner) REFERENCES users (id) ON DELETE CASCADE
+        );`
+        pool.query(tables)
+  }
+}
+export default Database;
+/*
 const dropUserTable = () => {
-  const queryText = 'DROP TABLE IF EXISTS users';
+  const queryText = 'DROP TABLE IF EXISTS users returning *';
   pool.query(queryText)
     .then((res) => {
       console.log(res);
@@ -41,16 +46,16 @@ const dropUserTable = () => {
     });
 };
 
-
-pool.on('remove', () => {
-  console.log('client removed');
-  process.exit(0);
-});
-
-module.exports = {
-  userTable,
-  dropUserTable,
+const dropCarTable = () => {
+  const queryText = 'DROP TABLE IF EXISTS cars returning *';
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
-
-
-require('make-runnable');
+*/
