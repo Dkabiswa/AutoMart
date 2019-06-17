@@ -11,7 +11,7 @@ const userTable = () => {
         email VARCHAR(128) UNIQUE NOT NULL,
         first_name VARCHAR(128) NOT NULL,
         last_name VARCHAR(128) NOT NULL,
-        password VARCHAR (50) NOT NULL,
+        password VARCHAR (200) NOT NULL,
         address VARCHAR(128) NOT NULL,
         is_admin BOOLEAN NOT NULL DEFAULT FALSE
       )`;
