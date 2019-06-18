@@ -35,8 +35,8 @@ const User = {
     try {
       const user = await db.query(etext, [email]);
       if (user.rows[0]) {
-        return res.status(404).send({
-          status: 404,
+        return res.status(400).send({
+          status: 400,
           message: 'user already exists',
         });
       }

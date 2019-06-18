@@ -1,6 +1,5 @@
 import express from 'express';
-import car from '../dStructure/controllers/carController';
-import carBase from '../dBase/controllers/carController';
+import car from '../dBase/controllers/carController';
 import auth from '../middleware/auth';
 import method from '../middleware/methods';
 
@@ -17,7 +16,7 @@ const router = express.Router();
 // return cars in specificed format
 router.route('/car')
   // .get(auth.verifyUser, car.getUnsold)
-  .post(auth.verifyUser, carBase.create)
+  .post(auth.verifyUser, car.create)
   .all(method);
 
 // return used or new unsold cars
@@ -36,13 +35,13 @@ router.route('/body/car/')
 
 // mark car ad sold
 router.route('/car/:id/status')
-  .patch(auth.verifyUser, carBase.mark)
+  .patch(auth.verifyUser, car.mark)
   .all(method);
-/*
+  
 // update new car price
 router.route('/car/:id/price')
   .patch(auth.verifyUser, car.updatePrice)
-  .all(method); */
+  .all(method); 
 
 
 export default router;

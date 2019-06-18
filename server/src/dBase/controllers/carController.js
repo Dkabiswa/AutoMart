@@ -57,7 +57,7 @@ const Car = {
       return res.status(400).send(notValid);
     }
     const text = 'SELECT * FROM cars WHERE id = $1';
-    const pricetext = `UPDATE cars
+    const stext = `UPDATE cars
       SET status=$1
       WHERE id=$2 returning *`;
     const value = [
@@ -73,10 +73,41 @@ const Car = {
         });
       }
 
-      const response = await db.query(pricetext, value);
+      const response = await db.query(stext, value);
       return res.status(200).json({
         status: 200,
         data: response.rows[0],
+
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+  async updatePrice(req, res) {
+    if (!req.body.price) {
+      return res.status(400).json({ status: 400, message: 'Enter new price to be updated' });
+    }
+    const text = 'SELECT * FROM cars WHERE id = $1';
+    const pricetext = `UPDATE cars
+      SET price=$1
+      WHERE id=$2 returning *`;
+    const value = [
+      req.body.price,
+      req.params.id,
+    ];
+
+    try {
+      const { rows } = await db.query(text, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          message: 'car not found',
+        });
+      }
+
+      const car = await db.query(pricetext, value);
+      return res.status(200).json({
+        status: 200,
+        data: car.rows[0],
 
       });
     } catch (error) {
