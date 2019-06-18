@@ -143,14 +143,23 @@ const Car = {
     if (uValid) {
       return res.status(400).send(uValid);
     }
+    const min = parseInt(options.minPrice, 10);
+    const max = parseInt(options.maxPrice, 10);
     const unsold = 'SELECT * FROM cars WHERE status = $1';
     try {
       const { rows } = await db.query(unsold, [options.status]);
+      if (options.minPrice === undefined) {
+        return res.status(200).send({
+          status: 200,
+          data: rows,
+        });
+      }
+      if (max > min) {
+      const pCar = rows.filter(p => p.price >= min && p.price <= max);
 
-      return res.status(200).send({
-        status: 200,
-        data: rows,
-      });
+      return res.status(200).json({ status: 200, data: pCar });
+      }
+      return res.status(400).json({ status: 400, message: 'price range doesnot exisit' });
     } catch (error) {
       return res.status(400).send(error);
     }

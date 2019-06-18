@@ -146,8 +146,7 @@ describe('/ CARS', () => {
     chai.request(server)
       .get(`/api/v1/car/${carId}`)
       .set('Authorization', token)
-      .end((err, res) => {
-        console.log(res);
+      .end((err, res) => { 
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.data.should.have.property('price');
@@ -174,7 +173,7 @@ describe('/ CARS', () => {
         done();
       });
   });
-  /*
+
   it('should not list all unsold cars in a price range', (done) => {
     chai.request(server)
       .get('/api/v1/car?status=available&minPrice=800&maxPrice=100')
@@ -213,7 +212,7 @@ describe('/ CARS', () => {
         res.body.should.have.property('error');
         done();
       });
-  }); */
+  }); 
 
   it('it should mark a car sold', (done) => {
     const Status = { status: 'sold' };
