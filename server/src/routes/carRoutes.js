@@ -7,11 +7,11 @@ import method from '../middleware/methods';
 const router = express.Router();
 
 // get specific car
-/* router.route('/car/:id')
+ router.route('/car/:id')
   .get(car.getCar)
-  .delete(auth.verifyUser, car.deleteCar)
-  .post(auth.verifyUser, car.imageUpload)
-  .all(method); */
+  //.delete(auth.verifyUser, car.deleteCar)
+  //.post(auth.verifyUser, car.imageUpload)
+  .all(method); 
 
 // return cars in specificed format
 router.route('/car')

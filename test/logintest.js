@@ -25,7 +25,6 @@ describe('/ LOGIN', () => {
       .send(details)
       .end((err, res) => {
         res.should.have.status(201);
-        console.log(res);
         res.body.should.have.property('data');
         done();
       });

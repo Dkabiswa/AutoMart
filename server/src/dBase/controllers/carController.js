@@ -114,6 +114,28 @@ const Car = {
       return res.status(400).send(error);
     }
   },
+  async getCar(req, res, next) {
+    const xvalid = Validation.validator(req.params, CarSchema.carIdSchema);
+    if (xvalid) {
+      return res.status(400).send(xvalid);
+    }
+    const x =parseInt(req.params.id);
+    const text = 'SELECT * FROM cars WHERE id = $1';
+    try {
+      const { rows } = await db.query(text, [x]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status:404,
+          message: 'car not found'
+        });
+      }
+      return res.status(200).send({ 
+        status: 200,
+        data: rows[0]});
+    } catch(error) {
+      return res.status(400).send(error)
+    }
+  },
 
 };
 export default Car;
