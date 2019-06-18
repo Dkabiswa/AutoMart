@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../server/index';
 import faker from 'faker';
+import server from '../server/index';
 
 
 chai.use(chaiHttp);
@@ -19,14 +19,14 @@ describe('ORDER', () => {
     isAdmin: true,
   };
   const car = {
-      owner: 1,
-      state: 'used',
-      status: 'available',
-      price: 300,
-      manufacturer: 'Benz',
-      model: 'class',
-      bodyType: 'Truck',
-    };
+    owner: 1,
+    state: 'used',
+    status: 'available',
+    price: 300,
+    manufacturer: 'Benz',
+    model: 'class',
+    bodyType: 'Truck',
+  };
   before((done) => {
     chai.request(server)
       .post('/api/v1/auth/signup')
@@ -55,7 +55,7 @@ describe('ORDER', () => {
       .post('/api/v1/order/')
       .set('Authorization', token)
       .send(order)
-      .end((err, res) => { 
+      .end((err, res) => {
         res.should.have.status(201);
         res.body.should.be.a('object');
         res.body.data.should.have.property('id');
@@ -138,4 +138,3 @@ describe('Update Order', () => {
       });
   });
 });
-

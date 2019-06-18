@@ -26,19 +26,17 @@ const query = (text, params) => new Promise((resolve, reject) => {
 });
 
 const dropOrderTable = () => {
-  const queryText = `DROP TABLE IF EXISTS orders`;
+  const queryText = 'DROP TABLE IF EXISTS orders';
   pool.query(queryText)
     .then((res) => {
       console.log(res);
-      
     })
     .catch((err) => {
       console.log(err);
-      
     });
 };
 const dropCarTable = () => {
-  const queryText = `DROP TABLE IF EXISTS cars`;
+  const queryText = 'DROP TABLE IF EXISTS cars';
   pool.query(queryText)
     .then((res) => {
       console.log(res);
@@ -50,7 +48,7 @@ const dropCarTable = () => {
 
 
 const dropUserTable = () => {
-  const queryText =`DROP TABLE IF EXISTS users`;
+  const queryText = 'DROP TABLE IF EXISTS users';
   pool.query(queryText)
     .then((res) => {
       console.log(res);
@@ -64,9 +62,9 @@ const dropUserTable = () => {
 
 const dropTables = () => {
   dropOrderTable();
-  dropCarTable();  
+  dropCarTable();
   dropUserTable();
-}
+};
 
 module.exports = {
   pool,

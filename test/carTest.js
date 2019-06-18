@@ -1,7 +1,7 @@
- import chai from 'chai';
+import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../server/index';
 import faker from 'faker';
+import server from '../server/index';
 
 
 chai.use(chaiHttp);
@@ -18,33 +18,32 @@ describe('/ CARS', () => {
     address: 'mukono',
     isAdmin: true,
   };
-  /*const det = {
+  /* const det = {
     email: email2,
     firstName: 'mgat',
     lastName: 'dgat',
     password: 'gdat1234',
     address: 'mukono',
     isAdmin: false,
-  };*/
+  }; */
   before((done) => {
     chai.request(server)
       .post('/api/v1/auth/signup')
       .send(details)
       .end((err, res) => {
         res.should.have.status(201);
-        console.log(res)
+        console.log(res);
         res.body.should.have.property('data');
         token = res.body.data.Token;
 
-        /*chai.request(server)
+        /* chai.request(server)
           .post('/api/v1/auth/signup')
           .send(det)
           .end((err, res) => {
             res.should.have.status(201);
             res.body.should.have.property('data');
             tok = res.body.data.Token; */
-            done();
-          
+        done();
       });
   });
   it('it should POST a car', (done) => {
@@ -89,7 +88,7 @@ describe('/ CARS', () => {
         done();
       });
   });
- /*
+  /*
   it('should list all Cars on /car GET if user is admin', (done) => {
     chai.request(server)
       .get('/api/v1/car/')
@@ -534,6 +533,5 @@ describe('/DELETE CARS', () => {
         res.body.should.be.a('object');
         done();
       });
-  });*/
+  }); */
 });
-

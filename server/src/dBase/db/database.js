@@ -1,9 +1,7 @@
 import pool from './dbControl';
 
 class Database {
-
   createTables() {
-
     const tables = `CREATE TABLE IF NOT EXISTS
       users (
         id bigserial NOT NULL,
@@ -38,26 +36,8 @@ class Database {
         status VARCHAR (128) NOT NULL,
         PRIMARY KEY (id),
         FOREIGN KEY (buyer) REFERENCES users (id) ON DELETE CASCADE,
-        FOREIGN KEY (car_id) REFERENCES cars (id) ON DELETE CASCADE);`
-
-        ;
-
-    pool.query(tables);
-    const query = `INSERT INTO
-      users (email, first_name, last_name, password, address, is_admin)
-      VALUES ($1, $2, $3, $4, $5, $6)
-      returning *`;
-    const values = [
-      "email@gmail.com",
-      "last_name",
-      "first_name",
-      "password",
-      "address",
-      true,
-    ];
-
-    pool.query(query, values);
- }       
+        FOREIGN KEY (car_id) REFERENCES cars (id) ON DELETE CASCADE);`;
+  }
 }
 export default Database;
 /*

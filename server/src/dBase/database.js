@@ -1,9 +1,7 @@
 import pool from './db/dbControl';
 
 class Database {
-
   createTables() {
-
     const tables = `CREATE TABLE IF NOT EXISTS
       users (
         id bigserial NOT NULL,

@@ -36,7 +36,7 @@ router.route('/body/car/')
 
 // mark car ad sold
 router.route('/car/:id/status')
-  .patch(auth.verifyUser, car.mark)
+  .patch(auth.verifyUser, carBase.mark)
   .all(method);
 
 // update new car price
