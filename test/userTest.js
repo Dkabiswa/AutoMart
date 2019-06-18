@@ -1,14 +1,16 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import faker from 'faker';
 import server from '../server/index';
 
 chai.use(chaiHttp);
 chai.should();
 
-describe('/POST Register', () => {
+const email = faker.internet.email();
+describe('/SIGNUP', () => {
   it('it should Sign up', (done) => {
     const details = {
-      email: 'mgrrrt@gmail.com',
+      email,
       firstName: 'mgat',
       lastName: 'dgat',
       password: 'gDFdat1234',
@@ -26,8 +28,7 @@ describe('/POST Register', () => {
   });
 
   it('it should not Sign up with missing fields', (done) => {
-    const details = {
-      id: 1,
+    const info = {
       firstName: 'mgat',
       lastName: 'dgat',
       password: 'gdat1234',
@@ -36,7 +37,7 @@ describe('/POST Register', () => {
     };
     chai.request(server)
       .post('/api/v1/auth/signup')
-      .send(details)
+      .send(info)
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
@@ -44,8 +45,8 @@ describe('/POST Register', () => {
       });
   });
   it('it should not Sign up if email already exists', (done) => {
-    const details = {
-      email: 'mgrrrt@gmail.com',
+    const detail = {
+      email,
       firstName: 'mgat',
       lastName: 'dgat',
       password: 'gDFdat1234',
@@ -54,17 +55,37 @@ describe('/POST Register', () => {
     };
     chai.request(server)
       .post('/api/v1/auth/signup')
-      .send(details)
+      .send(detail)
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
         done();
       });
   });
+});
+describe('/LOGIN', () => {
+  before((done) => {
+    const details = {
+    email: 'yeut@gmail.com',
+    firstName: 'mgat',
+    lastName: 'dgat',
+    password: 'gdat1234',
+    address: 'mukono',
+    isAdmin: true,
+   };
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send(details)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.should.have.property('data');
+        done();
+      });
+  });
   it('Should LOGIN if credential is valid', (done) => {
     const details = {
-      email: 'mgrrrt@gmail.com',
-      password: 'gDFdat1234',
+      email: 'yeut@gmail.com',
+      password: 'gdat1234',
     };
     chai.request(server)
       .post('/api/v1/auth/login')
@@ -106,7 +127,7 @@ describe('/POST Register', () => {
   });
   it('Should not LOGIN if wrong password is given', (done) => {
     const details = {
-      email: 'mgrrrt@gmail.com',
+      email,
       password: 'gda',
     };
     chai.request(server)

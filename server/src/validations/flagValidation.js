@@ -6,11 +6,11 @@ const FlagSchema = {
   	id: Joi.number().integer().optional(),
     carId: Joi.number().integer().required(),
     reason: Joi.string()
-    .required()
-    .regex(/["']?[a-zA-Z][^.?!]+((?![.?!]['"]?\s["']?[a-zA-Z][^.?!]).)+[.?!'"]+/),
+      .required()
+      .regex(/["']?[a-zA-Z][^.?!]+((?![.?!]['"]?\s["']?[a-zA-Z][^.?!]).)+[.?!'"]+/),
     description: Joi.string()
-    .required()
-    .regex(/["']?[a-zA-Z][^.?!]+((?![.?!]['"]?\s["']?[a-zA-Z][^.?!]).)+[.?!'"]+/),
+      .required()
+      .regex(/["']?[a-zA-Z][^.?!]+((?![.?!]['"]?\s["']?[a-zA-Z][^.?!]).)+[.?!'"]+/),
   }),
 
 };

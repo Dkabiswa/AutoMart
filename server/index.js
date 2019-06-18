@@ -1,25 +1,31 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import swaggerUI from 'swagger-ui-express';
 import car from './src/routes/carRoutes';
 import user from './src/routes/userRoutes';
 import order from './src/routes/orderRoutes';
 import flag from './src/routes/flagRoute';
 import method from './src/middleware/methods';
-import swaggerUI from 'swagger-ui-express';
 import swaggerDocu from '../swagger.json';
+import '@babel/polyfill';
+import Database from './src/dBase/database';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const route = '/'
+const database = new Database();
+database.createTables();
+
+
+const route = '/';
 app.get(route, (req, res) => {
   res.status(200).json({
     status: 200,
     message: 'WELCOME, THIS IS AUTOMART',
   });
 });
-app.all(route, method); 
+app.all(route, method);
 
 app.use('/api/v1', car);
 app.use('/api/v1/auth', user);
