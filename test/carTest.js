@@ -10,7 +10,7 @@ let tok;
 
 describe('/ CARS', () => {
   const details = {
-    email: 'bgat@gmail.com',
+    email: 'rbgat@gmail.com',
     firstName: 'mgat',
     lastName: 'dgat',
     password: 'gdat1234',
@@ -18,7 +18,7 @@ describe('/ CARS', () => {
     isAdmin: true,
   };
   const det = {
-    email: 'test@gmail.com',
+    email: 'rest@gmail.com',
     firstName: 'mgat',
     lastName: 'dgat',
     password: 'gdat1234',
