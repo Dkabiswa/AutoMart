@@ -1,16 +1,17 @@
-/* import chai from 'chai';
+import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server/index';
+import faker from 'faker';
 
 
 chai.use(chaiHttp);
 chai.should();
 
 let token;
-
+const email = faker.internet.email();
 describe('ORDER', () => {
   const details = {
-    email: 'mgqat@gmail.com',
+    email,
     firstName: 'mgat',
     lastName: 'dgat',
     password: 'gdat1234',
@@ -18,14 +19,14 @@ describe('ORDER', () => {
     isAdmin: true,
   };
   const car = {
-    id: 2,
-    owner: 3,
-    state: 'used',
-    price: 300,
-    manufacturer: 'Benz',
-    model: 'class',
-    bodyType: 'Truck',
-  };
+      owner: 1,
+      state: 'used',
+      status: 'available',
+      price: 300,
+      manufacturer: 'Benz',
+      model: 'class',
+      bodyType: 'Truck',
+    };
   before((done) => {
     chai.request(server)
       .post('/api/v1/auth/signup')
@@ -46,7 +47,6 @@ describe('ORDER', () => {
   });
   it('should create a new purchase order', (done) => {
     const order = {
-      id: 3,
       buyer: 1,
       carId: 2,
       amount: 1000.0,
@@ -55,30 +55,10 @@ describe('ORDER', () => {
       .post('/api/v1/order/')
       .set('Authorization', token)
       .send(order)
-      .end((err, res) => {
+      .end((err, res) => { 
         res.should.have.status(201);
         res.body.should.be.a('object');
         res.body.data.should.have.property('id');
-        res.body.data.should.have.property('createdOn');
-        done();
-      });
-  });
-  it('should create a 2nd purchase order with Id incremented', (done) => {
-    const order = {
-      buyer: 1,
-      carId: 2,
-      amount: 1000.0,
-    };
-    chai.request(server)
-      .post('/api/v1/order/')
-      .set('Authorization', token)
-      .send(order)
-      .end((err, res) => {
-        res.should.have.status(201);
-        res.body.should.be.a('object');
-        res.body.data.should.have.property('id');
-        res.body.data.id.should.equal(4);
-        res.body.data.should.have.property('createdOn');
         done();
       });
   });
@@ -108,13 +88,13 @@ describe('ORDER', () => {
       .set('Authorization', token)
       .send(order)
       .end((err, res) => {
-        res.should.have.status(404);
+        res.should.have.status(400);
         res.body.should.be.a('object');
         done();
       });
   });
 });
-
+/*
 describe('Update Order', () => {
   it('should update price of a purchase order', (done) => {
     const order = {

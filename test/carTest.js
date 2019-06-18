@@ -1,16 +1,18 @@
  import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server/index';
+import faker from 'faker';
 
 
 chai.use(chaiHttp);
 chai.should();
 let token;
 let tok;
-
+const email = faker.internet.email();
+const email2 = faker.internet.email();
 describe('/ CARS', () => {
   const details = {
-    email: 'bgat@gmail.com',
+    email,
     firstName: 'mgat',
     lastName: 'dgat',
     password: 'gdat1234',
@@ -18,7 +20,7 @@ describe('/ CARS', () => {
     isAdmin: true,
   };
   const det = {
-    email: 'test@gmail.com',
+    email: email2,
     firstName: 'mgat',
     lastName: 'dgat',
     password: 'gdat1234',

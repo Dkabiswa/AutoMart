@@ -9,7 +9,8 @@
     "clean": " rm -rf ./server/dist",
     "start": " nodemon ./server/index.js --exec babel-node -e js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "lint": "eslint **/*.js --fix"
+    "lint": "eslint **/*.js --fix",
+    "drop": "node ./server/src/dBase/db/dbControl dropTables"
   },
   "repository": {
     "type": "git",

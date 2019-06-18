@@ -25,8 +25,52 @@ const query = (text, params) => new Promise((resolve, reject) => {
     });
 });
 
+const dropOrderTable = () => {
+  const queryText = `DROP TABLE IF EXISTS orders`;
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      
+    })
+    .catch((err) => {
+      console.log(err);
+      
+    });
+};
+const dropCarTable = () => {
+  const queryText = `DROP TABLE IF EXISTS cars`;
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+const dropUserTable = () => {
+  const queryText =`DROP TABLE IF EXISTS users`;
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
+};
+
+const dropTables = () => {
+  dropOrderTable();
+  dropCarTable();  
+  dropUserTable();
+}
 
 module.exports = {
   pool,
   query,
+  dropTables,
 };
+require('make-runnable');

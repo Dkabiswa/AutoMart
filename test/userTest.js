@@ -6,7 +6,6 @@ import server from '../server/index';
 chai.use(chaiHttp);
 
 const email = faker.internet.email();
-
 describe('/SIGNUP', () => {
   it('it should Sign up', (done) => {
     const details = {
@@ -21,7 +20,6 @@ describe('/SIGNUP', () => {
       .post('/api/v1/auth/signup')
       .send(details)
       .end((err, res) => {
-        console.log(email);
         res.should.have.status(201);
         res.body.should.be.a('object');
         done();
@@ -65,16 +63,33 @@ describe('/SIGNUP', () => {
   });
 });
 describe('/LOGIN', () => {
+  before((done) => {
+    const details = {
+    email: 'yeut@gmail.com',
+    firstName: 'mgat',
+    lastName: 'dgat',
+    password: 'gdat1234',
+    address: 'mukono',
+    isAdmin: true,
+   };
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send(details)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.should.have.property('data');
+        done();
+      });
+  });
   it('Should LOGIN if credential is valid', (done) => {
     const details = {
-      email,
-      password: 'gDFdat1234',
+      email: 'yeut@gmail.com',
+      password: 'gdat1234',
     };
     chai.request(server)
       .post('/api/v1/auth/login')
       .send(details)
       .end((err, res) => {
-        console.log(email);
         res.should.have.status(200);
         res.body.should.have.property('data');
         res.body.data.should.have.property('Token');
