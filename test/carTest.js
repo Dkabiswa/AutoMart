@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import faker from 'faker';
@@ -48,7 +50,7 @@ describe('/ CARS', () => {
   });
   it('it should POST a car', (done) => {
     const car = {
-      owner: 2,
+      owner: 1,
       state: 'used',
       status: 'available',
       price: 300,

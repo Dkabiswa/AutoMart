@@ -8,20 +8,20 @@ import method from '../middleware/methods';
 const router = express.Router();
 
 // get specific car
-router.route('/car/:id')
+/* router.route('/car/:id')
   .get(car.getCar)
   .delete(auth.verifyUser, car.deleteCar)
   .post(auth.verifyUser, car.imageUpload)
-  .all(method);
+  .all(method); */
 
 // return cars in specificed format
 router.route('/car')
-  .get(auth.verifyUser, car.getUnsold)
+  // .get(auth.verifyUser, car.getUnsold)
   .post(auth.verifyUser, carBase.create)
   .all(method);
 
 // return used or new unsold cars
-router.route('/state/car')
+/* router.route('/state/car')
   .get(auth.verifyUser, car.getState)
   .all(method);
 
@@ -32,17 +32,17 @@ router.route('/make/car')
 
 router.route('/body/car/')
   .get(auth.verifyUser, car.getBody)
-  .all(method);
+  .all(method); */
 
 // mark car ad sold
 router.route('/car/:id/status')
   .patch(auth.verifyUser, carBase.mark)
   .all(method);
-
+/*
 // update new car price
 router.route('/car/:id/price')
   .patch(auth.verifyUser, car.updatePrice)
-  .all(method);
+  .all(method); */
 
 
 export default router;

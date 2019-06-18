@@ -30,8 +30,16 @@ const User = {
       address,
       is_admin,
     ];
+    const etext = 'SELECT * FROM users WHERE email = $1';
 
     try {
+      const user = await db.query(etext, [email]);
+      if (user.rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          message: 'user already exists',
+        });
+      }
       const { rows } = await db.query(query, values);
       const token = auth.createToken({ id: rows[0].id });
       return res.status(201).send({
@@ -56,7 +64,7 @@ const User = {
     }
 
     const { password } = req.body;
-    const email = req.body.email.trim().toLowerCase();
+    const { email } = req.body;
 
     const text = 'SELECT * FROM users WHERE email = $1';
     try {

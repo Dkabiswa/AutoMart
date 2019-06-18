@@ -4,13 +4,14 @@
   "description": "[![Build Status](https://travis-ci.org/Dkabiswa/AutoMart.svg?branch=develop)](https://travis-ci.org/Dkabiswa/AutoMart)",
   "main": "src/index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
+    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
     "build": "npm run clean && babel ./server -d ./server/dist",
     "clean": " rm -rf ./server/dist",
     "start": " nodemon ./server/index.js --exec babel-node -e js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint **/*.js --fix",
-    "drop": "node ./server/src/dBase/db/dbControl dropTables"
+    "create":"cross-env NODE_ENV=test babel-node ./server/src/dBase/db/database.js",
+    "drop": "cross-env NODE_ENV=test node ./server/src/dBase/db/dbControl dropTables"
   },
   "repository": {
     "type": "git",
@@ -53,6 +54,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "coveralls": "^3.0.3",
+    "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",

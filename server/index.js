@@ -8,14 +8,11 @@ import flag from './src/routes/flagRoute';
 import method from './src/middleware/methods';
 import swaggerDocu from '../swagger.json';
 import '@babel/polyfill';
-import Database from './src/dBase/db/database';
+
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-const database = new Database();
-database.createTables();
 
 
 const route = '/';
@@ -30,7 +27,7 @@ app.all(route, method);
 app.use('/api/v1', car);
 app.use('/api/v1/auth', user);
 app.use('/api/v1', order);
-app.use('/api/v1', flag);
+// app.use('/api/v1', flag);
 
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocu));
 

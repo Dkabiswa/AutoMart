@@ -1,4 +1,4 @@
-import express from 'express';
+/* import express from 'express';
 import order from '../dStructure/controllers/flagController';
 import Auth from '../middleware/auth';
 import method from '../middleware/methods';
@@ -13,3 +13,4 @@ router.route('/flag')
 
 
 export default router;
+*/

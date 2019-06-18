@@ -2,11 +2,21 @@ const { Pool } = require('pg');
 const dotenv = require('dotenv');
 
 dotenv.config();
-
-
+const env = process.env.NODE_ENV;
+let database;
+switch (env) {
+  case 'dev': {
+    database = process.env.DB_NAME;
+    break;
+  }
+  case 'test': {
+    database = process.env.TEST_DB;
+    break;
+  }
+}
 const config = {
   user: process.env.DB_USER,
-  database: process.env.DB_NAME,
+  database,
   password: process.env.DB_PASSWORD,
   port: 5432,
   max: 10,
@@ -24,47 +34,19 @@ const query = (text, params) => new Promise((resolve, reject) => {
       reject(err);
     });
 });
-
-const dropOrderTable = () => {
-  const queryText = 'DROP TABLE IF EXISTS orders';
-  pool.query(queryText)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-const dropCarTable = () => {
-  const queryText = 'DROP TABLE IF EXISTS cars';
-  pool.query(queryText)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-
-const dropUserTable = () => {
-  const queryText = 'DROP TABLE IF EXISTS users';
-  pool.query(queryText)
-    .then((res) => {
-      console.log(res);
-      pool.end();
-    })
-    .catch((err) => {
-      console.log(err);
-      pool.end();
-    });
-};
-
 const dropTables = () => {
-  dropOrderTable();
-  dropCarTable();
-  dropUserTable();
+  const queryText = 'DROP TABLE IF EXISTS users, cars, orders CASCADE';
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
+
 
 module.exports = {
   pool,
