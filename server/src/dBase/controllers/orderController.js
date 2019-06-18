@@ -46,5 +46,46 @@ const Order = {
       return res.status(400).send({ message: error });
     }
   },
- }
+
+  async updatePrice(req, res, next) {
+    const not_Valid = Validation.validator(req.body, OrderSchema.updateSchema);
+    if (not_Valid) {
+      return res.status(400).send(not_Valid);
+    }
+
+    const text = 'SELECT * FROM orders WHERE id = $1';
+    const pricetext = `UPDATE orders
+      SET amount=$1
+      WHERE id=$2 returning *`
+      const val = [
+        req.body.newAmount,
+        req.params.id
+      ];
+
+    try {
+      const { rows } = await db.query(text, [req.params.id]);
+      const old = rows[0];
+      if (!rows[0]) {
+        return res.status(404).send({ 
+          message: 'order not found' 
+        });
+      }
+      
+      const change = await db.query(pricetext, val);
+      const newOrder = change.rows[0]; 
+      return res.status(200).json({
+        status: 200,
+        data: {
+          id: old.id,
+          car_id: old.car_id,
+          status: old.status,
+          oldPriceOffered: old.amount,
+          newPriceOffered: newOrder.amount,
+          }
+        });
+      } catch(error) {
+      return res.status(400).send(error)
+    }
+  },
+}
  export default Order;
