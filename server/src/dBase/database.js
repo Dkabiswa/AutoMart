@@ -14,6 +14,17 @@ class Database {
         PRIMARY KEY (id));
         
       CREATE TABLE IF NOT EXISTS
+      orders (
+        id bigserial NOT NULL,
+        buyer INTEGER NOT NULL,
+        car_id INTEGER NOT NULL,
+        amount VARCHAR(128) NOT NULL,
+        status VARCHAR (128) NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY (buyer) REFERENCES users (id) ON DELETE CASCADE,
+        FOREIGN KEY (car_id) REFERENCES cars (id) ON DELETE CASCADE);
+
+      CREATE TABLE IF NOT EXISTS
         cars (
         id bigserial NOT NULL,
         owner INTEGER NOT NULL,
@@ -24,7 +35,9 @@ class Database {
         manufacturer VARCHAR(128) NOT NULL,
         model VARCHAR(128) NOT NULL,
         body_type VARCHAR(128) NOT NULL,
-        PRIMARY KEY (id));`;
+        PRIMARY KEY (id),
+        FOREIGN KEY (owner) REFERENCES users (id) ON DELETE CASCADE);
+        `;
     pool.query(tables);
   }
 }
