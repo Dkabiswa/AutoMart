@@ -119,23 +119,41 @@ const Car = {
     if (xvalid) {
       return res.status(400).send(xvalid);
     }
-    const x =parseInt(req.params.id);
+    const x = parseInt(req.params.id);
     const text = 'SELECT * FROM cars WHERE id = $1';
     try {
       const { rows } = await db.query(text, [x]);
       if (!rows[0]) {
         return res.status(404).send({
-          status:404,
-          message: 'car not found'
+          status: 404,
+          message: 'car not found',
         });
       }
-      return res.status(200).send({ 
+      return res.status(200).send({
         status: 200,
-        data: rows[0]});
-    } catch(error) {
-      return res.status(400).send(error)
+        data: rows[0],
+      });
+    } catch (error) {
+      return res.status(400).send(error);
     }
   },
+  async getUnsold(req, res, next) {
+    const options = req.query;
+    const uValid = Validation.validator(options, CarSchema.querySchema);
+    if (uValid) {
+      return res.status(400).send(uValid);
+    }
+    const unsold = 'SELECT * FROM cars WHERE status = $1';
+    try {
+      const { rows } = await db.query(unsold, [options.status]);
 
+      return res.status(200).send({
+        status: 200,
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
 };
 export default Car;

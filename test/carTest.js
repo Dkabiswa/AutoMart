@@ -109,7 +109,7 @@ describe('/ CARS', () => {
         res.body.should.be.a('object');
         done();
       });
-  });
+  }); */
   it('should list all unsold cars for all users', (done) => {
     chai.request(server)
       .get('/api/v1/car?status=available')
@@ -130,7 +130,17 @@ describe('/ CARS', () => {
         done();
       });
   });
-*/
+  it('should not list all unsold cars if status is not set ', (done) => {
+    chai.request(server)
+      .get('/api/v1/car?status=')
+      .set('Authorization', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+
   it('should return a specific car ', (done) => {
     const carId = 1;
     chai.request(server)
@@ -203,7 +213,7 @@ describe('/ CARS', () => {
         res.body.should.have.property('error');
         done();
       });
-  });*/
+  }); */
 
   it('it should mark a car sold', (done) => {
     const Status = { status: 'sold' };
