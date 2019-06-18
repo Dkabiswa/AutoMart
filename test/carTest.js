@@ -1,4 +1,4 @@
-/* import chai from 'chai';
+ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server/index';
 
@@ -47,9 +47,8 @@ describe('/ CARS', () => {
   });
   it('it should POST a car', (done) => {
     const car = {
-      id: 1,
       owner: 2,
-      state: 'new',
+      state: 'used',
       status: 'available',
       price: 300,
       manufacturer: 'Benz',
@@ -68,28 +67,27 @@ describe('/ CARS', () => {
         done();
       });
   });
-  it('it should POST a 2nd car and increment the id', (done) => {
+  it('it should not POST a car with missing fields', (done) => {
     const car = {
       owner: 2,
-      state: 'new',
-      price: 300,
-      manufacturer: 'toyota',
-      model: 'Gclass',
-      bodyType: 'van',
+      state: 'used',
+      status: '',
+      price: '',
+      manufacturer: 'Benz',
+      model: 'class',
+      bodyType: 'Truck',
     };
     chai.request(server)
       .post('/api/v1/car')
       .set('Authorization', token)
       .send(car)
       .end((err, res) => {
-        res.should.have.status(201);
+        res.should.have.status(400);
         res.body.should.be.a('object');
-        res.body.should.have.property('data');
-        res.body.data.should.have.property('id');
-        res.body.data.id.should.be.equal(2);
         done();
       });
   });
+ /*
   it('should list all Cars on /car GET if user is admin', (done) => {
     chai.request(server)
       .get('/api/v1/car/')
@@ -534,6 +532,6 @@ describe('/DELETE CARS', () => {
         res.body.should.be.a('object');
         done();
       });
-  });
+  });*/
 });
-*/
+
