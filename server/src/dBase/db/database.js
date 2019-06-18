@@ -28,9 +28,9 @@ class Database {
         body_type VARCHAR(128) NOT NULL,
         PRIMARY KEY (id),
         FOREIGN KEY (owner) REFERENCES users (id) ON DELETE CASCADE);
-
-        CREATE TABLE IF NOT EXISTS
-        orders (
+  
+      CREATE TABLE IF NOT EXISTS
+      orders (
         id bigserial NOT NULL,
         buyer INTEGER NOT NULL,
         car_id INTEGER NOT NULL,
@@ -38,10 +38,26 @@ class Database {
         status VARCHAR (128) NOT NULL,
         PRIMARY KEY (id),
         FOREIGN KEY (buyer) REFERENCES users (id) ON DELETE CASCADE,
-        FOREIGN KEY (car_id) REFERENCES cars (id) ON DELETE CASCADE);
-        `;
+        FOREIGN KEY (car_id) REFERENCES cars (id) ON DELETE CASCADE);`
+
+        ;
+
     pool.query(tables);
-  }
+    const query = `INSERT INTO
+      users (email, first_name, last_name, password, address, is_admin)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      returning *`;
+    const values = [
+      "email@gmail.com",
+      "last_name",
+      "first_name",
+      "password",
+      "address",
+      true,
+    ];
+
+    pool.query(query, values);
+ }       
 }
 export default Database;
 /*

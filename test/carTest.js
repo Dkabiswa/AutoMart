@@ -9,7 +9,6 @@ chai.should();
 let token;
 let tok;
 const email = faker.internet.email();
-const email2 = faker.internet.email();
 describe('/ CARS', () => {
   const details = {
     email,
@@ -19,32 +18,33 @@ describe('/ CARS', () => {
     address: 'mukono',
     isAdmin: true,
   };
-  const det = {
+  /*const det = {
     email: email2,
     firstName: 'mgat',
     lastName: 'dgat',
     password: 'gdat1234',
     address: 'mukono',
     isAdmin: false,
-  };
+  };*/
   before((done) => {
     chai.request(server)
       .post('/api/v1/auth/signup')
       .send(details)
       .end((err, res) => {
         res.should.have.status(201);
+        console.log(res)
         res.body.should.have.property('data');
         token = res.body.data.Token;
 
-        chai.request(server)
+        /*chai.request(server)
           .post('/api/v1/auth/signup')
           .send(det)
           .end((err, res) => {
             res.should.have.status(201);
             res.body.should.have.property('data');
-            tok = res.body.data.Token;
+            tok = res.body.data.Token; */
             done();
-          });
+          
       });
   });
   it('it should POST a car', (done) => {

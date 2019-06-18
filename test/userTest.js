@@ -5,10 +5,9 @@ import server from '../server/index';
 
 chai.use(chaiHttp);
 
-const email = faker.internet.email();
 describe('/SIGNUP', () => {
-  it('it should Sign up', (done) => {
-    const details = {
+    let email = faker.internet.email();
+     const details = {
       email,
       firstName: 'mgat',
       lastName: 'dgat',
@@ -16,10 +15,12 @@ describe('/SIGNUP', () => {
       address: 'mukono',
       isAdmin: true,
     };
-    chai.request(server)
+    
+  it('it should Sign up', (done) => {
+      chai.request(server)
       .post('/api/v1/auth/signup')
       .send(details)
-      .end((err, res) => {
+      .end((err, res) => { 
         res.should.have.status(201);
         res.body.should.be.a('object');
         done();
@@ -61,35 +62,17 @@ describe('/SIGNUP', () => {
         done();
       });
   });
-});
-describe('/LOGIN', () => {
-  before((done) => {
-    const details = {
-    email: 'yeut@gmail.com',
-    firstName: 'mgat',
-    lastName: 'dgat',
-    password: 'gdat1234',
-    address: 'mukono',
-    isAdmin: true,
-   };
-    chai.request(server)
-      .post('/api/v1/auth/signup')
-      .send(details)
-      .end((err, res) => {
-        res.should.have.status(201);
-        res.body.should.have.property('data');
-        done();
-      });
-  });
+  const logdetail = {
+      email: "email@gmail.com",
+      password: "password",
+    }
+
   it('Should LOGIN if credential is valid', (done) => {
-    const details = {
-      email: 'yeut@gmail.com',
-      password: 'gdat1234',
-    };
     chai.request(server)
       .post('/api/v1/auth/login')
-      .send(details)
+      .send(logdetail)
       .end((err, res) => {
+        console.log(res)
         res.should.have.status(200);
         res.body.should.have.property('data');
         res.body.data.should.have.property('Token');
