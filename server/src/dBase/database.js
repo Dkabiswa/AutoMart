@@ -1,10 +1,9 @@
 import pool from './db/dbControl';
 
 class Database {
-  
   createTables() {
     const tables = `CREATE TABLE IF NOT EXISTS
-      users(
+      users (
         id bigserial NOT NULL,
         email VARCHAR(128) UNIQUE NOT NULL,
         first_name VARCHAR(128) NOT NULL,
@@ -15,20 +14,18 @@ class Database {
         PRIMARY KEY (id));
         
       CREATE TABLE IF NOT EXISTS
-        cars(
+        cars (
         id bigserial NOT NULL,
-        owner INT NOT NULL,
-        created_on TIMESTAMP,
+        owner INTEGER NOT NULL,
+        created_on VARCHAR(128) NOT NULL,
         state VARCHAR(128) NOT NULL,
         status VARCHAR (128) NOT NULL,
         price VARCHAR(128) NOT NULL,
         manufacturer VARCHAR(128) NOT NULL,
         model VARCHAR(128) NOT NULL,
         body_type VARCHAR(128) NOT NULL,
-        PRIMARY KEY (id),
-        FOREIGN KEY (owner) REFERENCES users (id) ON DELETE CASCADE
-        );`
-        pool.query(tables)
+        PRIMARY KEY (id));`;
+    pool.query(tables);
   }
 }
 export default Database;

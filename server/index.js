@@ -8,7 +8,7 @@ import flag from './src/routes/flagRoute';
 import method from './src/middleware/methods';
 import swaggerDocu from '../swagger.json';
 import '@babel/polyfill';
-import Database from './src/dBase/database'
+import Database from './src/dBase/database';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));

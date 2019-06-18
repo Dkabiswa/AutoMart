@@ -1,5 +1,6 @@
 import express from 'express';
 import car from '../dStructure/controllers/carController';
+import carBase from '../dBase/controllers/carController';
 import auth from '../middleware/auth';
 import method from '../middleware/methods';
 
@@ -16,7 +17,7 @@ router.route('/car/:id')
 // return cars in specificed format
 router.route('/car')
   .get(auth.verifyUser, car.getUnsold)
-  .post(auth.verifyUser, car.create)
+  .post(auth.verifyUser, carBase.create)
   .all(method);
 
 // return used or new unsold cars
