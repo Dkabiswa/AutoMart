@@ -1,30 +1,55 @@
-const { Pool } = require('pg');
-const dotenv = require('dotenv');
-
-dotenv.config();
-
-const config = {
-  user: process.env.DB_USER, 
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: 5432,
-  max: 10, 
-  idleTimeoutMillis: 30000,
-};
-
-const pool = new Pool(config);
+const { pool } = require('./db/dbControl');
 
 pool.on('connect', () => {
-  console.log('connected to the Database');
+  console.log('connected to the db');
 });
+
+const userTable = () => {
+  const queryText = `CREATE TABLE IF NOT EXISTS
+      users(
+        id bigserial PRIMARY KEY NOT NULL,
+        email VARCHAR(128) UNIQUE NOT NULL,
+        first_name VARCHAR(128) NOT NULL,
+        last_name VARCHAR(128) NOT NULL,
+        password VARCHAR (200) NOT NULL,
+        address VARCHAR(128) NOT NULL,
+        is_admin BOOLEAN NOT NULL DEFAULT FALSE
+      )`;
+
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
+};
+
+
+const dropUserTable = () => {
+  const queryText = 'DROP TABLE IF EXISTS users';
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
+};
+
 
 pool.on('remove', () => {
   console.log('client removed');
   process.exit(0);
 });
- 
- module.exports = {
-  pool
+
+module.exports = {
+  userTable,
+  dropUserTable,
 };
 
 
