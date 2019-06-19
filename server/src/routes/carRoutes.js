@@ -9,7 +9,7 @@ const router = express.Router();
 // get specific car
 router.route('/car/:id')
   .get(car.getCar)
-  // .delete(auth.verifyUser, car.deleteCar)
+  //.delete(auth.verifyUser, car.deleteCar)
   // .post(auth.verifyUser, car.imageUpload)
   .all(method);
 

@@ -11,7 +11,8 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint **/*.js --fix",
     "create":"cross-env NODE_ENV=test babel-node ./server/src/dBase/db/database.js",
-    "drop": "cross-env NODE_ENV=test node ./server/src/dBase/db/dbControl dropTables"
+    "drop": "cross-env NODE_ENV=test node ./server/src/dBase/db/dbControl dropTables",
+    "admin": "cross-env NODE_ENV=test node ./server/src/dBase/db/dbControl createAdmin"
   },
   "repository": {
     "type": "git",

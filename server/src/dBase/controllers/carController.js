@@ -1,7 +1,6 @@
 import CarSchema from '../../validations/carValidation';
 import Validation from '../../middleware/validationhandler';
 import db from '../db/dbControl';
-import carServices from '../services/carServices';
 import '@babel/polyfill';
 import moment from 'moment';
 

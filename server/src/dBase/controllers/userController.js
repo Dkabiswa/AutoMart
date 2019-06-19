@@ -17,7 +17,7 @@ const User = {
     const first_name = req.body.firstName;
     const password = bcrypt.hashSync(req.body.password, 10);
     const { address } = req.body;
-    const is_admin = req.body.isAdmin;
+    const is_admin = false;
     const query = `INSERT INTO
       users (email, first_name, last_name, password, address, is_admin)
       VALUES ($1, $2, $3, $4, $5, $6)
