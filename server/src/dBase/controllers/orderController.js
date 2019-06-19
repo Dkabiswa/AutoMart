@@ -1,7 +1,6 @@
 import OrderSchema from '../../validations/orderValidation';
 import Validation from '../../middleware/validationhandler';
 import db from '../db/dbControl';
-import datab from '../database';
 import '@babel/polyfill';
 
 const Order = {

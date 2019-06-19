@@ -8,7 +8,10 @@ const Car = {
   async create(req, res) {
   	const notValid = Validation.validator(req.body, CarSchema.createSchema);
     if (notValid) {
-      return res.status(400).send(notValid);
+      return res.status(400).send({
+        status: 400,
+        message: notValid 
+      });
     }
 
     const { owner } = req.body;
@@ -52,11 +55,17 @@ const Car = {
   async mark(req, res) {
     let notValid = Validation.validator(req.params, CarSchema.carIdSchema);
     if (notValid) {
-      return res.status(400).send(notValid);
+      return res.status(400).send({
+        status: 400,
+        message: notValid 
+      });
     }
     notValid = Validation.validator(req.body, CarSchema.markSchema);
     if (notValid) {
-      return res.status(400).send(notValid);
+      return res.status(400).send({
+        status: 400,
+        message: notValid 
+      });
     }
     const text = 'SELECT * FROM cars WHERE id = $1';
     const stext = `UPDATE cars
@@ -142,7 +151,10 @@ const Car = {
         data: rows[0],
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send({
+        status: 400,
+        error : error
+      });
     }
   },
   async getUnsold(req, res, next) {

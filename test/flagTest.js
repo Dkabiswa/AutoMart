@@ -2,6 +2,7 @@
 /* eslint-disable no-undef */
  import chai from 'chai';
 import chaiHttp from 'chai-http';
+import faker from 'faker';
 import server from '../server/index';
 
 
@@ -49,7 +50,7 @@ describe('FLAG', () => {
   });
   it('should flag a car fraudulent', (done) => {
     const flag = {
-      carId: 1,
+      carId: 2,
       reason: 'stolen car.',
       description: 'Was reported to police on 2nd June.',
     };

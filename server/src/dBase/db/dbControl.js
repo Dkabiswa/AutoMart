@@ -36,7 +36,7 @@ const query = (text, params) => new Promise((resolve, reject) => {
     });
 });
 const dropTables = () => {
-  const queryText = 'DROP TABLE IF EXISTS users, cars, orders CASCADE';
+  const queryText = 'DROP TABLE IF EXISTS users, cars, orders, flags CASCADE';
   pool.query(queryText)
     .then((res) => {
       console.log(res);

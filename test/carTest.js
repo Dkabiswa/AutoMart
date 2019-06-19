@@ -67,7 +67,7 @@ describe('/ CARS', () => {
   });
   it('it should not POST a car with missing fields', (done) => {
     const car = {
-      owner: 2,
+      owner: 1,
       state: 'used',
       status: '',
       price: '',
@@ -141,7 +141,7 @@ describe('/ CARS', () => {
     chai.request(server)
       .get(`/api/v1/car/${carId}`)
       .set('Authorization', token)
-      .end((err, res) => {
+      .end((err, res) => { 
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.data.should.have.property('price');
@@ -204,7 +204,7 @@ describe('/ CARS', () => {
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
-        res.body.should.have.property('error');
+        res.body.should.have.property('message');
         done();
       });
   });

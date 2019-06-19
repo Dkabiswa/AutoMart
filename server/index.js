@@ -27,7 +27,7 @@ app.all(route, method);
 app.use('/api/v1', car);
 app.use('/api/v1/auth', user);
 app.use('/api/v1', order);
-// app.use('/api/v1', flag);
+app.use('/api/v1', flag);
 
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocu));
 

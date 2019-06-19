@@ -6,14 +6,12 @@
   "scripts": {
     "localtest": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
     "test": "npm run table && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
-    "build": "npm run clean && babel ./server -d ./server/dist",
-    "clean": " rm -rf ./server/dist",
-    "deploy":" npm run drop && node ./server/dist/src/dBase/db/database.js && npm run admin && node ./server/index.js",
+    "deploy":"cross-env NODE_ENV=dev npm run create && npm run admin && babel-node ./server/index.js",
     "start": " nodemon ./server/index.js --exec babel-node -e js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint **/*.js --fix",
     "create":"babel-node ./server/src/dBase/db/database.js",
-    "drop": " node ./server/src/dBase/db/dbControl dropTables",
+    "drop": " cross-env NODE_ENV=test node ./server/src/dBase/db/dbControl dropTables",
     "admin": " node ./server/src/dBase/db/dbControl createAdmin",
     "table": "cross-env NODE_ENV=test npm run create && cross-env NODE_ENV=test npm run admin"
   },

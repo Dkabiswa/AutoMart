@@ -24,6 +24,16 @@ const tables = `CREATE TABLE IF NOT EXISTS
         body_type VARCHAR(128) NOT NULL,
         PRIMARY KEY (id),
         FOREIGN KEY (owner) REFERENCES users (id) ON DELETE CASCADE);
+
+      CREATE TABLE IF NOT EXISTS
+      flags (
+        id bigserial NOT NULL,
+        car_id INTEGER NOT NULL,
+        created_on VARCHAR(128) NOT NULL,
+        reason TEXT NOT NULL,
+        description TEXT NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY (car_id) REFERENCES cars (id) ON DELETE CASCADE);
   
       CREATE TABLE IF NOT EXISTS
       orders (
