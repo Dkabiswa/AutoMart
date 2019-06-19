@@ -4,7 +4,7 @@
   "description": "[![Build Status](https://travis-ci.org/Dkabiswa/AutoMart.svg?branch=develop)](https://travis-ci.org/Dkabiswa/AutoMart)",
   "main": "src/index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
+    "test": "npm run create && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
     "build": "npm run clean && babel ./server -d ./server/dist",
     "clean": " rm -rf ./server/dist",
     "start": " nodemon ./server/index.js --exec babel-node -e js",
