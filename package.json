@@ -5,8 +5,10 @@
   "main": "src/index.js",
   "scripts": {
     "localtest": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
-    "test": " npm run table && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
-    "deploy":" npm run drop && mpm run create && npm run admin && babel-node ./server/index.js",
+    "test": "npm run table && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
+    "build": "npm run clean && babel ./server -d ./server/dist",
+    "clean": " rm -rf ./server/dist",
+    "deploy":" npm run drop && node ./server/dist/src/dBase/db/database.js && npm run admin && node ./server/index.js",
     "start": " nodemon ./server/index.js --exec babel-node -e js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint **/*.js --fix",
