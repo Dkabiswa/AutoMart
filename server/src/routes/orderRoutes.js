@@ -1,5 +1,5 @@
 import express from 'express';
-import order from '../dStructure/controllers/orderController';
+import order from '../dBase/controllers/orderController';
 import Auth from '../middleware/auth';
 import method from '../middleware/methods';
 
@@ -12,7 +12,7 @@ router.route('/order')
   .all(method);
 
 // update new purchase price
-router.route('/order/:id/price')  
+router.route('/order/:id/price')
   .patch(Auth.verifyUser, order.updatePrice)
   .all(method);
 

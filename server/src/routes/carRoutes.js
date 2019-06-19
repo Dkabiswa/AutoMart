@@ -1,5 +1,5 @@
 import express from 'express';
-import car from '../dStructure/controllers/carController';
+import car from '../dBase/controllers/carController';
 import auth from '../middleware/auth';
 import method from '../middleware/methods';
 
@@ -9,8 +9,8 @@ const router = express.Router();
 // get specific car
 router.route('/car/:id')
   .get(car.getCar)
-  .delete(auth.verifyUser, car.deleteCar)
-  .post(auth.verifyUser,  car.imageUpload)
+  // .delete(auth.verifyUser, car.deleteCar)
+  // .post(auth.verifyUser, car.imageUpload)
   .all(method);
 
 // return cars in specificed format
@@ -20,7 +20,7 @@ router.route('/car')
   .all(method);
 
 // return used or new unsold cars
-router.route('/state/car')
+/* router.route('/state/car')
   .get(auth.verifyUser, car.getState)
   .all(method);
 
@@ -31,7 +31,7 @@ router.route('/make/car')
 
 router.route('/body/car/')
   .get(auth.verifyUser, car.getBody)
-  .all(method);
+  .all(method); */
 
 // mark car ad sold
 router.route('/car/:id/status')

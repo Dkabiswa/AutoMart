@@ -1,50 +1,50 @@
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
-var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
+const _jsonwebtoken = _interopRequireDefault(require('jsonwebtoken'));
 
-var _dotenv = _interopRequireDefault(require("dotenv"));
+const _dotenv = _interopRequireDefault(require('dotenv'));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_dotenv["default"].config();
+_dotenv.default.config();
 
-var Auth = {
+const Auth = {
   createToken: function createToken(_ref) {
-    var id = _ref.id;
-    var expiresIn = 24 * 60 * 60;
-    return _jsonwebtoken["default"].sign({
-      id: id
+    const { id } = _ref;
+    const expiresIn = 24 * 60 * 60;
+    return _jsonwebtoken.default.sign({
+      id,
     }, process.env.SECRET_KEY, {
-      expiresIn: expiresIn
+      expiresIn,
     });
   },
   verifyUser: function verifyUser(req, res, next) {
     try {
-      var header = req.headers.authorization;
+      const header = req.headers.authorization;
 
       if (header === undefined) {
         return res.status(401).json({
           status: 401,
-          error: 'Unauthorized'
+          error: 'Unauthorized',
         });
       }
 
-      req.user = _jsonwebtoken["default"].verify(header, process.env.SECRET_KEY);
+      req.user = _jsonwebtoken.default.verify(header, process.env.SECRET_KEY);
       next();
     } catch (err) {
       return res.status(401).json({
         status: 401,
-        error: 'Invalid token!'
+        error: 'Invalid token!',
       });
     }
 
     return false;
-  }
+  },
 };
-var _default = Auth;
-exports["default"] = _default;
+const _default = Auth;
+exports.default = _default;
