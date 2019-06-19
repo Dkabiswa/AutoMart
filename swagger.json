@@ -68,7 +68,7 @@
         }
       }
     },
-    "/auth/signin": {
+    "/auth/login": {
       "post": {
         "tags": [
           "Users"
