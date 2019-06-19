@@ -4,7 +4,8 @@
   "description": "[![Build Status](https://travis-ci.org/Dkabiswa/AutoMart.svg?branch=develop)](https://travis-ci.org/Dkabiswa/AutoMart)",
   "main": "src/index.js",
   "scripts": {
-    "test": "npm run create && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
+    "localtest": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
+    "test": "npm run table && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
     "build": "npm run clean && babel ./server -d ./server/dist",
     "clean": " rm -rf ./server/dist",
     "start": " nodemon ./server/index.js --exec babel-node -e js",
@@ -12,7 +13,8 @@
     "lint": "eslint **/*.js --fix",
     "create":"cross-env NODE_ENV=test babel-node ./server/src/dBase/db/database.js",
     "drop": "cross-env NODE_ENV=test node ./server/src/dBase/db/dbControl dropTables",
-    "admin": "cross-env NODE_ENV=test node ./server/src/dBase/db/dbControl createAdmin"
+    "admin": "cross-env NODE_ENV=test node ./server/src/dBase/db/dbControl createAdmin",
+    "table": "npm run create && npm run admin"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 const dotenv = require('dotenv');
-const bcrypt  = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 dotenv.config();
 const env = process.env.NODE_ENV;
@@ -49,25 +49,25 @@ const dropTables = () => {
 };
 
 const createAdmin = () => {
-  const email ='admin@gmail.com';
+  const email = 'admin@gmail.com';
   const first_name = 'admin';
-  const last_name ='adminstrator';
+  const last_name = 'adminstrator';
   const password = bcrypt.hashSync('adminpassword1', 10);
-  const address= 'kampala';
+  const address = 'kampala';
   const is_admin = true;
   const admin = `
     INSERT INTO
       users (email, first_name, last_name, password, address, is_admin)
-      VALUES ($1, $2, $3, $4, $5, $6)`;   
+      VALUES ($1, $2, $3, $4, $5, $6)`;
 
-    const values = [
-    email, 
+  const values = [
+    email,
     first_name,
     last_name,
     password,
     address,
-    is_admin, 
-    ];
+    is_admin,
+  ];
   pool.query(admin, values)
     .then((res) => {
       console.log(res);

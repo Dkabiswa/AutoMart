@@ -13,39 +13,35 @@ let tok;
 const email = faker.internet.email();
 describe('/ CARS', () => {
   const details = {
+    email: 'admin@gmail.com',
+    password: 'adminpassword1',
+  };
+  const det = {
     email,
     firstName: 'mgat',
     lastName: 'dgat',
     password: 'gdat1234',
     address: 'mukono',
-    isAdmin: true,
-  };
-   const det = {
-    email: 'email2@gmail.com',
-    firstName: 'mgat',
-    lastName: 'dgat',
-    password: 'gdat1234',
-    address: 'mukono',
     isAdmin: false,
-  }; 
+  };
   before((done) => {
     chai.request(server)
-      .post('/api/v1/auth/signup')
+      .post('/api/v1/auth/login')
       .send(details)
       .end((err, res) => {
-        res.should.have.status(201);
+        res.should.have.status(200);
         res.body.should.have.property('data');
         token = res.body.data.Token;
-          chai.request(server)
+        chai.request(server)
           .post('/api/v1/auth/signup')
           .send(det)
           .end((err, res) => {
             res.should.have.status(201);
             res.body.should.have.property('data');
-            tok = res.body.data.Token; 
-        done();
+            tok = res.body.data.Token;
+            done();
+          });
       });
-    });
   });
   it('it should POST a car', (done) => {
     const car = {
@@ -108,7 +104,7 @@ describe('/ CARS', () => {
         res.body.should.be.a('object');
         done();
       });
-  }); 
+  });
   it('should list all unsold cars for all users', (done) => {
     chai.request(server)
       .get('/api/v1/car?status=available')
@@ -145,7 +141,7 @@ describe('/ CARS', () => {
     chai.request(server)
       .get(`/api/v1/car/${carId}`)
       .set('Authorization', token)
-      .end((err, res) => { 
+      .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.data.should.have.property('price');
@@ -211,7 +207,7 @@ describe('/ CARS', () => {
         res.body.should.have.property('error');
         done();
       });
-  }); 
+  });
 
   it('it should mark a car sold', (done) => {
     const Status = { status: 'sold' };
@@ -482,12 +478,12 @@ describe('/ CARS', () => {
         res.body.should.be.a('object');
         done();
       });
-  });
+  });*/
 });
 describe('/DELETE CARS', () => {
-  const info = {
-    email: 'mgat@gmail.com',
-    password: 'gdat1234',
+ /* const info = {
+    email: 'admin@gmail.com',
+    password: 'adminpassword1',
   };
   before((done) => {
     chai.request(server)
@@ -499,7 +495,7 @@ describe('/DELETE CARS', () => {
         token = res.body.data.Token;
         done();
       });
-  });
+  });*/
   it('should delete a car advert', (done) => {
     chai.request(server)
       .delete('/api/v1/car/1')
@@ -544,5 +540,5 @@ describe('/DELETE CARS', () => {
         done();
       });
   });
- */
+ 
 });

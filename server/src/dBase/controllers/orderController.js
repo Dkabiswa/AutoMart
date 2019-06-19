@@ -2,7 +2,6 @@ import OrderSchema from '../../validations/orderValidation';
 import Validation from '../../middleware/validationhandler';
 import db from '../db/dbControl';
 import datab from '../database';
-import carServices from '../services/carServices';
 import '@babel/polyfill';
 
 const Order = {
@@ -11,7 +10,8 @@ const Order = {
     if (notValid) {
       return res.status(400).send(notValid);
     }
-    const car = carServices.getOne(car_id);
+    const text = 'SELECT * FROM cars WHERE id = $1';
+
 
     const { buyer } = req.body;
     const car_id = req.body.carId;
@@ -29,6 +29,12 @@ const Order = {
     ];
 
     try {
+      const car = await db.query(text, [car_id]);
+      if (!car.rows[0]) {
+        return res.status(404).send({
+          message: 'car not found',
+        });
+      }
       const { rows } = await db.query(query, values);
       return res.status(201).send({
         status: 201,

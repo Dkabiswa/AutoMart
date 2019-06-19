@@ -18,7 +18,7 @@ describe('ORDER', () => {
     lastName: 'dgat',
     password: 'gdat1234',
     address: 'mukono',
-    isAdmin: true,
+    isAdmin: false,
   };
   const car = {
     owner: 1,
@@ -90,7 +90,7 @@ describe('ORDER', () => {
       .set('Authorization', token)
       .send(order)
       .end((err, res) => {
-        res.should.have.status(400);
+        res.should.have.status(404);
         res.body.should.be.a('object');
         done();
       });

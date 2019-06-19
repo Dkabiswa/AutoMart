@@ -1,4 +1,4 @@
-import car from '../models/carModel';
+/*import car from '../models/carModel';
 import flag from '../models/flagModel';
 import FlagSchema from '../../validations/flagValidation';
 import Validation from '../../middleware/validationhandler';
@@ -26,4 +26,4 @@ const Flag = {
     });
   },
 };
-export default Flag;
+export default Flag;*/

@@ -42,7 +42,10 @@ const Car = {
       	data: rows[0],
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send({
+        status: 400,
+        error : error
+      });
     }
   },
 
@@ -79,7 +82,10 @@ const Car = {
 
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send({
+        status: 400,
+        error : error
+      });
     }
   },
   async updatePrice(req, res) {
@@ -110,7 +116,10 @@ const Car = {
 
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send({
+        status: 400,
+        error : error
+      });
     }
   },
   async getCar(req, res, next) {
@@ -160,7 +169,10 @@ const Car = {
       }
       return res.status(400).json({ status: 400, message: 'price range doesnot exisit' });
     } catch (error) {
-      return res.status(400).send(error);
+     return res.status(400).send({
+        status: 400,
+        error : error
+      });
     }
   },
   async allCars (req, res) {
@@ -182,7 +194,46 @@ const Car = {
         message: 'you must be an admin',
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send({
+        status: 400,
+        error : error
+      });
+    }
+  },
+  async deleteCar (req, res) {
+    const dValid = Validation.validator(req.params, CarSchema.carIdSchema);
+    if (dValid) {
+      return res.status(400).send(dValid);
+    }
+    const utext = 'SELECT * FROM users WHERE id = $1';
+    const deletetext= 'DELETE FROM cars WHERE id = $1 returning *';
+    
+    const i = parseInt(req.params.id);
+    try {
+      const user = await db.query(utext, [req.user.id]);  
+
+      if (user.rows[0].is_admin === true) {
+        const { rows } = await db.query(deletetext, [i]);
+          if(!rows[0]) {
+            return res.status(404).send({
+              status: 404,
+              message: 'car not found',
+            });
+          }
+        return res.status(200).send({ 
+          status: 200,
+          message: 'CarAd sucessfully deleted',
+        });    
+      }
+      return res.status(403).send({
+        status: 403,
+        message: 'you must be an admin',
+      });
+    } catch (error) {
+      return res.status(400).send({
+        status: 400,
+        error : error
+      });
     }
   },
 };
