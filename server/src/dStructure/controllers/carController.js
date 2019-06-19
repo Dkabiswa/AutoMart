@@ -1,37 +1,38 @@
-import users from '../models/userModel';
+/*import users from '../models/userModel';
 import car from '../models/carModel';
 import CarSchema from '../../validations/carValidation';
 import Validation from '../../middleware/validationhandler';
-import {upload, dataUri} from '../../middleware/multer';
+import { upload, dataUri } from '../../middleware/multer';
 
 const Car = {
-  imageUpload (req, res, next) {
+  imageUpload(req, res, next) {
     const notValid = Validation.validator(req.params, CarSchema.carIdSchema);
     if (notValid) {
       return res.status(400).send(notValid);
     }
-    let id = parseInt(req.params.id, 10);
-    upload(req, res, (err) =>{
-      if(err) {
+    const id = parseInt(req.params.id, 10);
+    upload(req, res, (err) => {
+      if (err) {
         return res.status(400).send({
           status: 400,
-          message: 'Error uploading Images, make sure they are less than 6'
-        })
+          message: 'Error uploading Images, make sure they are less than 6',
+        });
       }
       if (req.files) {
-        if(!car.findId(id)){
+        if (!car.findId(id)) {
           return res.status(404).send({
             status: 404,
-            message:'car not found'});
+            message: 'car not found',
+          });
         }
         car.addImages(id, req.files);
         return res.status(200).send({
-          status:200,
+          status: 200,
           message: 'images uploaded Succesfully',
-      })
-    }
-    return res.status(400).send({message: 'uploaded an empty file'});
-    });    
+        });
+      }
+      return res.status(400).send({ message: 'uploaded an empty file' });
+    });
   },
 
   getState(req, res) {
@@ -40,10 +41,10 @@ const Car = {
     if (notValid) {
       return res.status(400).send(notValid);
     }
-    const sCars = car.getState(option.status, option.state)
+    const sCars = car.getState(option.status, option.state);
     return res.status(200).send({
       status: 200,
-      data: sCars
+      data: sCars,
     });
   },
   getBody(req, res) {
@@ -52,10 +53,10 @@ const Car = {
     if (notValid) {
       return res.status(400).send(notValid);
     }
-    const bCars = car.getBody(body.bodyType)
+    const bCars = car.getBody(body.bodyType);
     return res.status(200).send({
       status: 200,
-      data: bCars
+      data: bCars,
     });
   },
 
@@ -65,10 +66,10 @@ const Car = {
     if (notValid) {
       return res.status(400).send(notValid);
     }
-    const mCars = car.getMake(option.status, option.manufacturer)
+    const mCars = car.getMake(option.status, option.manufacturer);
     return res.status(200).send({
       status: 200,
-      data: mCars
+      data: mCars,
     });
   },
 
@@ -183,12 +184,12 @@ const Car = {
     if (!req.body.price) {
       return res.status(400).json({ status: 400, message: 'Enter new price to be updated' });
     }
-    let z = parseInt(req.params.id, 10);
+    const z = parseInt(req.params.id, 10);
     const oldCar = car.findId(z);
     if (!oldCar) {
       return res.status(404).json({ status: 404, message: 'car not found' });
     }
-    car.updatePrice(z, req.body.price)
+    car.updatePrice(z, req.body.price);
     return res.status(200).json({
       status: 200,
       data: oldCar,
@@ -196,3 +197,4 @@ const Car = {
   },
 };
 export default Car;
+*/

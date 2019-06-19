@@ -9,9 +9,9 @@ const UserSchema = {
 
   signupSchema: Joi.object().keys({
     email: Joi.string().email().required(),
-    firstName: Joi.string().min(3).max(20).required()
+    firstName: Joi.string().min(2).max(25).required()
       .regex(/^[A-Za-z]+$/),
-    lastName: Joi.string().min(3).max(20).required()
+    lastName: Joi.string().min(2).max(25).required()
       .regex(/^[A-Za-z]+$/),
     password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required(),
     address: Joi.string().required().regex(/^[A-Za-z]+$/),

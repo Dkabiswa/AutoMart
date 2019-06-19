@@ -5,11 +5,12 @@ class Order {
   }
 
   create(data) {
-    let newId, x =this.orders.length;
-    if( x === 0){
-      newId = 1; 
+    let newId; const
+      x = this.orders.length;
+    if (x === 0) {
+      newId = 1;
     } else {
-      newId = this.orders[x -1].id + 1;
+      newId = this.orders[x - 1].id + 1;
     }
     const newOrder = {
       id: data.id || newId,
@@ -25,7 +26,8 @@ class Order {
   findId(id) {
     return this.orders.find(order => order.id === id);
   }
-  updatePrice(id, amount){
+
+  updatePrice(id, amount) {
     const uOrder = this.findId(id);
     uOrder.amount = amount;
   }

@@ -1,8 +1,6 @@
-import pool from './db/dbControl';
+import pool from './dbControl';
 
-class Database {
-  createTables() {
-    const tables = `CREATE TABLE IF NOT EXISTS
+const tables = `CREATE TABLE IF NOT EXISTS
       users (
         id bigserial NOT NULL,
         email VARCHAR(128) UNIQUE NOT NULL,
@@ -12,17 +10,6 @@ class Database {
         address VARCHAR(128) NOT NULL,
         is_admin BOOLEAN NOT NULL DEFAULT FALSE,
         PRIMARY KEY (id));
-        
-      CREATE TABLE IF NOT EXISTS
-      orders (
-        id bigserial NOT NULL,
-        buyer INTEGER NOT NULL,
-        car_id INTEGER NOT NULL,
-        amount VARCHAR(128) NOT NULL,
-        status VARCHAR (128) NOT NULL,
-        PRIMARY KEY (id),
-        FOREIGN KEY (buyer) REFERENCES users (id) ON DELETE CASCADE,
-        FOREIGN KEY (car_id) REFERENCES cars (id) ON DELETE CASCADE);
 
       CREATE TABLE IF NOT EXISTS
         cars (
@@ -37,11 +24,24 @@ class Database {
         body_type VARCHAR(128) NOT NULL,
         PRIMARY KEY (id),
         FOREIGN KEY (owner) REFERENCES users (id) ON DELETE CASCADE);
-        `;
-    pool.query(tables);
-  }
-}
-export default Database;
+  
+      CREATE TABLE IF NOT EXISTS
+      orders (
+        id bigserial NOT NULL,
+        buyer INTEGER NOT NULL,
+        car_id INTEGER NOT NULL,
+        amount VARCHAR(128) NOT NULL,
+        status VARCHAR (128) NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY (buyer) REFERENCES users (id) ON DELETE CASCADE,
+        FOREIGN KEY (car_id) REFERENCES cars (id) ON DELETE CASCADE);`;
+pool.query(tables)
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 /*
 const dropUserTable = () => {
   const queryText = 'DROP TABLE IF EXISTS users returning *';

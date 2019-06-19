@@ -5,7 +5,7 @@ dotenv.config();
 
 const Auth = {
   createToken({ id }) {
-    const expiresIn = 24 * 60 * 60;
+    const expiresIn = 7 * 24 * 60 * 60;
     return jwt.sign({ id }, process.env.SECRET_KEY, {
       expiresIn,
     });

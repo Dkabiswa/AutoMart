@@ -1,20 +1,24 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import faker from 'faker';
 import server from '../server/index';
 
 chai.use(chaiHttp);
-chai.should();
 
-describe('/POST Register', () => {
+describe('/SIGNUP', () => {
+  const email = faker.internet.email();
+  const details = {
+    email,
+    firstName: 'mgat',
+    lastName: 'dgat',
+    password: 'password',
+    address: 'mukono',
+    isAdmin: true,
+  };
+
   it('it should Sign up', (done) => {
-    const details = {
-      email: 'mgrrrt@gmail.com',
-      firstName: 'mgat',
-      lastName: 'dgat',
-      password: 'gDFdat1234',
-      address: 'mukono',
-      isAdmin: true,
-    };
     chai.request(server)
       .post('/api/v1/auth/signup')
       .send(details)
@@ -26,8 +30,7 @@ describe('/POST Register', () => {
   });
 
   it('it should not Sign up with missing fields', (done) => {
-    const details = {
-      id: 1,
+    const info = {
       firstName: 'mgat',
       lastName: 'dgat',
       password: 'gdat1234',
@@ -36,7 +39,7 @@ describe('/POST Register', () => {
     };
     chai.request(server)
       .post('/api/v1/auth/signup')
-      .send(details)
+      .send(info)
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
@@ -44,8 +47,8 @@ describe('/POST Register', () => {
       });
   });
   it('it should not Sign up if email already exists', (done) => {
-    const details = {
-      email: 'mgrrrt@gmail.com',
+    const detail = {
+      email,
       firstName: 'mgat',
       lastName: 'dgat',
       password: 'gDFdat1234',
@@ -54,67 +57,10 @@ describe('/POST Register', () => {
     };
     chai.request(server)
       .post('/api/v1/auth/signup')
-      .send(details)
+      .send(detail)
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
-        done();
-      });
-  });
-  it('Should LOGIN if credential is valid', (done) => {
-    const details = {
-      email: 'mgrrrt@gmail.com',
-      password: 'gDFdat1234',
-    };
-    chai.request(server)
-      .post('/api/v1/auth/login')
-      .send(details)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.have.property('data');
-        res.body.data.should.have.property('Token');
-        done();
-      });
-  });
-  it('Should not LOGIN if one field is missing', (done) => {
-    const details = {
-      email: '',
-      password: 'gDFdat1234',
-    };
-    chai.request(server)
-      .post('/api/v1/auth/login')
-      .send(details)
-      .end((err, res) => {
-        res.should.have.status(400);
-        res.body.should.have.property('error');
-        done();
-      });
-  });
-  it('Should not LOGIN if wrong email is given', (done) => {
-    const details = {
-      email: 't@gmail.com',
-      password: 'gdat1234',
-    };
-    chai.request(server)
-      .post('/api/v1/auth/login')
-      .send(details)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.have.property('message');
-        done();
-      });
-  });
-  it('Should not LOGIN if wrong password is given', (done) => {
-    const details = {
-      email: 'mgrrrt@gmail.com',
-      password: 'gda',
-    };
-    chai.request(server)
-      .post('/api/v1/auth/login')
-      .send(details)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.have.property('message');
         done();
       });
   });

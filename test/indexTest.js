@@ -1,7 +1,8 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server/index';
-
 
 
 chai.use(chaiHttp);

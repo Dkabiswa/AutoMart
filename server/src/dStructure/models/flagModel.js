@@ -6,11 +6,12 @@ class Flag {
   }
 
   create(data) {
-    let newId, x =this.flags.length;
-    if( x === 0){
-      newId = 1; 
+    let newId; const
+      x = this.flags.length;
+    if (x === 0) {
+      newId = 1;
     } else {
-      newId = this.flags[x -1].id + 1;
+      newId = this.flags[x - 1].id + 1;
     }
     const newFlag = {
       id: data.id || newId,
@@ -22,7 +23,6 @@ class Flag {
     this.flags.push(newFlag);
     return newFlag;
   }
-
 }
 
 export default new Flag();
