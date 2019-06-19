@@ -1,7 +1,8 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-undef */
-/* import chai from 'chai';
+ import chai from 'chai';
 import chaiHttp from 'chai-http';
+import faker from 'faker';
 import server from '../server/index';
 
 
@@ -10,9 +11,10 @@ chai.should();
 
 let token;
 
+const email = faker.internet.email();
 describe('FLAG', () => {
   const details = {
-    email: 'flag@gmail.com',
+    email,
     firstName: 'mgat',
     lastName: 'dgat',
     password: 'gdat1234',
@@ -20,10 +22,10 @@ describe('FLAG', () => {
     isAdmin: false,
   };
   const car = {
-    id: 5,
-    owner: 3,
+    owner: 1,
     state: 'used',
-    price: 300,
+    status: 'available',
+    price: 30000,
     manufacturer: 'Benz',
     model: 'class',
     bodyType: 'Truck',
@@ -48,8 +50,7 @@ describe('FLAG', () => {
   });
   it('should flag a car fraudulent', (done) => {
     const flag = {
-      id: 3,
-      carId: 5,
+      carId: 2,
       reason: 'stolen car.',
       description: 'Was reported to police on 2nd June.',
     };
@@ -61,31 +62,12 @@ describe('FLAG', () => {
         res.should.have.status(201);
         res.body.should.be.a('object');
         res.body.data.should.have.property('id');
-        done();
-      });
-  });
-  it('should create a another flag with incremented id', (done) => {
-    const flag = {
-      carId: 5,
-      reason: 'stolen car.',
-      description: 'Was reported to police on 2nd June.',
-    };
-    chai.request(server)
-      .post('/api/v1/flag')
-      .set('Authorization', token)
-      .send(flag)
-      .end((err, res) => {
-        res.should.have.status(201);
-        res.body.should.be.a('object');
-        res.body.data.should.have.property('id');
-        res.body.data.id.should.be.equal(4);
         done();
       });
   });
   it('should not flag a car fraudulent if car doesnot exist', (done) => {
     const flag = {
-      id: 3,
-      carId: 10,
+      carId: 1000,
       reason: 'stolen car.',
       description: 'Was reported to police on 2nd June.',
     };
@@ -100,7 +82,6 @@ describe('FLAG', () => {
   });
   it('should not flag a car fraudulent if missing required details', (done) => {
     const flag = {
-      id: 3,
       description: 'Was reported to police on 2nd June.',
     };
     chai.request(server)
@@ -113,4 +94,4 @@ describe('FLAG', () => {
       });
   });
 });
-*/
+
