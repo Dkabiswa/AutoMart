@@ -19,6 +19,11 @@ router.route('/car')
   .post(auth.verifyUser, car.create)
   .all(method);
 
+
+router.route('/admin/car')
+  .get(auth.verifyUser, car.allCars)
+  .all(method);
+
 // return used or new unsold cars
 /* router.route('/state/car')
   .get(auth.verifyUser, car.getState)

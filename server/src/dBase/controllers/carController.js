@@ -164,5 +164,27 @@ const Car = {
       return res.status(400).send(error);
     }
   },
+  async allCars (req, res) {
+    const utext = 'SELECT * FROM users WHERE id = $1';
+    const alltext= 'SELECT * FROM cars';
+    try {
+      const aCars = await db.query(alltext);
+      const user = await db.query(utext, [req.user.id]);
+       
+      if (user.rows[0].is_admin === true) {
+        
+        return res.status(200).send({
+          status: 200,
+          data: aCars.rows,
+        });
+      }
+      return res.status(403).send({
+        status: 403,
+        message: 'you must be an admin',
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
 };
 export default Car;

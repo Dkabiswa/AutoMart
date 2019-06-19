@@ -18,7 +18,7 @@ const config = {
   user: process.env.DB_USER,
   database,
   password: process.env.DB_PASSWORD,
-  port: 5432,
+  port: process.env.DB_PORT,
   max: 10,
   idleTimeoutMillis: 30000,
 };

@@ -20,14 +20,14 @@ describe('/ CARS', () => {
     address: 'mukono',
     isAdmin: true,
   };
-  /* const det = {
-    email: email2,
+   const det = {
+    email: 'email2@gmail.com',
     firstName: 'mgat',
     lastName: 'dgat',
     password: 'gdat1234',
     address: 'mukono',
     isAdmin: false,
-  }; */
+  }; 
   before((done) => {
     chai.request(server)
       .post('/api/v1/auth/signup')
@@ -36,16 +36,16 @@ describe('/ CARS', () => {
         res.should.have.status(201);
         res.body.should.have.property('data');
         token = res.body.data.Token;
-
-        /* chai.request(server)
+          chai.request(server)
           .post('/api/v1/auth/signup')
           .send(det)
           .end((err, res) => {
             res.should.have.status(201);
             res.body.should.have.property('data');
-            tok = res.body.data.Token; */
+            tok = res.body.data.Token; 
         done();
       });
+    });
   });
   it('it should POST a car', (done) => {
     const car = {
@@ -89,10 +89,9 @@ describe('/ CARS', () => {
         done();
       });
   });
-  /*
   it('should list all Cars on /car GET if user is admin', (done) => {
     chai.request(server)
-      .get('/api/v1/car/')
+      .get('/api/v1/admin/car/')
       .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);
@@ -102,14 +101,14 @@ describe('/ CARS', () => {
   });
   it('should not list all Cars if not admin', (done) => {
     chai.request(server)
-      .get('/api/v1/car/')
+      .get('/api/v1/admin/car/')
       .set('Authorization', tok)
       .end((err, res) => {
         res.should.have.status(403);
         res.body.should.be.a('object');
         done();
       });
-  }); */
+  }); 
   it('should list all unsold cars for all users', (done) => {
     chai.request(server)
       .get('/api/v1/car?status=available')
@@ -544,5 +543,6 @@ describe('/DELETE CARS', () => {
         res.body.should.be.a('object');
         done();
       });
-  }); */
+  });
+ */
 });
