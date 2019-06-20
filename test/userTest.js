@@ -59,7 +59,7 @@ describe('/SIGNUP', () => {
       .post('/api/v1/auth/signup')
       .send(detail)
       .end((err, res) => {
-        res.should.have.status(400);
+        res.should.have.status(409);
         res.body.should.be.a('object');
         done();
       });

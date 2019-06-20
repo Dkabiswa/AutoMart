@@ -1,12 +1,12 @@
 import bcrypt from 'bcrypt';
 import auth from '../../middleware/auth';
 import UserSchema from '../../validations/userValidation';
-import Validation from '../../middleware/validationhandler';
-import db from '../db/dbControl';
 import '@babel/polyfill';
+import Validation from '../../middleware/validationhandler';
+import UserModel from '../models/userModel';
 
 
-const User = {
+class User  {
   async create(req, res, next) {
     const inValid = Validation.validator(req.body, UserSchema.signupSchema);
     if (inValid) {
@@ -18,10 +18,7 @@ const User = {
     const password = bcrypt.hashSync(req.body.password, 10);
     const { address } = req.body;
     const is_admin = false;
-    const query = `INSERT INTO
-      users (email, first_name, last_name, password, address, is_admin)
-      VALUES ($1, $2, $3, $4, $5, $6)
-      returning *`;
+
     const values = [
       email,
       last_name,
@@ -30,32 +27,27 @@ const User = {
       address,
       is_admin,
     ];
-    const etext = 'SELECT * FROM users WHERE email = $1';
-
-    try {
-      const user = await db.query(etext, [email]);
-      if (user.rows[0]) {
-        return res.status(400).send({
-          status: 400,
-          message: 'user already exists',
-        });
-      }
-      const { rows } = await db.query(query, values);
-      const token = auth.createToken({ id: rows[0].id });
-      return res.status(201).send({
-        status: 201,
-        data: {
-          Token: token,
-          id: rows[0].id,
-          firstName: rows[0].first_name,
-          lastName: rows[0].last_name,
-          email: rows[0].email,
-        },
+    const userExist = await UserModel.checkEmail(email);
+    if (userExist.rowCount !== 0) {
+      return res.status(409).send({
+        status: 409,
+        message: 'User already exists',
       });
-    } catch (error) {
-      return res.status(400).send({ message: error });
     }
-  },
+    const user = await UserModel.createUser(values);
+    const newUser = user.rows[0];
+    const token = auth.createToken({ id: newUser.id });
+    return res.status(201).send({
+      status: 201,
+      data: {
+        Token: token,
+        id: newUser.id,
+        firstName: newUser.first_name,
+        lastName: newUser.last_name,
+        email: newUser.email,
+      },
+    });
+  }
 
   async login(req, res, next) {
     const notValid = Validation.validator(req.body, UserSchema.loginSchema);
@@ -66,35 +58,67 @@ const User = {
     const { password } = req.body;
     const { email } = req.body;
 
-    const text = 'SELECT * FROM users WHERE email = $1';
-    try {
-      const { rows } = await db.query(text, [email]);
-      if (!rows[0]) {
-        return res.status(404).send({
-          status: 404,
-          message: 'user not found',
-        });
-      }
-      if (bcrypt.compareSync(password, rows[0].password)) {
-        const token = auth.createToken({ id: rows[0].id });
-        return res.status(200).send({
-          status: 200,
-          data: {
-            Token: token,
-            id: rows[0].id,
-            firstName: rows[0].first_name,
-            lastName: rows[0].last_name,
-            email: rows[0].email,
-          },
-        });
-      }
-      const err = new Error('wrong password ');
-      err.status = 404;
-      next(err);
-    } catch (error) {
-      return res.status(400).send(error);
+    const user = await UserModel.checkEmail(email);
+    if (user.rowCount === 0) {
+      return res.status(404).send({
+        status: 404,
+        error: 'User not found',
+      });
     }
-  },
+    const info = user.rows[0];
+
+    if (bcrypt.compareSync(password, info.password)) {
+      const token = auth.createToken({ id: info.id });
+      return res.status(200).send({
+        status: 200,
+        data: {
+          Token: token,
+          id: info.id,
+          firstName: info.first_name,
+          lastName: info.last_name,
+          email: info.email,
+        },
+      });
+    }
+    const err = new Error('wrong password ');
+    err.status = 401;
+    next(err);
+  }
+
+  async admin (req, res) {
+
+    const myid = parseInt(req.user.id, 10) 
+    const is_admin = req.body.isAdmin;
+    const aid = parseInt(req.params.id);
+
+    const user = await UserModel.checkId(aid);
+    if (user.rowCount === 0) {
+      return res.status(404).send({
+          status: 404,
+          error: 'USer not found',
+        });
+    }
+    const userAdmin = await UserModel.checkId(myid);
+    const values= [
+      is_admin,
+      aid,
+    ];
+    if (userAdmin.rows[0].is_admin === true) {
+      const response = await UserModel.updateAdmin(values);
+      const admin = response.rows[0];
+      return res.status(200).json({
+        status: 200,
+        message: 'Admin changed Sucesfully',
+        data: admin,
+      });
+    }
+    
+    return res.status(403).send({
+      status: 403,
+      error: 'you must be an admin',
+    });
+
+  }
 
 };
-export default User;
+export default new User();

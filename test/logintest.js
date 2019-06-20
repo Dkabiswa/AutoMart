@@ -68,7 +68,7 @@ describe('/ LOGIN', () => {
       .send(details)
       .end((err, res) => {
         res.should.have.status(404);
-        res.body.should.have.property('message');
+        res.body.should.have.property('error');
         done();
       });
   });
@@ -81,7 +81,7 @@ describe('/ LOGIN', () => {
       .post('/api/v1/auth/login')
       .send(details)
       .end((err, res) => {
-        res.should.have.status(404);
+        res.should.have.status(401);
         res.body.should.have.property('message');
         done();
       });

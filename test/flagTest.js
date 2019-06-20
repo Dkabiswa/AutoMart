@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-undef */
- import chai from 'chai';
+import chai from 'chai';
 import chaiHttp from 'chai-http';
 import faker from 'faker';
 import server from '../server/index';
@@ -94,4 +94,3 @@ describe('FLAG', () => {
       });
   });
 });
-

@@ -1,9 +1,7 @@
 import express from 'express';
-import dotenv from 'dotenv';
+import auth from '../middleware/auth';
 import User from '../dBase/controllers/userController';
 import method from '../middleware/methods';
-
-dotenv.config();
 
 
 const router = express.Router();
@@ -19,5 +17,7 @@ router.route('/login')
   .post(User.login)
   .all(method);
 
-
+router.route('/admin/:id')
+  .patch(auth.verifyUser, User.admin)
+  .all(method);
 export default router;

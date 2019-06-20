@@ -1,25 +1,21 @@
 import OrderSchema from '../../validations/orderValidation';
 import Validation from '../../middleware/validationhandler';
-import db from '../db/dbControl';
+import CarModel from '../models/carModel'
+import UserModel from '../models/userModel';
 import '@babel/polyfill';
+import OrderModel from '../models/orderModel';
 
-const Order = {
+class Order {
   async create(req, res, next) {
     const notValid = Validation.validator(req.body, OrderSchema.createSchema);
     if (notValid) {
       return res.status(400).send(notValid);
     }
-    const text = 'SELECT * FROM cars WHERE id = $1';
-
-
     const { buyer } = req.body;
     const car_id = req.body.carId;
     const { amount } = req.body;
     const status = 'pending';
-    const query = `INSERT INTO
-      orders (buyer, car_id, amount, status)
-      VALUES ($1, $2, $3, $4)
-      returning *`;
+    
     const values = [
       buyer,
       car_id,
@@ -27,69 +23,67 @@ const Order = {
       status,
     ];
 
-    try {
-      const car = await db.query(text, [car_id]);
-      if (!car.rows[0]) {
-        return res.status(404).send({
-          message: 'car not found',
+    const user = await UserModel.checkId(buyer);
+    if (user.rowCount === 0) {
+      return res.status(404).send({
+          status: 404,
+          message: 'USer not found',
         });
-      }
-      const { rows } = await db.query(query, values);
-      return res.status(201).send({
-        status: 201,
-        data: {
-          id: rows[0].id,
-          car_id: rows[0].car_id,
+    }
+
+    const car = await CarModel.checkId(car_id);
+    if (car.rowCount === 0) {
+      return res.status(404).send({
+          status: 404,
+          message: 'Car not found',
+        });
+    }
+    const neworder = await OrderModel.createOrder(values);
+    const created = neworder.rows[0];
+    return res.status(201).send({
+      status: 201,
+      message: 'Order is suceessfully placed',
+      data: {
+          id: created.id,
+          car_id: created.car_id,
           created_on: car.created_on,
-          status: rows[0].status,
+          status: created.status,
           price: car.price,
-          price_offered: rows[0].amount,
+          price_offered: created.amount,
         },
       });
-    } catch (error) {
-      return res.status(400).send({ message: error });
-    }
-  },
+  }
 
-  async updatePrice(req, res, next) {
+  async updatePrice(req, res) {
     const not_Valid = Validation.validator(req.body, OrderSchema.updateSchema);
     if (not_Valid) {
-      return res.status(400).send(not_Valid);
-    }
-
-    const text = 'SELECT * FROM orders WHERE id = $1';
-    const pricetext = `UPDATE orders
-      SET amount=$1
-      WHERE id=$2 returning *`;
+      return res.status(400).send(not_Valid); 
+    }  
+    const id = parseInt(req.params.id, 10); 
     const val = [
       req.body.newAmount,
-      req.params.id,
+      id,
     ];
-
-    try {
-      const { rows } = await db.query(text, [req.params.id]);
-      const old = rows[0];
-      if (!rows[0]) {
+    const order = await OrderModel.checkId(id);
+    if (order.rowCount === 0) {
         return res.status(404).send({
-          message: 'order not found',
+          status: 404,
+          message: 'Order not found',
         });
-      }
-
-      const change = await db.query(pricetext, val);
-      const newOrder = change.rows[0];
+    }
+    
+    const response = await OrderModel.updateOrder(val);
+    const newOrder = response.rows[0];
       return res.status(200).json({
         status: 200,
         data: {
-          id: old.id,
-          car_id: old.car_id,
-          status: old.status,
-          oldPriceOffered: old.amount,
+          id: newOrder.id,
+          car_id: newOrder.car_id,
+          status: newOrder.status,
+          oldPriceOffered: order.rows[0].amount,
           newPriceOffered: newOrder.amount,
         },
       });
-    } catch (error) {
-      return res.status(400).send(error);
-    }
-  },
+  }
 };
-export default Order;
+export default new Order();

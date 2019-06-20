@@ -141,7 +141,7 @@ describe('/ CARS', () => {
     chai.request(server)
       .get(`/api/v1/car/${carId}`)
       .set('Authorization', token)
-      .end((err, res) => { 
+      .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.data.should.have.property('price');
@@ -478,10 +478,10 @@ describe('/ CARS', () => {
         res.body.should.be.a('object');
         done();
       });
-  });*/
+  }); */
 });
 describe('/DELETE CARS', () => {
- /* const info = {
+  /* const info = {
     email: 'admin@gmail.com',
     password: 'adminpassword1',
   };
@@ -495,7 +495,7 @@ describe('/DELETE CARS', () => {
         token = res.body.data.Token;
         done();
       });
-  });*/
+  }); */
   it('should delete a car advert', (done) => {
     chai.request(server)
       .delete('/api/v1/car/1')
@@ -540,5 +540,4 @@ describe('/DELETE CARS', () => {
         done();
       });
   });
- 
 });

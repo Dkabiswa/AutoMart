@@ -6,7 +6,7 @@ dotenv.config();
 const env = process.env.NODE_ENV;
 let database;
 switch (env) {
-  case 'dev': {
+  case 'develop': {
     database = process.env.DEV_DB_URL;
     break;
   }
@@ -33,15 +33,7 @@ const query = (text, params) => new Promise((resolve, reject) => {
 });
 const dropTables = () => {
   const queryText = 'DROP TABLE IF EXISTS users, cars, orders, flags CASCADE';
-  pool.query(queryText)
-    .then((res) => {
-      console.log(res);
-      pool.end();
-    })
-    .catch((err) => {
-      console.log(err);
-      pool.end();
-    });
+  query(queryText)
 };
 
 const createAdmin = () => {
@@ -64,15 +56,8 @@ const createAdmin = () => {
     address,
     is_admin,
   ];
-  pool.query(admin, values)
-    .then((res) => {
-      console.log(res);
-      pool.end();
-    })
-    .catch((err) => {
-      console.log(err);
-      pool.end();
-    });
+  query(admin, values)
+        
 };
 
 module.exports = {
