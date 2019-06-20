@@ -6,7 +6,7 @@
   "scripts": {
     "localtest": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
     "test": "npm run table && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register './test/*.js' --exit",
-    "deploy":"cross-env NODE_ENV=production npm run create && npm run admin && babel-node ./server/index.js",
+    "deploy":"npm run create && npm run admin && babel-node ./server/index.js",
     "start": " nodemon ./server/index.js --exec babel-node -e js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint **/*.js --fix",
