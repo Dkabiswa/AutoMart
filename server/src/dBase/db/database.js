@@ -47,10 +47,8 @@ const tables = `CREATE TABLE IF NOT EXISTS
         FOREIGN KEY (car_id) REFERENCES cars (id) ON DELETE CASCADE);`;
 pool.query(tables)
   .then((res) => {
-    console.log(res);
   })
   .catch((err) => {
-    console.log(err);
   });
 /*
 const dropUserTable = () => {

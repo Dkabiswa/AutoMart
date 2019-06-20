@@ -95,6 +95,22 @@ describe('ORDER', () => {
         done();
       });
   });
+  it('should not create a new purchase order with a user which does not exist', (done) => {
+    const order = {
+      buyer: 666,
+      carId: 2,
+      amount: 1000,
+    };
+    chai.request(server)
+      .post('/api/v1/order/')
+      .set('Authorization', token)
+      .send(order)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
 });
 
 describe('Update Order', () => {

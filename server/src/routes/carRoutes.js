@@ -15,7 +15,7 @@ router.route('/car/:id')
 
 // return cars in specificed format
 router.route('/car')
-  .get(auth.verifyUser, car.getUnsold)
+  .get(car.getUnsold)
   .post(auth.verifyUser, car.create)
   .all(method);
 
