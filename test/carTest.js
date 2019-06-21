@@ -85,6 +85,26 @@ describe('/ CARS', () => {
         done();
       });
   });
+  it('it should not POST a car with missing owner', (done) => {
+    const car = {
+      owner: 28,
+      state: 'used',
+      status: 'available',
+      price: 300,
+      manufacturer: 'Benz',
+      model: 'class',
+      bodyType: 'Truck',
+    };
+    chai.request(server)
+      .post('/api/v1/car')
+      .set('Authorization', token)
+      .send(car)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
   it('should list all Cars on /car GET if user is admin', (done) => {
     chai.request(server)
       .get('/api/v1/admin/car/')

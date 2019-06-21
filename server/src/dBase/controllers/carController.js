@@ -35,6 +35,13 @@ class Car {
       body_type,
     ];
 
+  const user = await UserModel.checkId(owner);
+    if (user.rowCount === 0) {
+      return res.status(404).send({
+          status: 404,
+          message: 'USer not found',
+        });
+    }
     const car = await CarModel.createCar(values);
     return res.status(201).send({
       status: 201,
