@@ -59,7 +59,8 @@ class Order {
     if (not_Valid) {
       return res.status(400).send(not_Valid); 
     }  
-    const id = parseInt(req.params.id, 10); 
+    const id = parseInt(req.params.id, 10);
+    const ownerId = parseInt(req.user.id, 10) 
     const val = [
       req.body.newAmount,
       id,
@@ -71,9 +72,9 @@ class Order {
           message: 'Order not found',
         });
     }
-    
-    const response = await OrderModel.updateOrder(val);
-    const newOrder = response.rows[0];
+    if (ownerId === order.rows[0].buyer){
+      const response = await OrderModel.updateOrder(val);
+      const newOrder = response.rows[0];
       return res.status(200).json({
         status: 200,
         data: {
@@ -84,6 +85,11 @@ class Order {
           newPriceOffered: newOrder.amount,
         },
       });
+    }
+     return res.status(403).send({
+          status: 403,
+          message: 'you are not the Owner',
+        });
   }
 };
 export default new Order();

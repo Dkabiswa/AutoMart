@@ -65,6 +65,7 @@ class Car {
         message: notValid,
       });
     }
+    const mid = parseInt(req.user.id, 10) 
     const id = parseInt(req.params.id, 10);
     const value = [
       req.body.status,
@@ -78,12 +79,17 @@ class Car {
         message: 'Car not found',
       });
     }
-
-    const response = await CarModel.markSold(value);
-    return res.status(200).json({
-      status: 200,
-      message: 'Car is now Sold',
-      data: response.rows[0],
+    if(mid === oCar.rows[0].owner){
+      const response = await CarModel.markSold(value);
+      return res.status(200).json({
+        status: 200,
+        message: 'Car is now Sold',
+        data: response.rows[0],
+      });
+    }
+    return res.status(403).send({
+      status: 403,
+      message: 'You do not own this car',
     });
   }
 
@@ -92,6 +98,7 @@ class Car {
       return res.status(400).json({ status: 400, message: 'Enter new price to be updated' });
     }
     const d = parseInt(req.params.id, 10);
+    const uid = parseInt(req.user.id, 10);
     const value = [
       req.body.price,
       d,
@@ -103,12 +110,17 @@ class Car {
         message: 'Car not found',
       });
     }
-
-    const change = await CarModel.updatePrice(value);
-    return res.status(200).json({
-      status: 200,
-      message: 'Price sucessfully updated',
-      data: change.rows[0],
+    if(uid === uCar.rows[0].owner){
+      const change = await CarModel.updatePrice(value);
+      return res.status(200).json({
+        status: 200,
+        message: 'Price sucessfully updated',
+        data: change.rows[0],
+      });
+    }
+    return res.status(403).send({
+      status: 403,
+      message: 'You do not own this car',
     });
   }
   async getCar(req, res) {
