@@ -30,7 +30,7 @@
     "@hapi/joi": "^15.0.3",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
-    "braces": "^3.0.2",
+    "braces": "^3.0.3",
     "cloudinary": "^1.14.0",
     "datauri": "^2.0.0",
     "dotenv": "^8.0.0",
